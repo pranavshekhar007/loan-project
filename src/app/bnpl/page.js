@@ -330,61 +330,61 @@ export default function BNPL() {
       </section>
 
       {/* <!-- FAQ Section --> */}
-    <section class="faq-section">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <p class="section-subtitle">Find answers to common questions about our BNPL service</p>
+    <section className="faq-section">
+        <div className="container">
+            <div className="text-center mb-5">
+                <h2 className="section-title">Frequently Asked Questions</h2>
+                <p className="section-subtitle">Find answers to common questions about our BNPL service</p>
             </div>
 
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="faq-item" data-aos="fade-up">
-                        <div class="faq-question">
+            <div className="row justify-content-center">
+                <div className="col-lg-10">
+                    <div className="faq-item" data-aos="fade-up">
+                        <div className="faq-question">
                             What is Buy Now, Pay Later (BNPL)?
-                            <span class="faq-toggle"></span>
+                            <span className="faq-toggle"></span>
                         </div>
-                        <div class="faq-answer">
+                        <div className="faq-answer">
                             Buy Now, Pay Later is a payment solution that allows you to make purchases and pay for them in installments over time, usually with zero interest if paid within the promotional period.
                         </div>
                     </div>
 
-                    <div class="faq-item" data-aos="fade-up">
-                        <div class="faq-question">
+                    <div className="faq-item" data-aos="fade-up">
+                        <div className="faq-question">
                             Is there any interest charged on BNPL?
-                            <span class="faq-toggle"></span>
+                            <span className="faq-toggle"></span>
                         </div>
-                        <div class="faq-answer">
+                        <div className="faq-answer">
                             For standard repayment periods (up to 3 months), we charge zero interest. For extended tenures beyond 3 months, a nominal interest of 1% per month may apply.
                         </div>
                     </div>
 
-                    <div class="faq-item" data-aos="fade-up">
-                        <div class="faq-question">
+                    <div className="faq-item" data-aos="fade-up">
+                        <div className="faq-question">
                             How do I increase my credit limit?
-                            <span class="faq-toggle"></span>
+                            <span className="faq-toggle"></span>
                         </div>
-                        <div class="faq-answer">
+                        <div className="faq-answer">
                             Your credit limit can be increased by maintaining a good repayment history, providing income documents, and regularly using our BNPL service. You can request a limit increase through the app.
                         </div>
                     </div>
 
-                    <div class="faq-item" data-aos="fade-up">
-                        <div class="faq-question">
+                    <div className="faq-item" data-aos="fade-up">
+                        <div className="faq-question">
                             Can I use BNPL for online shopping?
-                            <span class="faq-toggle"></span>
+                            <span className="faq-toggle"></span>
                         </div>
-                        <div class="faq-answer">
+                        <div className="faq-answer">
                             Yes, our BNPL service is accepted at thousands of online stores across various categories including electronics, fashion, travel, and more.
                         </div>
                     </div>
 
-                    <div class="faq-item" data-aos="fade-up">
-                        <div class="faq-question">
+                    <div className="faq-item" data-aos="fade-up">
+                        <div className="faq-question">
                             What happens if I miss a payment?
-                            <span class="faq-toggle"></span>
+                            <span className="faq-toggle"></span>
                         </div>
-                        <div class="faq-answer">
+                        <div className="faq-answer">
                             A late payment fee of ₹100 will be charged for each missed payment. Repeated missed payments may affect your credit score and limit eligibility.
                         </div>
                     </div>

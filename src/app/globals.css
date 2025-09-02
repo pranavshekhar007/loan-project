@@ -29,6 +29,7 @@
    --red: #dc2626;
    --red-light: #fee2e2;
    --gradient-gold: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%);
+   --primary-gradient: linear-gradient(90deg, #007bff, #0056d2 50%, #003c9e);
  }
 
  @media(max-width:768px) {
@@ -44,12 +45,12 @@
      z-index: 1030;
    }
 
- }
- @media(max-width:991px) {
-  .btn-apply {
+   .btn-apply {
     display: none !important;
   }
+
  }
+
 
  /* Navbar */
  .custom-navbar {
@@ -125,6 +126,14 @@
    background: black;
    color: #fff;
  }
+
+ /* Scroll ke baad navbar bg */
+.custom-navbar.scrolled {
+  background: linear-gradient(90deg, #007bff, #0056d2 50%, #003c9e);
+  transition: background 0.4s ease-in-out;
+  margin: 0 auto;
+}
+
 
  /* Hero */
  .hero {
@@ -521,7 +530,7 @@
 
  /* hero2 */
  .hero2 {
-   background-image: linear-gradient(90deg, #ff3e3e, #ff2d4e 50%, #ff552b);
+  background-image: var(--primary-gradient);
    color: white;
    overflow-x: hidden;
    min-height: 100vh;
@@ -900,7 +909,7 @@
    transform: translateX(-50%);
    width: 80px;
    height: 4px;
-   background-image: linear-gradient(90deg, #ff3e3e, #ff2d4e 50%, #ff552b);
+   background-image: var(--primary-gradient);
    border-radius: 2px;
  }
 
@@ -1544,7 +1553,7 @@
    align-items: center;
    justify-content: center;
    margin-right: 15px;
-   background-image: linear-gradient(90deg, #ff3e3e, #ff2d4e 50%, #ff552b);
+   background-image: var(--primary-gradient);
    color: white;
    font-size: 1rem;
  }
@@ -1724,7 +1733,7 @@
    /* max-width: 1200px; */
    margin: 40px auto;
    padding: 60px 30px;
-   background-image: linear-gradient(90deg, #ff3e3e, #ff2d4e 50%, #ff552b);
+   background-image: var(--primary-gradient);
    border-radius: 20px;
    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
  }
@@ -1766,13 +1775,13 @@
    font-size: 2.5rem;
    font-weight: 800;
    margin-bottom: 5px;
-   color: #ff3f43;
+   color: #3e6bff;
  }
 
  .stat-item p {
    font-size: 1.1rem;
    opacity: 0.9;
-   color: #ff3f43;
+   color: #3e6bff;
  }
 
  @media (max-width: 768px) {
@@ -1929,6 +1938,11 @@
    color: white;
    line-height: 1.6;
    margin-bottom: 25px;
+ }
+
+ .badge {
+  background: var(--primary-gradient) !important;
+  color: #fff !important;
  }
 
  .encryption-badge {
@@ -2333,7 +2347,7 @@
  }
 
  .faq-section h2 span {
-   color: #fd4c5c;
+   color: #3e6bff;
    font-weight: 700;
  }
 
@@ -2359,7 +2373,7 @@
    right: 15px;
    top: 50%;
    transform: translateY(-50%);
-   color: #fd4c5c;
+   color: #3e6bff;
  }
 
  /* Tabs */
@@ -2381,8 +2395,8 @@
  }
 
  .faq-tab.active {
-   color: #fd4c5c;
-   border-bottom: 2px solid #fd4c5c;
+   color: #3e6bff;
+   border-bottom: 2px solid #3e6bff;
  }
 
  /* Accordion */
@@ -2422,7 +2436,7 @@
 
  .faq-item .icon {
    font-size: 1.2rem;
-   color: #fd4c5c;
+   color: #3e6bff;
    transition: transform 0.3s;
  }
 
@@ -2459,7 +2473,7 @@
    align-items: center;
    padding: 60px;
    border-radius: 130px 130px 0 0;
-   background-image: linear-gradient(90deg, #ff3e3e, #ff2d4e 50%, #ff552b);
+   background-image: var(--primary-gradient);
    /* max-width: 1200px; */
    margin: 0 auto;
  }
@@ -2550,7 +2564,7 @@
    bottom: -10px;
    width: 40px;
    height: 3px;
-   background: #ff3c41;
+   background: #3e6bff;
    border-radius: 3px;
  }
 
@@ -2590,7 +2604,7 @@
  .footer-contact li i {
    margin-right: 15px;
    font-size: 20px;
-   color: #ff3c41;
+   color: #3e6bff;
    margin-top: 3px;
  }
 
@@ -2658,7 +2672,7 @@
  }
 
  .social-icon:hover {
-   background: #ff3c41;
+   background: #3e6bff;
    transform: translateY(-5px);
  }
 
@@ -2766,7 +2780,7 @@
     flex: 1;
     /* min-width: 300px; */
     /* max-width: 450px; */
-    background: #fd4c5c;
+    background: var(--primary-gradient);
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     padding: 30px;
@@ -2813,7 +2827,7 @@
  .step-list li {
    margin-bottom: 12px;
    padding: 10px;
-   border-left: 3px solid rgb(253, 76, 92);
+   border-left: 3px solid rgb(62, 107, 255);
    background: #f8faff;
    border-radius: 6px;
    font-size: 15px;
@@ -2821,7 +2835,7 @@
 
  .step-list .number {
    font-weight: bold;
-   color: rgb(253, 76, 92);
+   color: rgb(62, 107, 255);
    margin-right: 8px;
  }
 
@@ -2840,7 +2854,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #ff3e3e 0%, #ff2d4e 50%, #ff552b 100%);
+    background: var(--primary-gradient);
     color: white;
     text-align: center;
     position: relative;
@@ -2969,7 +2983,7 @@
 .rl-step-number {
     font-size: 6rem;
     font-weight: 800;
-    color: rgba(255, 62, 62, 0.15);
+    color: rgba(62, 104, 255, 0.1);
     line-height: 1;
     margin-bottom: 1rem;
 }
@@ -3002,7 +3016,7 @@
 }
 
 .rl-step-features i {
-    color: #ff3e3e;
+    color: #3e6bff;
     margin-right: 10px;
     font-size: 1.1rem;
 }
@@ -3010,7 +3024,7 @@
 .rl-step-cta {
     display: inline-block;
     padding: 12px 30px;
-    background: #ff3e3e;
+    background: #3e6bff;
     color: white;
     border-radius: 30px;
     font-weight: 600;
@@ -3062,12 +3076,12 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: rgba(255, 62, 62, 0.1);
+    background: rgba(62, 104, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 15px;
-    color: #ff3e3e;
+    color: #3e6bff;
     font-size: 1.5rem;
 }
 
@@ -3143,7 +3157,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ff3e3e;
+    color: #3e6bff;
     font-size: 1.5rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     z-index: 3;
@@ -3237,7 +3251,7 @@
 /* Final CTA Section */
 .rl-process-cta {
     padding: 100px 0;
-    background: linear-gradient(135deg, #ff3e3e 0%, #ff2d4e 50%, #ff552b 100%);
+    background: var(--primary-gradient);
     color: white;
     text-align: center;
 }
@@ -3262,7 +3276,7 @@
 
 .rl-btn-primary {
     background: white;
-    color: #ff3e3e;
+    color: #3e6bff;
     padding: 15px 40px;
     border-radius: 30px;
     font-weight: 600;

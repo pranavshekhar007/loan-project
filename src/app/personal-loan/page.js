@@ -214,17 +214,17 @@ export default function PersonalLoan() {
 
 
       {/* <!-- Eligibility Section --> */}
-    <section class="eligibility-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 left">
+    <section className="eligibility-section">
+        <div className="container">
+            <div className="row">
+                <div className="col-lg-6 left">
                     <h2>Eligibility Criteria</h2>
-                    <p class="lead">Check if you qualify for our personal loan</p>
+                    <p className="lead">Check if you qualify for our personal loan</p>
 
-                    <div class="eligibility-criteria mt-4">
-                        <div class="criteria-item">
-                            <div class="criteria-icon">
-                                <i class="fas fa-user"></i>
+                    <div className="eligibility-criteria mt-4">
+                        <div className="criteria-item">
+                            <div className="criteria-icon">
+                                <i className="fas fa-user"></i>
                             </div>
                             <div>
                                 <h5>Age</h5>
@@ -232,9 +232,9 @@ export default function PersonalLoan() {
                             </div>
                         </div>
 
-                        <div class="criteria-item">
-                            <div class="criteria-icon">
-                                <i class="fas fa-money-bill-wave"></i>
+                        <div className="criteria-item">
+                            <div className="criteria-icon">
+                                <i className="fas fa-money-bill-wave"></i>
                             </div>
                             <div>
                                 <h5>Minimum Income</h5>
@@ -242,9 +242,9 @@ export default function PersonalLoan() {
                             </div>
                         </div>
 
-                        <div class="criteria-item">
-                            <div class="criteria-icon">
-                                <i class="fas fa-briefcase"></i>
+                        <div className="criteria-item">
+                            <div className="criteria-icon">
+                                <i className="fas fa-briefcase"></i>
                             </div>
                             <div>
                                 <h5>Employment</h5>
@@ -252,9 +252,9 @@ export default function PersonalLoan() {
                             </div>
                         </div>
 
-                        <div class="criteria-item">
-                            <div class="criteria-icon">
-                                <i class="fas fa-history"></i>
+                        <div className="criteria-item">
+                            <div className="criteria-icon">
+                                <i className="fas fa-history"></i>
                             </div>
                             <div>
                                 <h5>Work Experience</h5>
@@ -262,9 +262,9 @@ export default function PersonalLoan() {
                             </div>
                         </div>
 
-                        <div class="criteria-item">
-                            <div class="criteria-icon">
-                                <i class="fas fa-credit-card"></i>
+                        <div className="criteria-item">
+                            <div className="criteria-icon">
+                                <i className="fas fa-credit-card"></i>
                             </div>
                             <div>
                                 <h5>Credit Score</h5>
@@ -274,7 +274,7 @@ export default function PersonalLoan() {
                     </div>
                 </div>
 
-              <div class="col-lg-6 right">
+              <div className="col-lg-6 right">
                 <img src="assets/lender.gif" alt="" width="100%" />
               </div>
             </div>
@@ -282,71 +282,71 @@ export default function PersonalLoan() {
     </section>
 
     {/* <!-- Process Section --> */}
-    <section class="process-section">
-        <div class="container">
-            <div class="text-center mb-5">
+    <section className="process-section">
+        <div className="container">
+            <div className="text-center mb-5">
                 <h2>Simple Application Process</h2>
-                <p class="lead">Get your personal loan in just 4 easy steps</p>
+                <p className="lead">Get your personal loan in just 4 easy steps</p>
             </div>
 
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="process-step">
-                        <div class="step-number">1</div>
+            <div className="row">
+                <div className="col-md-3">
+                    <div className="process-step">
+                        <div className="step-number">1</div>
                         <h4>Apply Online</h4>
                         <p>Fill our simple application form in just 5 minutes</p>
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="process-step">
-                        <div class="step-number">2</div>
+                <div className="col-md-3">
+                    <div className="process-step">
+                        <div className="step-number">2</div>
                         <h4>Upload Documents</h4>
                         <p>Upload required documents securely through our portal</p>
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="process-step">
-                        <div class="step-number">3</div>
+                <div className="col-md-3">
+                    <div className="process-step">
+                        <div className="step-number">3</div>
                         <h4>Verification</h4>
                         <p>Quick verification process completed within hours</p>
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="process-step">
-                        <div class="step-number">4</div>
+                <div className="col-md-3">
+                    <div className="process-step">
+                        <div className="step-number">4</div>
                         <h4>Get Money</h4>
                         <p>Amount disbursed directly to your bank account</p>
                     </div>
                 </div>
             </div>
 
-            <div class="text-center mt-5">
-                <a href="#" class="btn btn-danger btn-lg rounded-pill px-4 py-2">Start Application</a>
+            <div className="text-center mt-5">
+                <a href="#" className="btn btn-danger btn-lg rounded-pill px-4 py-2">Start Application</a>
             </div>
         </div>
     </section>
 
     {/* <!-- Documents Section --> */}
-    <section class="documents-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
+    <section className="documents-section">
+        <div className="container">
+            <div className="row">
+                <div className="col-lg-6">
                     <h2>Required Documents</h2>
-                    <p class="lead">Minimal documentation for quick processing</p>
+                    <p className="lead">Minimal documentation for quick processing</p>
 
-                    <h4 class="mt-4">For Salaried Individuals</h4>
-                    <ul class="documents-list">
+                    <h4 className="mt-4">For Salaried Individuals</h4>
+                    <ul className="documents-list">
                         <li>KYC Documents (PAN Card, Aadhaar Card)</li>
                         <li>Latest 3 months' salary slips</li>
                         <li>Last 6 months' bank statements</li>
                         <li>Employee ID card</li>
                     </ul>
 
-                    <h4 class="mt-4">For Self-Employed Individuals</h4>
-                    <ul class="documents-list">
+                    <h4 className="mt-4">For Self-Employed Individuals</h4>
+                    <ul className="documents-list">
                         <li>KYC Documents (PAN Card, Aadhaar Card)</li>
                         <li>Last 2 years' ITR</li>
                         <li>Last 6 months' business bank statements</li>
@@ -354,45 +354,45 @@ export default function PersonalLoan() {
                     </ul>
                 </div>
 
-                <div class="col-lg-6">
-                    <div class="bg-light p-5 rounded">
-                        <h3 class="mb-4">Interest Rates & Charges</h3>
+                <div className="col-lg-6">
+                    <div className="bg-light p-5 rounded">
+                        <h3 className="mb-4">Interest Rates & Charges</h3>
 
-                        <div class="mb-4">
+                        <div className="mb-4">
                             <h5>Interest Rates</h5>
-                            <div class="d-flex justify-content-between py-2 border-bottom">
+                            <div className="d-flex justify-content-between py-2 border-bottom">
                                 <span>Starting From</span>
                                 <strong>10.25% p.a.</strong>
                             </div>
-                            <div class="d-flex justify-content-between py-2 border-bottom">
+                            <div className="d-flex justify-content-between py-2 border-bottom">
                                 <span>Up To</span>
                                 <strong>18% p.a.</strong>
                             </div>
                         </div>
 
-                        <div class="mb-4">
+                        <div className="mb-4">
                             <h5>Processing Fee</h5>
-                            <div class="d-flex justify-content-between py-2 border-bottom">
+                            <div className="d-flex justify-content-between py-2 border-bottom">
                                 <span>Fee</span>
                                 <strong>1% - 2% of loan amount</strong>
                             </div>
-                            <div class="d-flex justify-content-between py-2 border-bottom">
+                            <div className="d-flex justify-content-between py-2 border-bottom">
                                 <span>GST</span>
                                 <strong>18% on processing fee</strong>
                             </div>
                         </div>
 
-                        <div class="mb-4">
+                        <div className="mb-4">
                             <h5>Other Charges</h5>
-                            <div class="d-flex justify-content-between py-2 border-bottom">
+                            <div className="d-flex justify-content-between py-2 border-bottom">
                                 <span>Prepayment Charges</span>
                                 <strong>Nil after 12 EMIs</strong>
                             </div>
-                            <div class="d-flex justify-content-between py-2 border-bottom">
+                            <div className="d-flex justify-content-between py-2 border-bottom">
                                 <span>Late Payment Penalty</span>
                                 <strong>2% per month</strong>
                             </div>
-                            <div class="d-flex justify-content-between py-2 border-bottom">
+                            <div className="d-flex justify-content-between py-2 border-bottom">
                                 <span>Loan Cancellation Charges</span>
                                 <strong>₹1000 + GST</strong>
                             </div>
@@ -404,65 +404,65 @@ export default function PersonalLoan() {
     </section>
 
     {/* <!-- FAQ Section --> */}
-    <section class="faq-section">
-        <div class="container">
-            <div class="text-center mb-5">
+    <section className="faq-section">
+        <div className="container">
+            <div className="text-center mb-5">
                 <h2>Frequently Asked Questions</h2>
-                <p class="lead">Find answers to common questions about personal loans</p>
+                <p className="lead">Find answers to common questions about personal loans</p>
             </div>
 
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="faq-item">
-                        <div class="faq-question">
+            <div className="row justify-content-center">
+                <div className="col-lg-10">
+                    <div className="faq-item">
+                        <div className="faq-question">
                             What is the maximum amount I can get as a personal loan?
-                            <span class="faq-toggle"></span>
+                            <span className="faq-toggle"></span>
                         </div>
-                        <div class="faq-answer">
+                        <div className="faq-answer">
                             You can get a personal loan up to ₹25 lakhs, depending on your income, credit score, and
                             repayment capacity. The final amount is determined after evaluating your eligibility.
                         </div>
                     </div>
 
-                    <div class="faq-item">
-                        <div class="faq-question">
+                    <div className="faq-item">
+                        <div className="faq-question">
                             How long does it take to disburse the loan?
-                            <span class="faq-toggle"></span>
+                            <span className="faq-toggle"></span>
                         </div>
-                        <div class="faq-answer">
+                        <div className="faq-answer">
                             Once your application is approved and all documents are verified, the loan amount is
                             typically disbursed within 24 to 48 hours directly to your bank account.
                         </div>
                     </div>
 
-                    <div class="faq-item">
-                        <div class="faq-question">
+                    <div className="faq-item">
+                        <div className="faq-question">
                             Is there any prepayment penalty?
-                            <span class="faq-toggle"></span>
+                            <span className="faq-toggle"></span>
                         </div>
-                        <div class="faq-answer">
+                        <div className="faq-answer">
                             No, there are no prepayment penalties if you choose to foreclose your loan after paying 12
                             EMIs. You can pay off your loan early without any extra charges.
                         </div>
                     </div>
 
-                    <div class="faq-item">
-                        <div class="faq-question">
+                    <div className="faq-item">
+                        <div className="faq-question">
                             Can I apply if I have a low credit score?
-                            <span class="faq-toggle"></span>
+                            <span className="faq-toggle"></span>
                         </div>
-                        <div class="faq-answer">
+                        <div className="faq-answer">
                             While we prefer applicants with a credit score of 650 and above, we do consider applications
                             with lower scores on a case-by-case basis, possibly at a higher interest rate.
                         </div>
                     </div>
 
-                    <div class="faq-item">
-                        <div class="faq-question">
+                    <div className="faq-item">
+                        <div className="faq-question">
                             What is the minimum salary required to apply?
-                            <span class="faq-toggle"></span>
+                            <span className="faq-toggle"></span>
                         </div>
-                        <div class="faq-answer">
+                        <div className="faq-answer">
                             The minimum net monthly income required is ₹15,000 for salaried individuals and ₹20,000 for
                             self-employed professionals and business persons.
                         </div>

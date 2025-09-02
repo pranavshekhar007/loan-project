@@ -12,11 +12,11 @@ export default function Footer() {
             We are a leading financial services provider committed to making borrowing simple, transparent, and accessible for everyone.
           </p>
           <div className="footer-social">
-            <a href="#"><i className="fab fa-facebook-f"></i></a>
-            <a href="#"><i className="fab fa-twitter"></i></a>
-            <a href="#"><i className="fab fa-instagram"></i></a>
-            <a href="#"><i className="fab fa-linkedin-in"></i></a>
-            <a href="#"><i className="fab fa-youtube"></i></a>
+            <a href="#" className="social-icon"><i className="fab fa-facebook-f"></i></a>
+            <a href="#" className="social-icon"><i className="fab fa-twitter"></i></a>
+            <a href="#" className="social-icon"><i className="fab fa-instagram"></i></a>
+            <a href="#" className="social-icon"><i className="fab fa-linkedin-in"></i></a>
+            <a href="#" className="social-icon"><i className="fab fa-youtube"></i></a>
           </div>
         </div>
 

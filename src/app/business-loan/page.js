@@ -249,112 +249,112 @@ export default function BusinessLoan() {
       </section>
 
       {/* <!-- Business Loans Without Collateral Process Section --> */}
-    <section class="loan-process-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">BUSINESS LOANS WITHOUT COLLATERAL LOAN PROCESS</h2>
-                <p class="section-subtitle">You can apply for a Business Loan Without Collateral by following these
+    <section className="loan-process-section">
+        <div className="container">
+            <div className="section-header">
+                <h2 className="section-title">BUSINESS LOANS WITHOUT COLLATERAL LOAN PROCESS</h2>
+                <p className="section-subtitle">You can apply for a Business Loan Without Collateral by following these
                     three simple steps:</p>
             </div>
 
-            <div class="process-steps">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <div class="step-icon">
-                        <i class="fas fa-mouse-pointer"></i>
+            <div className="process-steps">
+                <div className="step-card">
+                    <div className="step-number">1</div>
+                    <div className="step-icon">
+                        <i className="fas fa-mouse-pointer"></i>
                     </div>
-                    <h3 class="step-title">Step 1</h3>
-                    <p class="step-description">Click on Apply Now and enter your contact details.</p>
+                    <h3 className="step-title">Step 1</h3>
+                    <p className="step-description">Click on Apply Now and enter your contact details.</p>
                 </div>
 
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <div class="step-icon">
-                        <i class="fas fa-id-card"></i>
+                <div className="step-card">
+                    <div className="step-number">2</div>
+                    <div className="step-icon">
+                        <i className="fas fa-id-card"></i>
                     </div>
-                    <h3 class="step-title">Step 2</h3>
-                    <p class="step-description">Enter Your PAN and other relevant details, and click Apply Now.</p>
+                    <h3 className="step-title">Step 2</h3>
+                    <p className="step-description">Enter Your PAN and other relevant details, and click Apply Now.</p>
                 </div>
 
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <div class="step-icon">
-                        <i class="fas fa-check-circle"></i>
+                <div className="step-card">
+                    <div className="step-number">3</div>
+                    <div className="step-icon">
+                        <i className="fas fa-check-circle"></i>
                     </div>
-                    <h3 class="step-title">Step 3</h3>
-                    <p class="step-description">Complete verification and receive funds directly in your account.</p>
+                    <h3 className="step-title">Step 3</h3>
+                    <p className="step-description">Complete verification and receive funds directly in your account.</p>
                 </div>
             </div>
 
-            <div class="cta-container">
-                <a href="#" class="btn btn-apply">Apply Now</a>
+            <div className="cta-container">
+                <a href="#" className="btn btn-apply">Apply Now</a>
             </div>
         </div>
     </section>
 
 
     {/* <!-- FAQ Section --> */}
-    <section class="faq-section">
-        <div class="container">
-            <div class="text-center mb-5">
+    <section className="faq-section">
+        <div className="container">
+            <div className="text-center mb-5">
                 <h2>Frequently Asked Questions</h2>
-                <p class="lead">Find answers to common questions about business loans</p>
+                <p className="lead">Find answers to common questions about business loans</p>
             </div>
 
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="faq-item">
-                        <div class="faq-question">
+            <div className="row justify-content-center">
+                <div className="col-lg-10">
+                    <div className="faq-item">
+                        <div className="faq-question">
                             What is the maximum amount I can get as a business loan?
-                            <span class="faq-toggle"></span>
+                            <span className="faq-toggle"></span>
                         </div>
-                        <div class="faq-answer">
+                        <div className="faq-answer">
                             You can avail a business loan of up to ₹50 lakhs depending on your business turnover,
                             credit score, and repayment history. Higher loan amounts may be considered for established
                             firms.
                         </div>
                     </div>
 
-                    <div class="faq-item">
-                        <div class="faq-question">
+                    <div className="faq-item">
+                        <div className="faq-question">
                             How soon will the loan be disbursed?
-                            <span class="faq-toggle"></span>
+                            <span className="faq-toggle"></span>
                         </div>
-                        <div class="faq-answer">
+                        <div className="faq-answer">
                             After submitting all required documents and completing verification, the loan is usually
                             disbursed within 3 to 5 working days directly into your business bank account.
                         </div>
                     </div>
 
-                    <div class="faq-item">
-                        <div class="faq-question">
+                    <div className="faq-item">
+                        <div className="faq-question">
                             Do I need collateral for a business loan?
-                            <span class="faq-toggle"></span>
+                            <span className="faq-toggle"></span>
                         </div>
-                        <div class="faq-answer">
+                        <div className="faq-answer">
                             Many business loans are offered without collateral (unsecured). However, secured loans with
                             collateral may offer lower interest rates and higher amounts.
                         </div>
                     </div>
 
-                    <div class="faq-item">
-                        <div class="faq-question">
+                    <div className="faq-item">
+                        <div className="faq-question">
                             Can startups apply for a business loan?
-                            <span class="faq-toggle"></span>
+                            <span className="faq-toggle"></span>
                         </div>
-                        <div class="faq-answer">
+                        <div className="faq-answer">
                             Yes, startups can apply. However, lenders may require additional documents such as a
                             detailed
                             business plan, projected revenues, and proof of business registration.
                         </div>
                     </div>
 
-                    <div class="faq-item">
-                        <div class="faq-question">
+                    <div className="faq-item">
+                        <div className="faq-question">
                             What is the repayment tenure for business loans?
-                            <span class="faq-toggle"></span>
+                            <span className="faq-toggle"></span>
                         </div>
-                        <div class="faq-answer">
+                        <div className="faq-answer">
                             Business loan tenure typically ranges from 12 months to 60 months, depending on the loan
                             amount
                             and the applicant’s repayment capacity.

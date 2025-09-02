@@ -1,13 +1,41 @@
-"use client"; // Needed for Bootstrap JS
+"use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       {/* Navbar */}
-      <nav className="navbar navbar-expand-lg custom-navbar fixed-top">
+      <nav
+        className={`navbar navbar-expand-lg custom-navbar fixed-top ${
+          scrolled ? "scrolled" : ""
+        }`}
+      >
         <div className="container">
-          <Link className="navbar-brand" href="/">RupeeLoan</Link>
+        <Link className="navbar-brand d-flex align-items-center" href="/">
+          <img
+            src="/assets/rupeeloan_logo.png"
+            alt="Rupee Logo"
+            width={150}
+            height={40}
+            priority
+          />
+        </Link>
 
           <button
             className="navbar-toggler"
