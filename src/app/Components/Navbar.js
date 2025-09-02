@@ -33,7 +33,6 @@ export default function Navbar() {
             alt="Rupee Logo"
             width={150}
             height={40}
-            priority
           />
         </Link>
 

@@ -3,6 +3,8 @@ import Script from "next/script";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
 
+import { motion } from "framer-motion";
+
 export default function Home() {
   return (
     <>
@@ -49,9 +51,10 @@ export default function Home() {
 
                   <div className="img-area">
                     <img
-                      src="https://wordpress-theme.spider-themes.net/banca/wp-content/uploads/2021/10/person.png"
+                      src="/assets/dousoft (2).png"
                       className="img-fluid"
                       alt="Person using mobile app"
+                      width="40%"
                     />
                     <div className="symbol-pulse">
                       <div className="pulse-1"></div>
@@ -67,13 +70,11 @@ export default function Home() {
       </section>
 
       {/* Company Introduction Section */}
-      <section className="about container mt-5 p-5 rounded">
+      <section className="about container p-5 rounded">
         <div className="row g-5 align-items-center">
           {/* Left Content */}
           <div className="col-md-8 left">
-            <span className="badge px-3 py-2 mb-2">
-              About Our Company
-            </span>
+            <span className="badge px-3 py-2 mb-2">About Our Company</span>
             <h2 className="fw-bold mb-3 display-6 text-dark">
               Your Trusted Partner in Easy & Secure Loans
             </h2>
@@ -206,7 +207,24 @@ export default function Home() {
                 <div className="card-content">
                   <h3 className="service-title">
                     <div className="service-icon">
-                      <i className="fas fa-user"></i>
+                      <motion.i
+                        className="fas fa-user"
+                        style={{
+                          background:
+                            "linear-gradient(90deg, #003c9e, #ffffff, #003c9e)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundSize: "200% 200%",
+                        }}
+                        animate={{
+                          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                      />
                     </div>
                     Personal Loan
                   </h3>
@@ -215,11 +233,21 @@ export default function Home() {
                     instant eligibility checks, and flexible repayment options.
                   </p>
                   <div className="service-footer">
-                    <a href="form.html" className="learn-more-btn">
-                      Apply Now <i className="fas fa-arrow-right"></i>
-                    </a>
+                    <motion.a
+                      href="form.html"
+                      className="learn-more-btn"
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      Apply Now{" "}
+                      <motion.i
+                        className="fas fa-arrow-right"
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      />
+                    </motion.a>
                     <div className="footer-icon">
-                      <img src="/assets/2.png" alt="" />
+                      <img src="/assets/2.png" alt="personal loan" />
                     </div>
                   </div>
                 </div>
@@ -229,7 +257,25 @@ export default function Home() {
                 <div className="card-content">
                   <h3 className="service-title">
                     <div className="service-icon">
-                      <i className="fas fa-briefcase"></i>
+                      <motion.i
+                        className="fas fa-briefcase"
+                        style={{
+                          background:
+                            "linear-gradient(90deg, #003c9e, #ffffff, #003c9e)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundSize: "200% 200%",
+                          display: "inline-block",
+                        }}
+                        animate={{
+                          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"], // shimmer left→right→left
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                      />
                     </div>
                     Business Loan
                   </h3>
@@ -238,12 +284,19 @@ export default function Home() {
                     minimal paperwork, and flexible credit limits.
                   </p>
                   <div className="service-footer">
-                    <a
+                    <motion.a
                       href="business-loan-form.html"
                       className="learn-more-btn"
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
                     >
-                      Apply Now <i className="fas fa-arrow-right"></i>
-                    </a>
+                      Apply Now{" "}
+                      <motion.i
+                        className="fas fa-arrow-right"
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      />
+                    </motion.a>
                     <div className="footer-icon">
                       <img src="/assets/3.png" alt="" />
                     </div>
@@ -255,7 +308,25 @@ export default function Home() {
                 <div className="card-content">
                   <h3 className="service-title">
                     <div className="service-icon">
-                      <i className="fas fa-tv"></i>
+                      <motion.i
+                        className="fas fa-tv"
+                        style={{
+                          background:
+                            "linear-gradient(90deg, #003c9e, #ffffff, #003c9e)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundSize: "200% 200%",
+                          display: "inline-block",
+                        }}
+                        animate={{
+                          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"], // smooth shimmer pass
+                        }}
+                        transition={{
+                          duration: 3.5, // thoda slow aur elegant
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                      />
                     </div>
                     Consumer Durable Loan
                   </h3>
@@ -264,9 +335,19 @@ export default function Home() {
                     and instant approvals at point-of-sale.
                   </p>
                   <div className="service-footer">
-                    <a href="consumer-form.html" className="learn-more-btn">
-                      Apply Now <i className="fas fa-arrow-right"></i>
-                    </a>
+                    <motion.a
+                      href="consumer-form.html"
+                      className="learn-more-btn"
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      Apply Now{" "}
+                      <motion.i
+                        className="fas fa-arrow-right"
+                        animate={{ x: [0, 6, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      />
+                    </motion.a>
                     <div className="footer-icon">
                       <img src="/assets/4.png" alt="" />
                     </div>
@@ -278,7 +359,25 @@ export default function Home() {
                 <div className="card-content">
                   <h3 className="service-title">
                     <div className="service-icon">
-                      <i className="fas fa-shopping-cart"></i>
+                      <motion.i
+                        className="fas fa-shopping-cart"
+                        style={{
+                          background:
+                            "linear-gradient(90deg, #003c9e, #ffffff, #003c9e)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundSize: "200% 200%",
+                          display: "inline-block",
+                        }}
+                        animate={{
+                          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"], // shimmer shine pass
+                        }}
+                        transition={{
+                          duration: 3.5, // slow & elegant movement
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                      />
                     </div>
                     Buy Now, Pay Later
                   </h3>
@@ -287,9 +386,19 @@ export default function Home() {
                     and easy merchant integrations.
                   </p>
                   <div className="service-footer">
-                    <a href="bnpl-form.html" className="learn-more-btn">
-                      Apply Now <i className="fas fa-arrow-right"></i>
-                    </a>
+                    <motion.a
+                      href="bnpl-form.html"
+                      className="learn-more-btn"
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      Apply Now{" "}
+                      <motion.i
+                        className="fas fa-arrow-right"
+                        animate={{ x: [0, 6, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      />
+                    </motion.a>
                     <div className="footer-icon">
                       <img src="/assets/5.png" alt="" />
                     </div>
@@ -301,7 +410,25 @@ export default function Home() {
                 <div className="card-content">
                   <h3 className="service-title">
                     <div className="service-icon">
-                      <i className="fas fa-home"></i>
+                      <motion.i
+                        className="fas fa-home"
+                        style={{
+                          background:
+                            "linear-gradient(90deg, #003c9e, #ffffff, #003c9e)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundSize: "200% 200%",
+                          display: "inline-block",
+                        }}
+                        animate={{
+                          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"], // smooth shimmer pass
+                        }}
+                        transition={{
+                          duration: 3.5,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                      />
                     </div>
                     Loan Against Property
                   </h3>
@@ -310,9 +437,19 @@ export default function Home() {
                     and high loan-to-value ratio.
                   </p>
                   <div className="service-footer">
-                    <a href="property-form.html" className="learn-more-btn">
-                      Apply Now <i className="fas fa-arrow-right"></i>
-                    </a>
+                    <motion.a
+                      href="property-form.html"
+                      className="learn-more-btn"
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      Apply Now{" "}
+                      <motion.i
+                        className="fas fa-arrow-right"
+                        animate={{ x: [0, 6, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      />
+                    </motion.a>
                     <div className="footer-icon">
                       <img src="/assets/6.png" alt="" />
                     </div>
@@ -324,7 +461,25 @@ export default function Home() {
                 <div className="card-content">
                   <h3 className="service-title">
                     <div className="service-icon">
-                      <i className="fas fa-gem"></i>
+                      <motion.i
+                        className="fas fa-gem"
+                        style={{
+                          background:
+                            "linear-gradient(90deg, #003c9e, #ffffff, #003c9e)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundSize: "200% 200%",
+                          display: "inline-block",
+                        }}
+                        animate={{
+                          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"], // shimmer slide
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                      />
                     </div>
                     Gold Loan
                   </h3>
@@ -333,9 +488,19 @@ export default function Home() {
                     and attractive interest rates.
                   </p>
                   <div className="service-footer">
-                    <a href="gold-loan-form.html" className="learn-more-btn">
-                      Apply Now <i className="fas fa-arrow-right"></i>
-                    </a>
+                    <motion.a
+                      href="gold-loan-form.html"
+                      className="learn-more-btn"
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      Apply Now{" "}
+                      <motion.i
+                        className="fas fa-arrow-right"
+                        animate={{ x: [0, 6, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      />
+                    </motion.a>
                     <div className="footer-icon">
                       <img src="/assets/7.png" alt="" />
                     </div>
@@ -410,11 +575,12 @@ export default function Home() {
                   <i className="fas fa-check-circle"></i> 100% digital process
                 </li>
                 <li>
-                  <i className="fas fa-check-circle"></i> No documentation upload
-                  needed initially
+                  <i className="fas fa-check-circle"></i> No documentation
+                  upload needed initially
                 </li>
                 <li>
-                  <i className="fas fa-check-circle"></i> Instant eligibility check
+                  <i className="fas fa-check-circle"></i> Instant eligibility
+                  check
                 </li>
               </ul>
               <a href="form.html" className="rl-step-cta">
@@ -462,7 +628,8 @@ export default function Home() {
                   <i className="fas fa-check-circle"></i> Bank-grade security
                 </li>
                 <li>
-                  <i className="fas fa-check-circle"></i> Quick approval decision
+                  <i className="fas fa-check-circle"></i> Quick approval
+                  decision
                 </li>
               </ul>
               <a href="interest-rate.html" className="rl-step-cta">
@@ -503,7 +670,8 @@ export default function Home() {
                   account
                 </li>
                 <li>
-                  <i className="fas fa-check-circle"></i> Transparent fee structure
+                  <i className="fas fa-check-circle"></i> Transparent fee
+                  structure
                 </li>
                 <li>
                   <i className="fas fa-check-circle"></i> 24/7 customer support
@@ -541,9 +709,37 @@ export default function Home() {
             financial journey with RupeeLoan
           </p>
           <div className="rl-cta-buttons">
-            <a href="form.html" className="rl-btn rl-btn-primary">
-              Apply Now
-            </a>
+            <motion.a
+              href="form.html"
+              className="learn-more-btn"
+              style={{
+                background: "transparent",
+                color: "white",
+                padding: "10px 25px",
+                border: "2px solid white",
+                borderRadius: "30px",
+                fontWeight: 600,
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px", // text aur arrow ke beech spacing
+              }}
+              whileHover={{
+                backgroundColor: "white",
+          
+                scale: 1.05,
+              }}
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              Apply Now{" "}
+              <motion.i
+                className="fas fa-arrow-right"
+                animate={{ x: [0, 6, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+            </motion.a>
+
             <a href="about.html" className="rl-btn rl-btn-secondary">
               Learn More
             </a>
@@ -576,10 +772,12 @@ export default function Home() {
                 <span className="number">1.</span> Apply Online
               </li>
               <li>
-                <span className="number">2.</span> Enter Your Information - 10 min
+                <span className="number">2.</span> Enter Your Information - 10
+                min
               </li>
               <li>
-                <span className="number">3.</span> Pre-qualify / Pre-Approve - 5 min
+                <span className="number">3.</span> Pre-qualify / Pre-Approve - 5
+                min
               </li>
               <li>
                 <span className="number">4.</span> Help you prepare
@@ -610,8 +808,8 @@ export default function Home() {
                 <span className="number">2.</span> Discuss your Situation
               </li>
               <li>
-                <span className="number">3.</span> We Review your condition & find a
-                solution
+                <span className="number">3.</span> We Review your condition &
+                find a solution
               </li>
               <li>
                 <span className="number">4.</span> Help you prepare
