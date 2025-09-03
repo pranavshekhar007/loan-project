@@ -110,7 +110,7 @@ export default function Support() {
 
                 <div className="d-flex align-items-center mt-5">
                   <div className="bg-light rounded-circle p-3 me-3">
-                    <i className="fas fa-map-marker-alt text-danger fs-4"></i>
+                    <i className="fas fa-map-marker-alt  fs-4"></i>
                   </div>
                   <div>
                     <h5>Visit Our Office</h5>
@@ -124,7 +124,7 @@ export default function Support() {
 
                 <div className="d-flex align-items-center mt-4">
                   <div className="bg-light rounded-circle p-3 me-3">
-                    <i className="fas fa-clock text-danger fs-4"></i>
+                    <i className="fas fa-clock  fs-4"></i>
                   </div>
                   <div>
                     <h5>Working Hours</h5>
@@ -242,7 +242,7 @@ export default function Support() {
                 ))}
 
                 <div className="text-center mt-5">
-                  <a href="/faq" className="btn btn-outline-danger">
+                  <a href="/faq" className="btn btn-outline-dark">
                     View All FAQs
                   </a>
                 </div>

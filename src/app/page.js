@@ -3,517 +3,497 @@ import Script from "next/script";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, useAnimation, useInView  } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState("Personal Loan");
+  const [activeIndexes, setActiveIndexes] = useState([]);
+
+  const toggleFAQ = (index) => {
+    if (activeIndexes.includes(index)) {
+      setActiveIndexes(activeIndexes.filter((i) => i !== index));
+    } else {
+      setActiveIndexes([...activeIndexes, index]);
+    }
+  };
+
+  // Tab-wise FAQs (3 har ek me)
+  const faqsData = {
+    "Personal Loan": [
+      {
+        question: "What is the minimum salary required to get a personal loan?",
+        answer:
+          "The minimum salary required varies depending on the lender, but generally starts from ₹15,000–₹25,000 per month.",
+      },
+      {
+        question: "What is the eligibility criteria for a personal loan?",
+        answer:
+          "You must be a salaried or self-employed individual, aged 21–60 years, with a stable income and good credit history.",
+      },
+      {
+        question: "What is the rate of interest that will be charged?",
+        answer:
+          "Interest rates vary by lender, loan amount, and your credit profile. Typical personal loan rates start around 10% p.a.",
+      },
+    ],
+    "Home Renovation Loan": [
+      {
+        question: "Can I get a loan for full home renovation?",
+        answer:
+          "Yes, banks/NBFCs provide renovation loans covering painting, repairs, and furnishing costs.",
+      },
+      {
+        question: "Do I need collateral for a renovation loan?",
+        answer:
+          "No, most renovation loans are unsecured, but large amounts may need security.",
+      },
+      {
+        question: "What is the maximum repayment tenure?",
+        answer:
+          "Usually up to 15 years depending on loan amount and bank policy.",
+      },
+    ],
+    "Education Loan": [
+      {
+        question: "Do education loans cover foreign studies?",
+        answer:
+          "Yes, most banks cover tuition fees, travel, and living expenses for overseas education.",
+      },
+      {
+        question: "What is the moratorium period?",
+        answer:
+          "Typically, repayment starts 6–12 months after course completion or employment.",
+      },
+      {
+        question: "Is collateral needed?",
+        answer: "Collateral is usually required for loans above ₹7.5 lakh.",
+      },
+    ],
+    "Shopping Loan": [
+      {
+        question: "Can I buy electronics with shopping loan?",
+        answer:
+          "Yes, shopping loans are often used for electronics, mobiles, and furniture.",
+      },
+      {
+        question: "Is shopping loan EMI zero interest?",
+        answer:
+          "Some banks and partners offer zero-cost EMI, but processing fees may apply.",
+      },
+      {
+        question: "What is the max limit?",
+        answer: "Usually ₹50,000 to ₹5 lakh depending on profile.",
+      },
+    ],
+    "Travel Loan": [
+      {
+        question: "Can I use travel loan for international trips?",
+        answer:
+          "Yes, travel loans can be used for both domestic and international trips.",
+      },
+      {
+        question: "Do I need to show travel tickets before applying?",
+        answer:
+          "Not always, but some lenders may ask for travel itinerary proof.",
+      },
+      {
+        question: "What is the repayment tenure?",
+        answer: "Typically 12–60 months.",
+      },
+    ],
+    General: [
+      {
+        question: "What documents are required?",
+        answer:
+          "Aadhar, PAN, salary slips/ITR, and last 6 months bank statement.",
+      },
+      {
+        question: "How fast can I get the loan?",
+        answer:
+          "Disbursement usually happens within 24–48 hours after approval.",
+      },
+      {
+        question: "Can I prepay my loan?",
+        answer:
+          "Yes, most lenders allow prepayment but may charge a small fee.",
+      },
+    ],
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
+    }),
+  };
+
+  const stats = [
+    { value: 50000, label: "Happy Customers", suffix: "+" },
+    { value: 825, label: "Loan Disbursed", prefix: "₹", suffix: "Cr+" },
+    { value: 98, label: "Customer Satisfaction", suffix: "%" },
+    { value: 24, label: "Quick Approval", suffix: "h" },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { staggerChildren: 0.2, duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+  };
+
+
+  function Counter({ end, prefix = "", suffix = "" }) {
+    const [count, setCount] = useState(0);
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+  
+    useEffect(() => {
+      if (!isInView) return;
+  
+      let start = 0;
+      const duration = 2000; // 2 sec
+      const increment = end / (duration / 16);
+  
+      const counter = setInterval(() => {
+        start += increment;
+        if (start >= end) {
+          clearInterval(counter);
+          setCount(end);
+        } else {
+          setCount(Math.floor(start));
+        }
+      }, 16);
+  
+      return () => clearInterval(counter);
+    }, [end, isInView]);
+  
+    return (
+      <h4 ref={ref}>
+        {prefix}
+        {count.toLocaleString()}
+        {suffix}
+      </h4>
+    );
+  }
+  
+
   return (
     <>
       <Navbar />
 
       {/* hero section */}
-      <section className="hero2">
-        <section className="banca-hero dark_mode_sec_wrap">
-          <div className="bubbles">
-            {[...Array(8)].map((_, i) => (
-              <div key={i}>
-                <div className="bubble"></div>
-              </div>
-            ))}
+      <section>
+        <div className="hero-banner">
+          <div className="badge1">
+            <i className="fas fa-award"></i> Trusted by 500K+ users
           </div>
 
-          <div className="logos">
-            <img src="/assets/trust.png" alt="Logo 1" />
-            <img src="/assets/fast-money.png" alt="Logo 2" />
-            <img src="/assets/legal.png" alt="Logo 3" />
-            <img src="/assets/cyber.png" alt="Logo 4" />
-            <img src="/assets/support.png" alt="Logo 5" />
-          </div>
-
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-10 mx-auto">
-                <div className="banner-content text-center">
-                  <h1 className="__title">
-                    Get Instant Loans <br /> with Complete Security
-                  </h1>
-
-                  <div>
-                    <a href="#" className="btn">
-                      <img src="/assets/app-store.svg" alt="App Store" />
-                    </a>
-                    <a href="#" className="btn btn-outline">
-                      <img
-                        src="/assets/Google_Play_Store_badge_EN.svg"
-                        alt="Google Play"
-                      />
-                    </a>
-                  </div>
-
-                  <div className="img-area">
-                    <img
-                      src="/assets/dousoft (2).png"
-                      className="img-fluid"
-                      alt="Person using mobile app"
-                      width="40%"
-                    />
-                    <div className="symbol-pulse">
-                      <div className="pulse-1"></div>
-                      <div className="pulse-2"></div>
-                      <div className="pulse-x"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </section>
-
-      {/* Company Introduction Section */}
-      <section className="about container p-5 rounded">
-        <div className="row g-5 align-items-center">
-          {/* Left Content */}
-          <div className="col-md-8 left">
-            <span className="badge px-3 py-2 mb-2">About Our Company</span>
-            <h2 className="fw-bold mb-3 display-6 text-dark">
-              Your Trusted Partner in Easy & Secure Loans
-            </h2>
-            <p className="text-muted fs-5">
-              We are committed to making borrowing simple, fast, and
-              transparent. Our platform connects you with the best banks and
-              lenders, ensuring quick disbursement, lowest interest rates, and a
-              completely hassle-free experience. With trust and integrity at our
-              core, we help you achieve your financial goals with confidence.
+          <div className="content1">
+            <h1>Instant Loans Made Simple & Fast</h1>
+            <p>
+              Get the financial support you need within minutes. Our AI-powered
+              platform offers personalized loan options with competitive rates
+              and no hidden fees.
             </p>
 
-            <div className="row mt-4 g-4">
-              {/* Feature 1 */}
-              <div className="col-md-6">
-                <div className="p-3 bg-white shadow-sm rounded d-flex align-items-center hover-shadow">
-                  <div className="me-3">
-                    <div className="icon-circle bg-danger text-white d-flex align-items-center justify-content-center">
-                      <img
-                        src="/assets/trust.png"
-                        alt="Trustworthy"
-                        width="28"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <h6 className="fw-bold mb-1">100% Trustworthy</h6>
-                    <small className="text-muted">
-                      Safe, secure & transparent process.
-                    </small>
-                  </div>
-                </div>
-              </div>
+            <div className="cta-buttons">
+              <a href="#" className="btn">
+                <img src="assets/app-store.svg" alt="" />
+              </a>
+              <a href="#" className="btn">
+                <img src="assets/Google_Play_Store_badge_EN.svg" alt="" />
+              </a>
+            </div>
 
-              {/* Feature 2 */}
-              <div className="col-md-6">
-                <div className="p-3 bg-white shadow-sm rounded d-flex align-items-center hover-shadow">
-                  <div className="me-3">
-                    <div className="icon-circle bg-primary text-white d-flex align-items-center justify-content-center">
-                      <img
-                        src="/assets/fast-money.png"
-                        alt="Fast Disbursement"
-                        width="28"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <h6 className="fw-bold mb-1">Fast Disbursement</h6>
-                    <small className="text-muted">
-                      Quick loan approval & instant funds.
-                    </small>
-                  </div>
-                </div>
+            <div className="features">
+              <div className="feature">
+                <i className="fas fa-check-circle"></i> No paperwork
               </div>
-
-              {/* Feature 3 */}
-              <div className="col-md-6">
-                <div className="p-3 bg-white shadow-sm rounded d-flex align-items-center hover-shadow">
-                  <div className="me-3">
-                    <div className="icon-circle bg-success text-white d-flex align-items-center justify-content-center">
-                      <img
-                        src="/assets/legal.png"
-                        alt="Legal & Secure"
-                        width="28"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <h6 className="fw-bold mb-1">Legal & Secure</h6>
-                    <small className="text-muted">
-                      All loans are verified & RBI compliant.
-                    </small>
-                  </div>
-                </div>
+              <div className="feature">
+                <i className="fas fa-check-circle"></i> Instant approval
               </div>
-
-              {/* Feature 4 */}
-              <div className="col-md-6">
-                <div className="p-3 bg-white shadow-sm rounded d-flex align-items-center hover-shadow">
-                  <div className="me-3">
-                    <div className="icon-circle bg-warning text-white d-flex align-items-center justify-content-center">
-                      <img
-                        src="/assets/support.png"
-                        alt="Customer Support"
-                        width="28"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <h6 className="fw-bold mb-1">24/7 Support</h6>
-                    <small className="text-muted">
-                      We are always here to help you.
-                    </small>
-                  </div>
-                </div>
+              <div className="feature">
+                <i className="fas fa-check-circle"></i> Low interest rates
               </div>
             </div>
           </div>
 
-          {/* Right Content */}
-          <div className="col-md-4 right text-center">
-            <div className="position-relative">
-              <img
-                src="/assets/opening.6552095.gif"
-                alt="About Us"
-                className="img-fluid rounded"
-              />
-              <div className="position-absolute top-0 start-0 bg-danger text-white px-3 py-2 rounded-pill shadow">
-                50,000+ Clients
-              </div>
-            </div>
+          <div className="loan1-circle1-section1">
+            <img src="assets/rupee2.png" alt="Rupee" />
+            <svg viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="30"></circle>
+              <circle cx="50" cy="50" r="40"></circle>
+              <circle cx="50" cy="50" r="48"></circle>
+            </svg>
+            <i className="fa-solid fa-landmark icon"></i>
+            <i className="fa-solid fa-hand-holding-dollar icon"></i>
+            <i className="fa-solid fa-credit-card icon"></i>
+            <i className="fa-solid fa-piggy-bank icon"></i>
+            <i className="fa-solid fa-sack-dollar icon"></i>
+            <i className="fa-solid fa-chart-line icon"></i>
           </div>
         </div>
       </section>
+
+      {/* Company Introduction Section */}
+      <section className="new-about py-5">
+      <div className="container">
+        {/* Heading */}
+        <div className="row my-5">
+          <h1 className="text-center fw-bold">
+            Your Trusted Partner in Easy & Secure Loans
+          </h1>
+          <p className="text-center text-muted fs-5">
+            We are committed to making borrowing simple, fast, and transparent.
+            Our platform connects you with the best banks and lenders, ensuring
+            quick disbursement, lowest interest rates, and a completely
+            hassle-free experience. With trust and integrity at our core, we
+            help you achieve your financial goals with confidence.
+          </p>
+        </div>
+
+        <div className="row align-items-center">
+          {/* Left Boxes */}
+          <div className="col-md-3">
+            <motion.div
+              className="box mb-5"
+              whileHover={{ scale: 1.05, y: -5 }}
+              transition={{ type: "spring", stiffness: 200 }}
+            >
+              <div className="about-icon">
+                <img src="/assets/trust.png" alt="Trustworthy" width="40" />
+              </div>
+              <h5 className="fw-bold mt-3">100% Trustworthy</h5>
+              <p className="text-muted">
+                Safe, secure & transparent process.
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="box mb-5"
+              whileHover={{ scale: 1.05, y: -5 }}
+              transition={{ type: "spring", stiffness: 200 }}
+            >
+              <div className="about-icon">
+                <img src="/assets/fast-money.png" alt="Fast" width="40" />
+              </div>
+              <h5 className="fw-bold mt-3">Fast Disbursement</h5>
+              <p className="text-muted">
+                Quick loan approval & instant funds.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Center Image */}
+          <div className="col-md-6 text-center">
+            <div className="position-relative circle-wrap">
+              <motion.img
+                src="/assets/1.png"
+                alt="About Us"
+                className="img-fluid rounded"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.4 }}
+              />
+              <motion.div
+                className="clients position-absolute top-0 start-0 px-3 py-2 rounded-pill shadow bg-white"
+                initial={{ scale: 0.8, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.6 }}
+              >
+                50,000+ Clients
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Right Boxes */}
+          <div className="col-md-3">
+            <motion.div
+              className="box mb-5"
+              whileHover={{ scale: 1.05, y: -5 }}
+              transition={{ type: "spring", stiffness: 200 }}
+            >
+              <div className="about-icon">
+                <img src="/assets/legal.png" alt="Legal" width="40" />
+              </div>
+              <h5 className="fw-bold mt-3">Legal & Secure</h5>
+              <p className="text-muted">
+                All loans are verified & RBI compliant.
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="box mb-5"
+              whileHover={{ scale: 1.05, y: -5 }}
+              transition={{ type: "spring", stiffness: 200 }}
+            >
+              <div className="about-icon">
+                <img src="/assets/support.png" alt="Support" width="40" />
+              </div>
+              <h5 className="fw-bold mt-3">24/7 Support</h5>
+              <p className="text-muted">
+                We are always here to help you.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </section>
 
       {/* Financial Platform Services Section */}
       <div className="main-service">
         <section className="financial-platform">
           <div className="container">
-            <div className="platform-header text-center mb-5">
-              <h2>All your finances, in one smart app</h2>
-              <p>
+            {/* Header */}
+            <motion.div
+              className="platform-header text-center mb-5"
+              initial={{ opacity: 0, y: -40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
+              <h2 className="fw-bold display-6">
+                All your finances, in one smart app
+              </h2>
+              <p className="text-muted fs-5">
                 Comprehensive lending solutions – faster, compliant, and
                 digital-first
               </p>
-            </div>
+            </motion.div>
 
+            {/* Services Grid */}
             <div className="services-grid">
-              {/* Service Cards */}
-              <div className="service-card">
-                <div className="card-content">
-                  <h3 className="service-title">
-                    <div className="service-icon">
-                      <motion.i
-                        className="fas fa-user"
-                        style={{
-                          background:
-                            "linear-gradient(90deg, #003c9e, #ffffff, #003c9e)",
-                          WebkitBackgroundClip: "text",
-                          WebkitTextFillColor: "transparent",
-                          backgroundSize: "200% 200%",
-                        }}
-                        animate={{
-                          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      />
-                    </div>
-                    Personal Loan
-                  </h3>
-                  <p className="service-description">
-                    Get quick funds with our digital application process,
-                    instant eligibility checks, and flexible repayment options.
-                  </p>
-                  <div className="service-footer">
-                    <motion.a
-                      href="form.html"
-                      className="learn-more-btn"
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      Apply Now{" "}
-                      <motion.i
-                        className="fas fa-arrow-right"
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      />
-                    </motion.a>
-                    <div className="footer-icon">
-                      <img src="/assets/2.png" alt="personal loan" />
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {[
+                {
+                  title: "Personal Loan",
+                  desc: "Get quick funds with our digital application process, instant eligibility checks, and flexible repayment options.",
+                  icon: "fas fa-user",
+                  img: "/assets/2.png",
+                  link: "form.html",
+                },
+                {
+                  title: "Business Loan",
+                  desc: "Tailored for SMEs and enterprises with fast approval, minimal paperwork, and flexible credit limits.",
+                  icon: "fas fa-briefcase",
+                  img: "/assets/3.png",
+                  link: "business-loan-form.html",
+                },
+                {
+                  title: "Consumer Durable Loan",
+                  desc: "Buy appliances and gadgets easily with zero-cost EMI options and instant approvals at point-of-sale.",
+                  icon: "fas fa-tv",
+                  img: "/assets/4.png",
+                  link: "consumer-form.html",
+                },
+                {
+                  title: "Buy Now, Pay Later",
+                  desc: "Shop instantly and pay later with flexible repayment tenures and easy merchant integrations.",
+                  icon: "fas fa-shopping-cart",
+                  img: "/assets/5.png",
+                  link: "bnpl-form.html",
+                },
+                {
+                  title: "Loan Against Property",
+                  desc: "Unlock the value of your property with low interest rates and high loan-to-value ratio.",
+                  icon: "fas fa-home",
+                  img: "/assets/6.png",
+                  link: "property-form.html",
+                },
+                {
+                  title: "Gold Loan",
+                  desc: "Secure loans against your gold assets with quick valuation and attractive interest rates.",
+                  icon: "fas fa-gem",
+                  img: "/assets/7.png",
+                  link: "gold-loan-form.html",
+                },
+              ].map((service, i) => (
+                <motion.div
+                  key={i}
+                  className="service-card"
+                  custom={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={cardVariants}
+                  whileHover={{
+                    scale: 1.05,
+                    y: -8,
+                    boxShadow: "0 15px 35px rgba(0,0,0,0.15)",
+                  }}
+                  transition={{ type: "spring", stiffness: 200 }}
+                >
+                  <div className="card-content">
+                    <h3 className="service-title">
+                      <div className="service-icon">
+                        <motion.i
+                          className={service.icon}
+                          style={{
+                            background:
+                              "linear-gradient(90deg, #003c9e, #ffffff, #003c9e)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            backgroundSize: "200% 200%",
+                            display: "inline-block",
+                            fontSize: "28px",
+                          }}
+                          animate={{
+                            backgroundPosition: [
+                              "0% 50%",
+                              "100% 50%",
+                              "0% 50%",
+                            ],
+                          }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
+                        />
+                      </div>
+                      {service.title}
+                    </h3>
+                    <p className="service-description">{service.desc}</p>
 
-              <div className="service-card">
-                <div className="card-content">
-                  <h3 className="service-title">
-                    <div className="service-icon">
-                      <motion.i
-                        className="fas fa-briefcase"
-                        style={{
-                          background:
-                            "linear-gradient(90deg, #003c9e, #ffffff, #003c9e)",
-                          WebkitBackgroundClip: "text",
-                          WebkitTextFillColor: "transparent",
-                          backgroundSize: "200% 200%",
-                          display: "inline-block",
-                        }}
-                        animate={{
-                          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"], // shimmer left→right→left
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      />
-                    </div>
-                    Business Loan
-                  </h3>
-                  <p className="service-description">
-                    Tailored for SMEs and enterprises with fast approval,
-                    minimal paperwork, and flexible credit limits.
-                  </p>
-                  <div className="service-footer">
-                    <motion.a
-                      href="business-loan-form.html"
-                      className="learn-more-btn"
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      Apply Now{" "}
-                      <motion.i
-                        className="fas fa-arrow-right"
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      />
-                    </motion.a>
-                    <div className="footer-icon">
-                      <img src="/assets/3.png" alt="" />
+                    <div className="service-footer d-flex align-items-center justify-content-between">
+                      <motion.a
+                        href={service.link}
+                        className="learn-more-btn"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        Apply Now{" "}
+                        <motion.i
+                          className="fas fa-arrow-right"
+                          animate={{ x: [0, 6, 0] }}
+                          transition={{ duration: 1.5, repeat: Infinity }}
+                        />
+                      </motion.a>
+                      <motion.div
+                        className="footer-icon"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.3, duration: 0.6 }}
+                      >
+                        <img src={service.img} alt={service.title} />
+                      </motion.div>
                     </div>
                   </div>
-                </div>
-              </div>
-
-              <div className="service-card">
-                <div className="card-content">
-                  <h3 className="service-title">
-                    <div className="service-icon">
-                      <motion.i
-                        className="fas fa-tv"
-                        style={{
-                          background:
-                            "linear-gradient(90deg, #003c9e, #ffffff, #003c9e)",
-                          WebkitBackgroundClip: "text",
-                          WebkitTextFillColor: "transparent",
-                          backgroundSize: "200% 200%",
-                          display: "inline-block",
-                        }}
-                        animate={{
-                          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"], // smooth shimmer pass
-                        }}
-                        transition={{
-                          duration: 3.5, // thoda slow aur elegant
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      />
-                    </div>
-                    Consumer Durable Loan
-                  </h3>
-                  <p className="service-description">
-                    Buy appliances and gadgets easily with zero-cost EMI options
-                    and instant approvals at point-of-sale.
-                  </p>
-                  <div className="service-footer">
-                    <motion.a
-                      href="consumer-form.html"
-                      className="learn-more-btn"
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      Apply Now{" "}
-                      <motion.i
-                        className="fas fa-arrow-right"
-                        animate={{ x: [0, 6, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      />
-                    </motion.a>
-                    <div className="footer-icon">
-                      <img src="/assets/4.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="service-card">
-                <div className="card-content">
-                  <h3 className="service-title">
-                    <div className="service-icon">
-                      <motion.i
-                        className="fas fa-shopping-cart"
-                        style={{
-                          background:
-                            "linear-gradient(90deg, #003c9e, #ffffff, #003c9e)",
-                          WebkitBackgroundClip: "text",
-                          WebkitTextFillColor: "transparent",
-                          backgroundSize: "200% 200%",
-                          display: "inline-block",
-                        }}
-                        animate={{
-                          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"], // shimmer shine pass
-                        }}
-                        transition={{
-                          duration: 3.5, // slow & elegant movement
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      />
-                    </div>
-                    Buy Now, Pay Later
-                  </h3>
-                  <p className="service-description">
-                    Shop instantly and pay later with flexible repayment tenures
-                    and easy merchant integrations.
-                  </p>
-                  <div className="service-footer">
-                    <motion.a
-                      href="bnpl-form.html"
-                      className="learn-more-btn"
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      Apply Now{" "}
-                      <motion.i
-                        className="fas fa-arrow-right"
-                        animate={{ x: [0, 6, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      />
-                    </motion.a>
-                    <div className="footer-icon">
-                      <img src="/assets/5.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="service-card">
-                <div className="card-content">
-                  <h3 className="service-title">
-                    <div className="service-icon">
-                      <motion.i
-                        className="fas fa-home"
-                        style={{
-                          background:
-                            "linear-gradient(90deg, #003c9e, #ffffff, #003c9e)",
-                          WebkitBackgroundClip: "text",
-                          WebkitTextFillColor: "transparent",
-                          backgroundSize: "200% 200%",
-                          display: "inline-block",
-                        }}
-                        animate={{
-                          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"], // smooth shimmer pass
-                        }}
-                        transition={{
-                          duration: 3.5,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      />
-                    </div>
-                    Loan Against Property
-                  </h3>
-                  <p className="service-description">
-                    Unlock the value of your property with low interest rates
-                    and high loan-to-value ratio.
-                  </p>
-                  <div className="service-footer">
-                    <motion.a
-                      href="property-form.html"
-                      className="learn-more-btn"
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      Apply Now{" "}
-                      <motion.i
-                        className="fas fa-arrow-right"
-                        animate={{ x: [0, 6, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      />
-                    </motion.a>
-                    <div className="footer-icon">
-                      <img src="/assets/6.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="service-card">
-                <div className="card-content">
-                  <h3 className="service-title">
-                    <div className="service-icon">
-                      <motion.i
-                        className="fas fa-gem"
-                        style={{
-                          background:
-                            "linear-gradient(90deg, #003c9e, #ffffff, #003c9e)",
-                          WebkitBackgroundClip: "text",
-                          WebkitTextFillColor: "transparent",
-                          backgroundSize: "200% 200%",
-                          display: "inline-block",
-                        }}
-                        animate={{
-                          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"], // shimmer slide
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      />
-                    </div>
-                    Gold Loan
-                  </h3>
-                  <p className="service-description">
-                    Secure loans against your gold assets with quick valuation
-                    and attractive interest rates.
-                  </p>
-                  <div className="service-footer">
-                    <motion.a
-                      href="gold-loan-form.html"
-                      className="learn-more-btn"
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      Apply Now{" "}
-                      <motion.i
-                        className="fas fa-arrow-right"
-                        animate={{ x: [0, 6, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      />
-                    </motion.a>
-                    <div className="footer-icon">
-                      <img src="/assets/7.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-              </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
       </div>
 
-      <section className="step-section">
-        {/* <!-- Left Content --> */}
+      {/* <section className="step-section">
+
         <div className="content">
           <h2>
             Get loan from 3 <br />
@@ -531,11 +511,10 @@ export default function Home() {
           <a href="#step-process">Learn about the process →</a>
         </div>
 
-        {/* <!-- Right Image --> */}
         <div className="image-box">
           <img src="assets/step.png" alt="Loan Process" />
         </div>
-      </section>
+      </section> */}
 
       {/* <!-- Replace the current step-section with this code --> */}
       <section className="rl-process-hero" id="step-process">
@@ -560,148 +539,81 @@ export default function Home() {
       </section>
 
       <section className="rl-process-steps">
-        {/* <!-- Step 1 --> */}
-        <div className="rl-step rl-step-1" data-step="1">
-          <div className="rl-step-container">
-            <div className="rl-step-content">
-              <div className="rl-step-number">01</div>
-              <h3>Application</h3>
-              <p>
-                Fill out our simple online form in just 5 minutes. No
-                complicated paperwork or branch visits needed.
-              </p>
-              <ul className="rl-step-features">
-                <li>
-                  <i className="fas fa-check-circle"></i> 100% digital process
-                </li>
-                <li>
-                  <i className="fas fa-check-circle"></i> No documentation
-                  upload needed initially
-                </li>
-                <li>
-                  <i className="fas fa-check-circle"></i> Instant eligibility
-                  check
-                </li>
-              </ul>
-              <a href="form.html" className="rl-step-cta">
-                Start Application
-              </a>
-            </div>
-            <div className="rl-step-visual">
-              <div className="rl-floating-card rl-card-1">
-                <div className="rl-card-icon">
-                  <i className="fas fa-mobile-alt"></i>
-                </div>
-                <h4>Digital Application</h4>
-                <p>Apply from anywhere, anytime</p>
-              </div>
-              <div className="rl-floating-card rl-card-2">
-                <div className="rl-card-icon">
-                  <i className="fas fa-file-alt"></i>
-                </div>
-                <h4>Minimal Info</h4>
-                <p>Basic details required</p>
-              </div>
-              <div className="rl-phone-mockup">
-                <img src="assets/mockup9.png" alt="Application Process" />
-              </div>
-            </div>
+        
+    {/* <!-- Step 1 --> */}
+    <div className="rl-step rl-step-1" data-step="1">
+
+      <div className="rl-step-container">
+        <div className="rl-step-content">
+          <div className="rl-step-number">01</div>
+          <h3>Application</h3>
+          <p>Fill out our simple online form in just 5 minutes. No complicated paperwork or branch visits needed.</p>
+          <ul className="rl-step-features">
+            <li><i className="fas fa-check-circle"></i> 100% digital process</li>
+            <li><i className="fas fa-check-circle"></i> No documentation upload needed initially</li>
+            <li><i className="fas fa-check-circle"></i> Instant eligibility check</li>
+          </ul>
+          <a href="form.html" className="rl-step-cta">Start Application</a>
+        </div>
+        <div className="rl-step-visual">
+
+          <div className="rl-phone-mockup fade-in">
+            <img src="assets/1.png" alt="Application Process" className="animate__animated animate__fadeInRight"/>
           </div>
         </div>
+      </div>
+    </div>
 
-        {/* <!-- Step 2 --> */}
-        <div className="rl-step rl-step-2" data-step="2">
-          <div className="rl-step-container">
-            <div className="rl-step-content">
-              <div className="rl-step-number">02</div>
-              <h3>Verification</h3>
-              <p>
-                Our advanced systems verify your details instantly while
-                maintaining complete security and privacy.
-              </p>
-              <ul className="rl-step-features">
-                <li>
-                  <i className="fas fa-check-circle"></i> Instant document
-                  verification
-                </li>
-                <li>
-                  <i className="fas fa-check-circle"></i> Bank-grade security
-                </li>
-                <li>
-                  <i className="fas fa-check-circle"></i> Quick approval
-                  decision
-                </li>
-              </ul>
-              <a href="interest-rate.html" className="rl-step-cta">
-                Learn About Interest
-              </a>
-            </div>
-            <div className="rl-step-visual">
-              <div className="rl-phone-mockup">
-                <img src="assets/mockup8.png" alt="Application Process" />
-              </div>
+    {/* <!-- Step 2 --> */}
+    <div className="rl-step rl-step-2" data-step="2">
 
-              <div className="rl-floating-icon rl-icon-1">
-                <i className="fas fa-lock"></i>
-              </div>
-              <div className="rl-floating-icon rl-icon-2">
-                <i className="fas fa-user-check"></i>
-              </div>
-              <div className="rl-floating-icon rl-icon-3">
-                <i className="fas fa-file-invoice"></i>
-              </div>
-            </div>
+      <div className="rl-step-container">
+        <div className="rl-step-content">
+          <div className="rl-step-number">02</div>
+          <h3>Verification</h3>
+          <p>Our advanced systems verify your details instantly while maintaining complete security and privacy.</p>
+          <ul className="rl-step-features">
+            <li><i className="fas fa-check-circle"></i> Instant document verification</li>
+            <li><i className="fas fa-check-circle"></i> Bank-grade security</li>
+            <li><i className="fas fa-check-circle"></i> Quick approval decision</li>
+          </ul>
+          <a href="interest-rate.html" className="rl-step-cta">Learn About Interest</a>
+        </div>
+        <div className="rl-step-visual">
+
+          <div className="rl-phone-mockup">
+            <img src="assets/2.png" alt="Application Process" className="animate__animated animate__fadeInLeft" />
           </div>
         </div>
+      </div>
+    </div>
 
-        {/* <!-- Step 3 --> */}
-        <div className="rl-step rl-step-3" data-step="3">
-          <div className="rl-step-container">
-            <div className="rl-step-content">
-              <div className="rl-step-number">03</div>
-              <h3>Disbursement</h3>
-              <p>
-                Receive funds directly in your bank account within hours of
-                approval. No hidden charges or delays.
-              </p>
-              <ul className="rl-step-features">
-                <li>
-                  <i className="fas fa-check-circle"></i> Quick transfer to your
-                  account
-                </li>
-                <li>
-                  <i className="fas fa-check-circle"></i> Transparent fee
-                  structure
-                </li>
-                <li>
-                  <i className="fas fa-check-circle"></i> 24/7 customer support
-                </li>
-              </ul>
-              <a href="cibil.html" className="rl-step-cta">
-                Check Cibil Now
-              </a>
-            </div>
-            <div className="rl-step-visual">
-              <div className="rl-money-transfer">
-                <div className="rl-bank-building">
-                  <i className="fas fa-building"></i>
-                </div>
-                <div className="rl-money-arrow">
-                  <i className="fas fa-long-arrow-alt-right"></i>
-                </div>
-                <div className="rl-bank-account">
-                  <i className="fas fa-piggy-bank"></i>
-                </div>
-              </div>
-              <div className="rl-phone-mockup">
-                <img src="assets/mockup10.png" alt="Application Process" />
-              </div>
-            </div>
+    {/* <!-- Step 3 --> */}
+    <div className="rl-step rl-step-3" data-step="3">
+
+      <div className="rl-step-container">
+        <div className="rl-step-content">
+          <div className="rl-step-number">03</div>
+          <h3>Disbursement</h3>
+          <p>Receive funds directly in your bank account within hours of approval. No hidden charges or delays.</p>
+          <ul className="rl-step-features">
+            <li><i className="fas fa-check-circle"></i> Quick transfer to your account</li>
+            <li><i className="fas fa-check-circle"></i> Transparent fee structure</li>
+            <li><i className="fas fa-check-circle"></i> 24/7 customer support</li>
+          </ul>
+          <a href="cibil.html" className="rl-step-cta">Check Cibil Now</a>
+        </div>
+        <div className="rl-step-visual">
+
+          <div className="rl-phone-mockup">
+            <img src="assets/3.png" alt="Application Process" className="animate__animated animate__fadeInRight" />
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <section className="rl-process-cta">
+      {/* <section className="rl-process-cta">
         <div className="rl-cta-content">
           <h2>Ready to get started?</h2>
           <p>
@@ -726,7 +638,7 @@ export default function Home() {
               }}
               whileHover={{
                 backgroundColor: "white",
-          
+
                 scale: 1.05,
               }}
               animate={{ scale: [1, 1.05, 1] }}
@@ -745,7 +657,7 @@ export default function Home() {
             </a>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="how-it-works">
         <h2>Here's how it works.</h2>
@@ -823,96 +735,150 @@ export default function Home() {
       </section>
 
       <section className="new-financial-services">
-        <div className="section-header">
-          <h2>Empowering Your Financial Journey</h2>
-          <p>
-            With over a decade of expertise, we've helped{" "}
-            <span className="highlight">50,000+ clients</span> achieve their
-            financial goals through personalized solutions and competitive
-            rates. Our commitment to excellence has established us as a trusted
-            partner in financial growth.
-          </p>
-        </div>
+      <motion.div
+        className="section-header"
+        initial={{ opacity: 0, y: -30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
+        <h2>Empowering Your Financial Journey</h2>
+        <p>
+          With over a decade of expertise, we've helped{" "}
+          <span className="highlight">50,000+ clients</span> achieve their
+          financial goals through personalized solutions and competitive rates.
+          Our commitment to excellence has established us as a trusted partner
+          in financial growth.
+        </p>
+      </motion.div>
 
-        <div className="stats-bar">
-          <div className="stat-item">
-            <h4>50K+</h4>
-            <p>Happy Customers</p>
-          </div>
-          <div className="stat-item">
-            <h4>₹825Cr+</h4>
-            <p>Loan Disbursed</p>
-          </div>
-          <div className="stat-item">
-            <h4>98%</h4>
-            <p>Customer Satisfaction</p>
-          </div>
-          <div className="stat-item">
-            <h4>24h</h4>
-            <p>Quick Approval</p>
-          </div>
-        </div>
-      </section>
+      <motion.div
+        className="stats-bar"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        // viewport={{ once: true }}
+      >
+        {stats.map((stat, i) => (
+          <motion.div
+            key={i}
+            className="stat-item"
+            variants={itemVariants}
+            whileHover={{
+              scale: 1.08,
+              y: -6,
+              boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
+            }}
+            transition={{ type: "spring", stiffness: 180 }}
+          >
+            <Counter
+              end={stat.value}
+              prefix={stat.prefix || ""}
+              suffix={stat.suffix || ""}
+            />
+            <p>{stat.label}</p>
+          </motion.div>
+        ))}
+      </motion.div>
+    </section>
 
       <section className="faq-section">
-        <h2>
-          Frequently <span>Asked Questions</span>
-        </h2>
+      <motion.h2
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        Frequently <span>Asked Questions</span>
+      </motion.h2>
 
-        <div className="faq-search">
-          <input type="text" placeholder="Search" />
-          <i className="fas fa-search"></i>
-        </div>
+      {/* Search */}
+      <motion.div
+        className="faq-search"
+        initial={{ scale: 0.9, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <input type="text" placeholder="Search" />
+        <i className="fas fa-search"></i>
+      </motion.div>
 
-        <div className="faq-tabs">
-          <div className="faq-tab active">Personal Loan</div>
-          <div className="faq-tab">Home Renovation Loan</div>
-          <div className="faq-tab">Education Loan</div>
-          <div className="faq-tab">Shopping Loan</div>
-          <div className="faq-tab">Travel Loan</div>
-          <div className="faq-tab">General</div>
-        </div>
+      {/* Tabs */}
+      <motion.div
+        className="faq-tabs"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        {Object.keys(faqsData).map((tab, idx) => (
+          <motion.div
+            key={idx}
+            className={`faq-tab ${activeTab === tab ? "active" : ""}`}
+            whileHover={{ scale: 1.1 }}
+            onClick={() => {
+              setActiveTab(tab);
+              setActiveIndexes([]);
+            }}
+          >
+            {tab}
+          </motion.div>
+        ))}
+      </motion.div>
 
-        {/* <!-- FAQ Items --> */}
-        <div className="faq-item">
-          <div className="faq-question">
-            What is the minimum salary required to get a personal loan?
-            <span className="icon">+</span>
-          </div>
-          <div className="faq-answer">
-            The minimum salary required varies depending on the lender, but
-            generally starts from ₹15,000–₹25,000 per month.
-          </div>
-        </div>
+      {/* FAQs */}
+      <div className="faq-list">
+        {faqsData[activeTab].map((faq, index) => (
+          <motion.div
+            key={index}
+            className={`faq-item ${
+              activeIndexes.includes(index) ? "active" : ""
+            }`}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
+            viewport={{ once: true }}
+          >
+            <div className="faq-question" onClick={() => toggleFAQ(index)}>
+              {faq.question}
+              <motion.span
+                className="icon"
+                animate={{ rotate: activeIndexes.includes(index) ? 45 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                +
+              </motion.span>
+            </div>
+            <AnimatePresence>
+              {activeIndexes.includes(index) && (
+                <motion.div
+                  className="faq-answer"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <p>{faq.answer}</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        ))}
+      </div>
 
-        <div className="faq-item">
-          <div className="faq-question">
-            What is the eligibility criteria for a personal loan?
-            <span className="icon">+</span>
-          </div>
-          <div className="faq-answer">
-            You must be a salaried or self-employed individual, aged 21–60
-            years, with a stable income and good credit history.
-          </div>
-        </div>
-
-        <div className="faq-item">
-          <div className="faq-question">
-            What is the rate of interest that will be charged?
-            <span className="icon">+</span>
-          </div>
-          <div className="faq-answer">
-            Interest rates vary by lender, loan amount, and your credit profile.
-            Typical personal loan rates start around 10% p.a.
-          </div>
-        </div>
-
-        <div className="faq-btn">
-          <a href="faq.html">
-            <button>All FAQs</button>
-          </a>
-        </div>
-      </section>
+      {/* Button */}
+      <motion.div
+        className="faq-btn"
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+      >
+        <a href="faq.html">
+          <motion.button whileHover={{ scale: 1.1 }}>
+            All FAQs
+          </motion.button>
+        </a>
+      </motion.div>
+    </section>
 
       <section className="app-section">
         {/* <!-- Left content --> */}

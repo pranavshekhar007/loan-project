@@ -147,7 +147,7 @@ export default function PersonalLoan() {
 
                 <a
                   href="/form"
-                  className="btn btn-danger mt-4 rounded-pill px-4"
+                  className="btn btn-dark mt-4 rounded-pill px-4"
                 >
                   Apply Now
                 </a>
@@ -324,7 +324,7 @@ export default function PersonalLoan() {
             </div>
 
             <div className="text-center mt-5">
-                <a href="#" className="btn btn-danger btn-lg rounded-pill px-4 py-2">Start Application</a>
+                <a href="#" className="btn btn-dark btn-lg rounded-pill px-4 py-2">Start Application</a>
             </div>
         </div>
     </section>
@@ -475,7 +475,7 @@ export default function PersonalLoan() {
 
 
       {/* CTA */}
-      <section className="cta-section text-center py-5 bg-danger text-white">
+      {/* <section className="cta-section text-center py-5 bg-danger text-white">
         <div className="container">
           <h2>Ready to get your personal loan?</h2>
           <p className="lead">
@@ -491,7 +491,7 @@ export default function PersonalLoan() {
             Check Eligibility
           </a>
         </div>
-      </section>
+      </section> */}
 
       <Footer />
     </>
