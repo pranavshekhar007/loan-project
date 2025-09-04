@@ -20,107 +20,144 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Navbar */}
-      <nav
-        className={`navbar navbar-expand-lg custom-navbar fixed-top ${
-          scrolled ? "scrolled" : ""
-        }`}
-      >
-        <div className="container">
-        <Link className="navbar-brand d-flex align-items-center" href="/">
-          <img
-            src="/assets/rupeeloan_logo.png"
-            alt="Rupee Logo"
-            width={150}
-            height={40}
-          />
-        </Link>
+     {/* <!-- Header --> */}
+  <nav className={`navbar navbar-expand-lg ${scrolled ? "scrolled" : ""}`}>
+    <div className="container-fluid">
+      <a className="navbar-brand" href="#">
+        <img src="assets/rupeeloan_logo.png" alt="logo" />
+      </a>
+      <button className="navbar-toggler mobile-menu-button" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <span className="navbar-toggler-icon"></span>
+      </button>
 
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#mobileMenu"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+      <div className="collapse navbar-collapse desktop-menu" id="mainNavbar">
+        <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+          {/* <!-- Loans Mega Dropdown --> */}
+          <li className="nav-item dropdown main-list-item">
+            <a className="nav-link dropdown-toggle" href="#" id="loanDropdown" role="button" data-bs-toggle="dropdown">
+              Loans
+            </a>
+            <div className="dropdown-menu p-3" aria-labelledby="loanDropdown">
+              <div className="row g-3">
+                <div className="col-lg-4 col-md-6">
+                  <div className="mega-item">
+                    <div className="row">
+                      <div className="col-2">
+                        <i className="bi bi-cash-coin"></i>
+                      </div>
+                      <div className="col-10">
+                        <h3> Personal Loan</h3>
+                        <p>Get up to ₹10L in 10 mins</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-4 col-md-6">
+                  <div className="mega-item">
+                    <div className="row">
+                      <div className="col-2">
+                        <i className="bi bi-briefcase"></i>
+                      </div>
+                      <div className="col-10">
+                        <h3> Business Loan</h3>
+                        <p>Get up to ₹5L with 60M tenure</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-4 col-md-6">
+                  <div className="mega-item">
+                    <div className="row">
+                      <div className="col-2">
+                        <i className="bi bi-house-door"></i>
+                      </div>
+                      <div className="col-10">
+                        <h3> Home Loan</h3>
+                        <p>Interest starts from 7.75%* p.a.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-4 col-md-6">
+                  <div className="mega-item">
+                    <div className="row">
+                      <div className="col-2">
+                        <i className="bi bi-credit-card"></i>
+                      </div>
+                      <div className="col-10">
+                        <h3> Credit Card</h3>
+                        <p>Lifetime FREE cards with up to ₹5L limit</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-4 col-md-6">
+                  <div className="mega-item">
+                    <div className="row">
+                      <div className="col-2">
+                        <i className="bi bi-building"></i>
+                      </div>
+                      <div className="col-10">
+                        <h3> Loan Against Property</h3>
+                        <p>Up to ₹75L without ITR</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
 
-          <div className="collapse navbar-collapse justify-content-center">
-            <ul className="navbar-nav mx-auto">
-              <li className="nav-item">
-                <Link className="nav-link" href="/">Home</Link>
-              </li>
+          {/* <!-- Other Menus --> */}
+          <li className="nav-item"><a className="nav-link" href="#">Save </a></li>
+          <li className="nav-item"><a className="nav-link" href="#">Insure </a></li>
+          <li className="nav-item"><a className="nav-link" href="#">Track </a></li>
+          <li className="nav-item"><a className="nav-link" href="#">Pay </a></li>
+          <li className="nav-item"><a className="nav-link" href="#">Calculators </a></li>
+          <li className="nav-item"><a className="nav-link" href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                  Loan
-                </a>
-                <ul className="dropdown-menu">
-                  <li><Link className="dropdown-item" href="/personal-loan">Personal Loan</Link></li>
-                  <li><Link className="dropdown-item" href="/business-loan">Business Loan</Link></li>
-                  <li><Link className="dropdown-item" href="/consumer-durable">Consumer Durable Loan</Link></li>
-                  <li><Link className="dropdown-item" href="/bnpl">Buy Now, Pay Later</Link></li>
-                  <li><Link className="dropdown-item" href="/loan-against-property">Loan Against Property</Link></li>
-                  <li><Link className="dropdown-item" href="/gold-loan">Gold Loan</Link></li>
-                  <li><Link className="dropdown-item" href="/supply-chain">Supply Chain Finance</Link></li>
-                </ul>
-              </li>
-
-              <li className="nav-item">
-                <Link className="nav-link" href="/about">About</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" href="/support">Support</Link>
-              </li>
+  {/* <!-- Offcanvas Menu for Mobile --> */}
+  <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div className="offcanvas-header">
+      <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+      <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div className="offcanvas-body">
+      <ul className="navbar-nav">
+        {/* <!-- Loans Dropdown --> */}
+        <li className="nav-item">
+          <a className="nav-link d-flex justify-content-between align-items-center" href="#loanMenu"
+            data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="loanMenu">
+            Loans
+            <i className="bi bi-chevron-down"></i>
+          </a>
+          <div className="collapse" id="loanMenu">
+            <ul className="list-unstyled offcanvas-list ps-3">
+              <li><a href="#"><span><i className="bi bi-cash-coin"></i></span> Personal Loan</a></li>
+              <li><a href="#"> <span><i className="bi bi-briefcase"></i></span> Business Loan</a></li>
+              <li><a href="#"><span><i className="bi bi-house-door"></i></span>Home Loan</a></li>
+              <li><a href="#"> <span><i className="bi bi-credit-card"></i></span> Credit Card</a></li>
+              <li><a href="#"> <span> <i className="bi bi-building"></i></span> Loan Against Property</a></li>
             </ul>
           </div>
+        </li>
 
-          <div className="d-flex">
-            <Link href="/form" className="btn btn-apply">Apply Now</Link>
-          </div>
-        </div>
-      </nav>
-
-      {/* Offcanvas Mobile Menu */}
-      <div className="offcanvas offcanvas-end" tabIndex="-1" id="mobileMenu">
-        <div className="offcanvas-header">
-          <h5 className="offcanvas-title">RupeeLoan</h5>
-          <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div className="offcanvas-body">
-          <ul className="navbar-nav flex-column">
-            <li className="nav-item">
-              <Link className="nav-link" href="/">Home</Link>
-            </li>
-
-            <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                Loan
-              </a>
-              <ul className="dropdown-menu">
-                <li><Link className="dropdown-item" href="/personal-loan">Personal Loan</Link></li>
-                <li><Link className="dropdown-item" href="/business">Business Loan</Link></li>
-                <li><Link className="dropdown-item" href="/consumer-durable">Consumer Durable Loan</Link></li>
-                <li><Link className="dropdown-item" href="/bnpl">Buy Now, Pay Later</Link></li>
-                <li><Link className="dropdown-item" href="/loan-against-property">Loan Against Property</Link></li>
-                <li><Link className="dropdown-item" href="/gold-loan">Gold Loan</Link></li>
-                <li><Link className="dropdown-item" href="/supply-chain">Supply Chain Finance</Link></li>
-              </ul>
-            </li>
-
-            <li className="nav-item">
-              <Link className="nav-link" href="/about">About</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" href="/support">Support</Link>
-            </li>
-          </ul>
-
-          <div className="d-flex flex-column mt-3">
-            <Link href="/form" className="btn btn-apply">Apply Now</Link>
-          </div>
-        </div>
-      </div>
+        {/* <!-- Other Menus --> */}
+        <li className="nav-item"><a className="nav-link" href="#">Save</a></li>
+        <li className="nav-item"><a className="nav-link" href="#">Insure</a></li>
+        <li className="nav-item"><a className="nav-link" href="#">Track</a></li>
+        <li className="nav-item"><a className="nav-link" href="#">Pay</a></li>
+        <li className="nav-item"><a className="nav-link" href="#">Calculators</a></li>
+        <li className="nav-item"><a className="nav-link" href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+     
     </>
   );
 }

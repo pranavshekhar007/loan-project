@@ -29,7 +29,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-
+      <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+          rel="stylesheet"
+        />
       </head>
       <body className={`${notoSans.variable} ${geistSans.variable} ${geistMono.variable}`}>
         {children}
