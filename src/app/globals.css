@@ -8283,9 +8283,46 @@ p {
   }
   
 
+  
 
 
   /* responsive 3 step process  */
+
+  @media (max-width: 425px) {
+    .rl-step {
+      padding: 10px 0;
+  }
+  .rl-step-content {
+    padding: 9px;
+    margin-bottom: 0;
+}
+    .rl-step-container {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 1px;
+    }
+    .rl-step-content h3 {
+      font-size: 1.5rem;
+  }
+  .rl-step-content p {
+    font-size: 0.7rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+.rl-step-features li {
+  font-size: 0.5rem;
+}
+.rl-step-cta {
+  padding: 10px 18px;
+  font-size: 0.7rem;
+}
+.rl-phone-mockup img {
+  height: 150px;
+}
+.rl-arrows-nav{
+  bottom: -19px;
+}
+}
   @media (max-width: 320px) {
     .rl-step {
       padding: 10px 0;
