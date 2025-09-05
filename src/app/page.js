@@ -654,8 +654,9 @@ export default function Home() {
               </div>
             </div>
           </SwiperSlide>
+         
 
-        
+        #010a2d
         
           <SwiperSlide>
             <div className="rl-step rl-step-3">
@@ -776,26 +777,25 @@ export default function Home() {
                 maintaining complete security and privacy.
               </p>
               <ul className="rl-step-features">
-                    <li>
-                      <i className="fas fa-check-circle"></i> Instant document
-                      verification
-                    </li>
-                    <li>
-                      <i className="fas fa-check-circle"></i> Bank-grade
-                      security
-                    </li>
-                    <li>
-                      <i className="fas fa-check-circle"></i> Quick approval
-                    </li>
-                  </ul>
+                <li>
+                  <i className="fas fa-check-circle"></i> Instant document
+                  verification
+                </li>
+                <li>
+                  <i className="fas fa-check-circle"></i> Bank-grade security
+                </li>
+                <li>
+                  <i className="fas fa-check-circle"></i> Quick approval
+                </li>
+              </ul>
               <Link href="/interest-rate" className="rl-step-cta">
                 Learn About Interest
               </Link>
             </div>
             <div className="rl-step-visual">
-            <div className="rl-phone-mockup">
-                    <img src="assets/verification.png" alt="Verification" />
-                  </div>
+              <div className="rl-phone-mockup">
+                <img src="assets/verification.png" alt="Verification" />
+              </div>
             </div>
           </div>
         </div>
@@ -815,24 +815,24 @@ export default function Home() {
                 approval. No hidden charges or delays.
               </p>
               <ul className="rl-step-features">
-                    <li>
-                      <i className="fas fa-check-circle"></i> Quick transfer
-                    </li>
-                    <li>
-                      <i className="fas fa-check-circle"></i> Transparent fees
-                    </li>
-                    <li>
-                      <i className="fas fa-check-circle"></i> 24/7 support
-                    </li>
-                  </ul>
+                <li>
+                  <i className="fas fa-check-circle"></i> Quick transfer
+                </li>
+                <li>
+                  <i className="fas fa-check-circle"></i> Transparent fees
+                </li>
+                <li>
+                  <i className="fas fa-check-circle"></i> 24/7 support
+                </li>
+              </ul>
               <Link href="/cibil" className="rl-step-cta">
                 Check Cibil Now
               </Link>
             </div>
             <div className="rl-step-visual">
-            <div className="rl-phone-mockup">
-                    <img src="assets/disbursement.png" alt="Disbursement" />
-                  </div>
+              <div className="rl-phone-mockup">
+                <img src="assets/disbursement.png" alt="Disbursement" />
+              </div>
             </div>
           </div>
         </div>
@@ -1046,77 +1046,79 @@ export default function Home() {
             </div>
           </section> */}
 
-      <section className="how-it-works">
-        <h2>Here's how it works.</h2>
-        <p>
-          When you're ready, RupeeLoan is ready too - 24 hours a day, 7 days a
-          week.
-        </p>
-
-        <div className="steps-container mb-5">
-          {/* <!-- Step 1 --> */}
-          <div className="step-box">
-            <div className="step-header">
-              <img
-                src="https://wordpress-theme.spider-themes.net/banca/wp-content/uploads/2021/07/icon.svg"
-                alt="Apply Online"
-              />
-              <div>
-                <h4>Apply Online</h4>
-                <p>Apply for a Personal Loan quickly and easily.</p>
-              </div>
-            </div>
-            <ul className="step-list">
-              <li>
-                <span className="number">1.</span> Apply Online
-              </li>
-              <li>
-                <span className="number">2.</span> Enter Your Information - 10
-                min
-              </li>
-              <li>
-                <span className="number">3.</span> Pre-qualify / Pre-Approve - 5
-                min
-              </li>
-              <li>
-                <span className="number">4.</span> Help you prepare
-              </li>
-              <li>
-                <span className="number">5.</span> We help you qualify - 15 days
-              </li>
-            </ul>
+      <section className="process">
+        <div className="process-title mb-5">
+          <h2>Here's how it works</h2>
+          <p>
+            When you're ready, RupeeLoan is ready too - 24 hours a day, 7 days a
+            week.
+          </p>
+        </div>
+        <div className="steps">
+          <div className="step">
+            <h3>1.</h3>
+            <h4>Apply Online.</h4>
+            <p>
+              Start your journey by submitting an online application through our
+              simple form.
+            </p>
           </div>
+          <div className="step">
+            <h3>2.</h3>
+            <h4>Enter Your Information - 10 min</h4>
+            <p>
+              Provide your personal and financial details. It only takes around
+              10 minutes to complete.
+            </p>
+          </div>
+          <div className="step">
+            <h3>3.</h3>
+            <h4>Pre-qualify / Pre-Approve - 5 min</h4>
+            <p>
+              Get instant feedback to know whether you are pre-qualified or
+              pre-approved in just 5 minutes.
+            </p>
+          </div>
+          <div className="step">
+            <h3>4.</h3>
+            <h4>Help you prepare</h4>
+            <p>
+              Our team assists you with the required documents and guidance to
+              move forward smoothly.
+            </p>
+          </div>
+          <div className="step">
+            <h3>5.</h3>
+            <h4>We help you qualify - 15 days</h4>
+            <p>
+              We work with you over the next 15 days to ensure everything is in
+              place for qualification.
+            </p>
+          </div>
+          <div className="step step-consultation">
+            <div className="overlay"></div>
 
-          {/* <!-- Step 2 --> */}
-          <div className="step-box">
-            <div className="step-header">
-              <img
-                src="https://wordpress-theme.spider-themes.net/banca/wp-content/uploads/2021/07/icon1.svg"
-                alt="Consultation"
-              />
-              <div>
-                <h4>Consultation</h4>
-                <p>Expert guidance on banking & loan solutions.</p>
+            <div className="consultation-content">
+              <div className="consultation-left">
+                <div className="support-text">
+                  <h4>Need Consultation Support?</h4>
+                  <p>
+                    Our experts are here to guide you through every step of the
+                    process with personalized support.
+                  </p>
+                  <a href="#consultation" className="cta-btn">
+                    Get Free Consultation
+                  </a>
+                </div>
+              </div>
+
+              <div className="consultation-right">
+                <img
+                  src="https://static.vecteezy.com/system/resources/thumbnails/009/636/756/small_2x/consultation-3d-icons-png.png"
+                  alt="Consultation Support"
+                />
               </div>
             </div>
-            <ul className="step-list">
-              <li>
-                <span className="number">1.</span> Schedule a Free Consultation
-              </li>
-              <li>
-                <span className="number">2.</span> Discuss your Situation
-              </li>
-              <li>
-                <span className="number">3.</span> We Review your condition &
-                find a solution
-              </li>
-              <li>
-                <span className="number">4.</span> Help you prepare
-              </li>
-              <li>
-                <span className="number">5.</span> We help you qualify
-              </li>
-            </ul>
           </div>
         </div>
       </section>
