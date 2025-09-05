@@ -16,6 +16,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import Link from "next/link";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("Personal Loan");
@@ -262,6 +263,33 @@ export default function Home() {
       },
     },
   };
+
+  const stepRefs = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          } else {
+            entry.target.classList.remove("active");
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    stepRefs.current.forEach((step) => {
+      if (step) observer.observe(step);
+    });
+
+    return () => {
+      stepRefs.current.forEach((step) => {
+        if (step) observer.unobserve(step);
+      });
+    };
+  }, []);
 
   return (
     <>
@@ -517,7 +545,7 @@ export default function Home() {
         Payments ✦ Rewards & Cashback ✦
       </marquee>
 
-      {/* <!-- Replace the current step-section with this code --> */}
+      {/*     
       <section className="rl-process-hero" id="step-process">
         <div className="rl-process-intro">
           <h2>Our Simple 3-Step Loan Process</h2>
@@ -543,8 +571,8 @@ export default function Home() {
         <Swiper
           modules={[Navigation, Pagination]}
           spaceBetween={10}
-          slidesPerView={1.3} // 👈 thoda preview dikhane ke liye
-          centeredSlides={true} // 👈 center align hoga, agla/pehla peek karega
+          slidesPerView={1.3}
+          centeredSlides={true} 
           pagination={{ clickable: true }}
           loop={false}
           navigation={{
@@ -553,7 +581,7 @@ export default function Home() {
           }}
           className="rl-swiper"
         >
-          {/* Step 1 */}
+        
           <SwiperSlide>
             <div className="rl-step rl-step-1">
               <div className="rl-step-container">
@@ -591,7 +619,6 @@ export default function Home() {
             </div>
           </SwiperSlide>
 
-          {/* Step 2 */}
           <SwiperSlide>
             <div className="rl-step rl-step-2">
               <div className="rl-step-container">
@@ -628,7 +655,8 @@ export default function Home() {
             </div>
           </SwiperSlide>
 
-          {/* Step 3 */}
+        
+        
           <SwiperSlide>
             <div className="rl-step rl-step-3">
               <div className="rl-step-container">
@@ -664,10 +692,149 @@ export default function Home() {
           </SwiperSlide>
         </Swiper>
 
-        {/* Custom Arrows */}
+        
         <div className="rl-arrows-nav">
           <button className="rl-prev">◀</button>
           <button className="rl-next">▶</button>
+        </div>
+      </section> */}
+
+      <section className="rl-process-hero" id="step-process">
+        <div className="rl-process-intro">
+          <h2>Our Simple 3-Step Loan Process</h2>
+          <p>
+            Getting the funds you need has never been easier. Just follow these
+            three simple steps.
+          </p>
+          <div className="rl-scroll-indicator">
+            <span>Scroll to explore</span>
+            <div className="rl-mouse">
+              <div className="rl-wheel"></div>
+            </div>
+            <div className="rl-arrows">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Steps */}
+      <section className="rl-process-steps">
+        {/* Step 1 */}
+        <div
+          className="rl-step rl-step-1"
+          data-step="1"
+          ref={(el) => (stepRefs.current[0] = el)}
+        >
+          <div className="rl-step-container">
+            <div className="rl-step-content">
+              <div className="rl-step-number">01</div>
+              <h3>Application</h3>
+              <p>
+                Fill out our simple online form in just 5 minutes. No
+                complicated paperwork or branch visits needed.
+              </p>
+              <ul className="rl-step-features">
+                <li>
+                  <i className="fas fa-check-circle"></i> 100% digital process
+                </li>
+                <li>
+                  <i className="fas fa-check-circle"></i> No documentation
+                  upload initially
+                </li>
+                <li>
+                  <i className="fas fa-check-circle"></i> Instant eligibility
+                  check
+                </li>
+              </ul>
+              <Link href="/form" className="rl-step-cta">
+                Start Application
+              </Link>
+            </div>
+            <div className="rl-step-visual">
+              <div className="rl-phone-mockup">
+                <img src="assets/1.png" alt="Application Process" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 2 */}
+        <div
+          className="rl-step rl-step-2"
+          data-step="2"
+          ref={(el) => (stepRefs.current[1] = el)}
+        >
+          <div className="rl-step-container">
+            <div className="rl-step-content">
+              <div className="rl-step-number">02</div>
+              <h3>Verification</h3>
+              <p>
+                Our advanced systems verify your details instantly while
+                maintaining complete security and privacy.
+              </p>
+              <ul className="rl-step-features">
+                    <li>
+                      <i className="fas fa-check-circle"></i> Instant document
+                      verification
+                    </li>
+                    <li>
+                      <i className="fas fa-check-circle"></i> Bank-grade
+                      security
+                    </li>
+                    <li>
+                      <i className="fas fa-check-circle"></i> Quick approval
+                    </li>
+                  </ul>
+              <Link href="/interest-rate" className="rl-step-cta">
+                Learn About Interest
+              </Link>
+            </div>
+            <div className="rl-step-visual">
+            <div className="rl-phone-mockup">
+                    <img src="assets/verification.png" alt="Verification" />
+                  </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 3 */}
+        <div
+          className="rl-step rl-step-3"
+          data-step="3"
+          ref={(el) => (stepRefs.current[2] = el)}
+        >
+          <div className="rl-step-container">
+            <div className="rl-step-content">
+              <div className="rl-step-number">03</div>
+              <h3>Disbursement</h3>
+              <p>
+                Receive funds directly in your bank account within hours of
+                approval. No hidden charges or delays.
+              </p>
+              <ul className="rl-step-features">
+                    <li>
+                      <i className="fas fa-check-circle"></i> Quick transfer
+                    </li>
+                    <li>
+                      <i className="fas fa-check-circle"></i> Transparent fees
+                    </li>
+                    <li>
+                      <i className="fas fa-check-circle"></i> 24/7 support
+                    </li>
+                  </ul>
+              <Link href="/cibil" className="rl-step-cta">
+                Check Cibil Now
+              </Link>
+            </div>
+            <div className="rl-step-visual">
+            <div className="rl-phone-mockup">
+                    <img src="assets/disbursement.png" alt="Disbursement" />
+                  </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -716,6 +883,168 @@ export default function Home() {
           </div>
         </div>
       </section> */}
+
+      {/* <section
+            className="process pt-140 pb-40 pos-rel"
+            data-bg-color="#fff"
+            style={{ backgroundColor: "rgb(255, 255, 255)" }}
+          >
+            <div className="container">
+              <div className="row justify-content-center">
+                <div className="col-lg-5 col-md-8">
+                  <div className="process-left pt-70">
+                    <div className="sec-title">
+                      <h2
+                        className="title mb-40 wow fadeInUp"
+                        data-wow-duration="600ms"
+                        style={{
+                          visibility: "visible",
+                          animationDuration: "600ms",
+                          animationName: "fadeInUp",
+                        }}
+                      >
+                        Our 5-step workflow
+                      </h2>
+                      <span
+                        className="content wow fadeInUp"
+                        data-wow-delay="200ms"
+                        data-wow-duration="600ms"
+                        style={{
+                          visibility: "visible",
+                          animationDuration: "600ms",
+                          animationDelay: "200ms",
+                          animationName: "fadeInUp",
+                        }}
+                      >
+                        Our Dousoft Efficient Workflow in 5 Steps ensures
+                        streamlined IT solutions. We start by understanding your
+                        needs, then plan the project, design intuitive
+                        interfaces, build robust systems, and thoroughly test.
+                      </span>
+                    </div>
+                    <div
+                      className="xb-btn mt-55 wow fadeInUp"
+                      data-wow-delay="400ms"
+                      data-wow-duration="600ms"
+                      style={{
+                        visibility: "visible",
+                        animationDuration: "600ms",
+                        animationDelay: "400ms",
+                        animationName: "fadeInUp",
+                      }}
+                    >
+                      <a
+                        href="/about-us"
+                        className="thm-btn thm-btn--fill_icon"
+                      >
+                        <div className="xb-item--hidden-text">
+                          <span className="text">Learn more about us</span>
+                        </div>
+                        <div className="xb-item--holder">
+                          <span className="xb-item--text">
+                            Learn more about us
+                          </span>
+                          <div className="xb-item--icon">
+                            <i className="far fa-long-arrow-right" />
+                          </div>
+                          <span className="xb-item--text">
+                            Learn more about us
+                          </span>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-7 col-md-8">
+                  <div className="process-right f-right">
+                    <div className="process-item">
+                      <span className="xb-item--number">01</span>
+                      <div className="xb-item--img">
+                        <img src="assets/1.png" alt="consultation and need analysis icon" />
+                      </div>
+                      <div className="xb-item--holder">
+                        <h3 className="xb-item--title">
+                          Consultation &amp; needs analysis
+                        </h3>
+                        <span className="xb-item--content">
+                          We first understand your challenges to tailor a
+                          solution that fits your needs.
+                        </span>
+                      </div>
+                    </div>
+                    <div className="process-item">
+                      <span className="xb-item--number">02</span>
+                      <div className="xb-item--img">
+                        <img src="assets/2.png" alt="planning and strategy development" />
+                      </div>
+                      <div className="xb-item--holder">
+                        <h3 className="xb-item--title">
+                          Planning &amp; strategy development
+                        </h3>
+                        <span className="xb-item--content">
+                          Our team crafts a strategic plan, defining the project
+                          roadmap and setting timelines.
+                        </span>
+                      </div>
+                    </div>
+                    <div className="process-item">
+                      <span className="xb-item--number">03</span>
+                      <div className="xb-item--img">
+                        <img src="assets/3.png" alt="design and development icon" />
+                      </div>
+                      <div className="xb-item--holder">
+                        <h3 className="xb-item--title">
+                          Design &amp; development
+                        </h3>
+                        <span className="xb-item--content">
+                          Our designers create intuitive interfaces, while
+                          developers build scalable, robust systems.
+                        </span>
+                      </div>
+                    </div>
+                    <div className="process-item">
+                      <span className="xb-item--number">04</span>
+                      <div className="xb-item--img">
+                        <img src="assets/4.png" alt="testing and quality assurance icon" />
+                      </div>
+                      <div className="xb-item--holder">
+                        <h3 className="xb-item--title">
+                          Testing &amp; quality assurance
+                        </h3>
+                        <span className="xb-item--content">
+                          We rigorously test for security, performance resolving
+                          any issues before deployment.
+                        </span>
+                      </div>
+                    </div>
+                    <div className="process-item">
+                      <span className="xb-item--number">05</span>
+                      <div className="xb-item--img">
+                        <img src="assets/5.png" alt="deployment and ongoing support" />
+                      </div>
+                      <div className="xb-item--holder">
+                        <h3 className="xb-item--title">
+                          Deployment &amp; ongoing support
+                        </h3>
+                        <span className="xb-item--content">
+                          We first understand your challenges to tailor a
+                          solution that fits your needs.
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="peocess-shape">
+              <div className="shape shape--one">
+                <img src="assets/img/shape/process-shape01-Photoroom.png" alt="icon" />
+              </div>
+              <div className="shape shape--two">
+                <img src="assets/img/shape/process-shape02-Photoroom.png" alt="icon" />
+              </div>
+            </div>
+          </section> */}
 
       <section className="how-it-works">
         <h2>Here's how it works.</h2>
