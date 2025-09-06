@@ -37,6 +37,7 @@ export default function Navbar() {
           <li className="nav-item dropdown main-list-item">
             <a className="nav-link dropdown-toggle" href="#" id="loanDropdown" role="button" data-bs-toggle="dropdown">
               Loans
+              <i className="bi bi-chevron-down ms-1"></i>
             </a>
             <div className="dropdown-menu p-3" aria-labelledby="loanDropdown">
               <div className="row g-3">
