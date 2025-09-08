@@ -17,6 +17,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Link from "next/link";
+import { loanListServ } from "./services/loan.service";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("Personal Loan");
@@ -146,50 +147,71 @@ export default function Home() {
     }),
   };
 
-  const services = [
-    {
-      title: "Personal Loan",
-      icon: "bi bi-cash-coin",
-      desc: "Get quick funds with our digital application process, instant eligibility checks, and flexible repayment options.",
-      img: "assets/2.png",
-      link: "form.html",
-    },
-    {
-      title: "Business Loan",
-      icon: "bi bi-briefcase",
-      desc: "Tailored for SMEs and enterprises with fast approval, minimal paperwork, and flexible credit limits.",
-      img: "assets/3.png",
-      link: "business-loan-form.html",
-    },
-    {
-      title: "Consumer Durable Loan",
-      icon: "bi bi-credit-card",
-      desc: "Buy appliances and gadgets easily with zero-cost EMI options and instant approvals at point-of-sale.",
-      img: "assets/4.png",
-      link: "consumer-form.html",
-    },
-    {
-      title: "Buy Now, Pay Later",
-      icon: "bi bi-cart-check",
-      desc: "Shop instantly and pay later with flexible repayment tenures and easy merchant integrations.",
-      img: "assets/5.png",
-      link: "bnpl-form.html",
-    },
-    {
-      title: "Loan Against Property",
-      icon: "bi bi-house-door",
-      desc: "Unlock the value of your property with low interest rates and high loan-to-value ratio.",
-      img: "assets/6.png",
-      link: "property-form.html",
-    },
-    {
-      title: "Gold Loan",
-      icon: "bi bi-gem",
-      desc: "Secure loans against your gold assets with quick valuation and attractive interest rates.",
-      img: "assets/7.png",
-      link: "gold-loan-form.html",
-    },
-  ];
+  // const services = [
+  //   {
+  //     title: "Personal Loan",
+  //     icon: "bi bi-cash-coin",
+  //     desc: "Get quick funds with our digital application process, instant eligibility checks, and flexible repayment options.",
+  //     img: "assets/2.png",
+  //     link: "form.html",
+  //   },
+  //   {
+  //     title: "Business Loan",
+  //     icon: "bi bi-briefcase",
+  //     desc: "Tailored for SMEs and enterprises with fast approval, minimal paperwork, and flexible credit limits.",
+  //     img: "assets/3.png",
+  //     link: "business-loan-form.html",
+  //   },
+  //   {
+  //     title: "Consumer Durable Loan",
+  //     icon: "bi bi-credit-card",
+  //     desc: "Buy appliances and gadgets easily with zero-cost EMI options and instant approvals at point-of-sale.",
+  //     img: "assets/4.png",
+  //     link: "consumer-form.html",
+  //   },
+  //   {
+  //     title: "Buy Now, Pay Later",
+  //     icon: "bi bi-cart-check",
+  //     desc: "Shop instantly and pay later with flexible repayment tenures and easy merchant integrations.",
+  //     img: "assets/5.png",
+  //     link: "bnpl-form.html",
+  //   },
+  //   {
+  //     title: "Loan Against Property",
+  //     icon: "bi bi-house-door",
+  //     desc: "Unlock the value of your property with low interest rates and high loan-to-value ratio.",
+  //     img: "assets/6.png",
+  //     link: "property-form.html",
+  //   },
+  //   {
+  //     title: "Gold Loan",
+  //     icon: "bi bi-gem",
+  //     desc: "Secure loans against your gold assets with quick valuation and attractive interest rates.",
+  //     img: "assets/7.png",
+  //     link: "gold-loan-form.html",
+  //   },
+  // ];
+
+
+  const [services , setServices] = useState([])
+
+  const getLoanList = async () => {
+   try{
+     const res = await loanListServ();
+    // if(res?.statusCode == 200){
+      console.log(" loan  list res" , res?.data);
+      setServices(res?.data);
+    // }
+   }
+   catch(err){
+    console.log("error" , err)
+   }
+
+  }
+
+  useEffect (() => {
+    getLoanList();
+  },[])
 
   const stats = [
     { value: 50000, label: "Happy Customers", suffix: "+" },
@@ -471,7 +493,7 @@ export default function Home() {
           </div>
 
           <div className="services-grid">
-            {services.map((service, i) => (
+            {services?.map((service, i) => (
               <motion.div
                 key={i}
                 className="service-card"
@@ -490,18 +512,20 @@ export default function Home() {
                 <div className="card-content">
                   <h3 className="service-title">
                     <div className="service-icon">
-                      <i className={service.icon}></i>
+                      <i className={service?.icon}></i>
+                      {/* <img src={service?.icon}  alt="icon" style={{height:"40px" , width:"40px"}}></img> */}
                     </div>
-                    {service.title}
+                    {service?.name}
                   </h3>
-                  <p className="service-description">{service.desc}</p>
+                  <p className="service-description">{service?.description}</p>
 
                   <div className="service-footer">
                     <a href={service.link} className="learn-more-btn">
                       Apply Now <i className="fas fa-arrow-right"></i>
                     </a>
                     <div className="footer-icon">
-                      <img src={service.img} alt={service.title} />
+                      {/* <img src={service.img} alt={service.title} /> */}
+                       <img src={service?.icon} alt={service.title} />
                     </div>
                   </div>
                 </div>
@@ -1261,7 +1285,7 @@ export default function Home() {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <a href="faq.html">
+          <a href="/faq">
             <motion.button whileHover={{ scale: 1.1 }}>All FAQs</motion.button>
           </a>
         </motion.div>
