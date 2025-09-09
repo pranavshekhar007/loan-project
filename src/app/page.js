@@ -18,9 +18,10 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Link from "next/link";
 import { loanListServ } from "./services/loan.service";
+import Faq from "./Components/Faq";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState("Personal Loan");
+  // const [activeTab, setActiveTab] = useState("Personal Loan");
   const [activeIndexes, setActiveIndexes] = useState([]);
 
   const toggleFAQ = (index) => {
@@ -32,8 +33,8 @@ export default function Home() {
   };
 
   // Tab-wise FAQs (3 har ek me)
-  const faqsData = {
-    "Personal Loan": [
+  const faqsData = [
+    
       {
         question: "What is the minimum salary required to get a personal loan?",
         answer:
@@ -49,8 +50,7 @@ export default function Home() {
         answer:
           "Interest rates vary by lender, loan amount, and your credit profile. Typical personal loan rates start around 10% p.a.",
       },
-    ],
-    "Home Renovation Loan": [
+   
       {
         question: "Can I get a loan for full home renovation?",
         answer:
@@ -66,8 +66,7 @@ export default function Home() {
         answer:
           "Usually up to 15 years depending on loan amount and bank policy.",
       },
-    ],
-    "Education Loan": [
+   
       {
         question: "Do education loans cover foreign studies?",
         answer:
@@ -82,8 +81,7 @@ export default function Home() {
         question: "Is collateral needed?",
         answer: "Collateral is usually required for loans above ₹7.5 lakh.",
       },
-    ],
-    "Shopping Loan": [
+   
       {
         question: "Can I buy electronics with shopping loan?",
         answer:
@@ -98,8 +96,7 @@ export default function Home() {
         question: "What is the max limit?",
         answer: "Usually ₹50,000 to ₹5 lakh depending on profile.",
       },
-    ],
-    "Travel Loan": [
+   
       {
         question: "Can I use travel loan for international trips?",
         answer:
@@ -114,8 +111,7 @@ export default function Home() {
         question: "What is the repayment tenure?",
         answer: "Typically 12–60 months.",
       },
-    ],
-    General: [
+   
       {
         question: "What documents are required?",
         answer:
@@ -131,8 +127,8 @@ export default function Home() {
         answer:
           "Yes, most lenders allow prepayment but may charge a small fee.",
       },
-    ],
-  };
+   
+    ];
 
   const cardVariants = {
     hidden: { opacity: 0, y: 40 },
@@ -343,7 +339,7 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="features">
+          <div className="features " style={{marginBottom:"30px"}}>
             <div className="feature">
               <i className="fas fa-check-circle"></i> No paperwork
             </div>
@@ -1195,7 +1191,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section className="faq-section">
+      {/* <section className="faq-section">
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -1205,42 +1201,20 @@ export default function Home() {
           Frequently <span>Asked Questions</span>
         </motion.h2>
 
-        {/* Search */}
-        <motion.div
-          className="faq-search"
-          initial={{ scale: 0.9, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <input type="text" placeholder="Search" />
-          <i className="fas fa-search"></i>
-        </motion.div>
+       
 
-        {/* Tabs */}
+       
         <motion.div
           className="faq-tabs"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {Object.keys(faqsData).map((tab, idx) => (
-            <motion.div
-              key={idx}
-              className={`faq-tab ${activeTab === tab ? "active" : ""}`}
-              whileHover={{ scale: 1.1 }}
-              onClick={() => {
-                setActiveTab(tab);
-                setActiveIndexes([]);
-              }}
-            >
-              {tab}
-            </motion.div>
-          ))}
+          
         </motion.div>
 
-        {/* FAQs */}
         <div className="faq-list">
-          {faqsData[activeTab].map((faq, index) => (
+          {faqsData.map((faq, index) => (
             <motion.div
               key={index}
               className={`faq-item ${
@@ -1278,7 +1252,7 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Button */}
+       
         <motion.div
           className="faq-btn"
           initial={{ opacity: 0, scale: 0.9 }}
@@ -1289,7 +1263,9 @@ export default function Home() {
             <motion.button whileHover={{ scale: 1.1 }}>All FAQs</motion.button>
           </a>
         </motion.div>
-      </section>
+      </section> */}
+
+      <Faq/>
 
       {/* <section className="app-section">
         <div className="app-content">

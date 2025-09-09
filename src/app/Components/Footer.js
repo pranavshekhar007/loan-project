@@ -38,7 +38,7 @@ export default function Footer() {
           <h4>Loan Products</h4>
           <ul>
             <li><Link href="/personal-loan">Personal Loan</Link></li>
-            <li><Link href="/business">Business Loan</Link></li>
+            <li><Link href="/business-loan">Business Loan</Link></li>
             <li><Link href="/consumer-durable">Consumer Durable Loan</Link></li>
             <li><Link href="/bnpl">Buy Now, Pay Later</Link></li>
             <li><Link href="/loan-against-property">Loan Against Property</Link></li>

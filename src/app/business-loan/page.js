@@ -3,6 +3,7 @@
 import Head from "next/head";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import Faq from "../Components/Faq";
 
 
 export default function BusinessLoan() {
@@ -20,12 +21,12 @@ export default function BusinessLoan() {
 
       {/* Hero Section */}
       <section className="personal-loan-hero">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="hero-content">
             <div className="row align-items-center">
               <div className="col-lg-6">
-                <h1>Business Loans Made Easy & Fast</h1>
-                <p>
+                <h1 className="text-black">Business Loans Made Easy & Fast</h1>
+                <p className="text-black">
                   Get quick approval on business loans up to ₹50 lakhs with
                   minimal documentation and flexible repayment options to grow
                   your business hassle-free.
@@ -37,22 +38,22 @@ export default function BusinessLoan() {
                   Apply Now
                 </a>
 
-                <div className="hero-stats mt-4">
-                  <div className="stat-item">
+                <div className="hero-stats mt-4 ">
+                  <div className="stat-item text-black">
                     <i className="fas fa-briefcase"></i>
                     <div className="stat-text">
                       <strong>25K+</strong>
                       <span>Businesses Funded</span>
                     </div>
                   </div>
-                  <div className="stat-item">
+                  <div className="stat-item text-black">
                     <i className="fas fa-bolt"></i>
                     <div className="stat-text">
                       <strong>48h</strong>
                       <span>Quick Disbursal</span>
                     </div>
                   </div>
-                  <div className="stat-item">
+                  <div className="stat-item text-black">
                     <i className="fas fa-hand-holding-usd"></i>
                     <div className="stat-text">
                       <strong>₹50 Lakhs</strong>
@@ -79,7 +80,7 @@ export default function BusinessLoan() {
 
       {/* Premium Business Loans Section */}
       <section className="premium-section py-5">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="premium-row justify-center mb-5 text-center">
             <div className="premium-col col-lg-10">
               <h2 className="premium-title">
@@ -169,7 +170,7 @@ export default function BusinessLoan() {
 
       {/* Documents & Charges */}
       <section className="documents-section py-5">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="row">
             {/* Left Column */}
             <div className="col-lg-6">
@@ -250,9 +251,9 @@ export default function BusinessLoan() {
 
       {/* <!-- Business Loans Without Collateral Process Section --> */}
     <section className="loan-process-section">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
             <div className="section-header">
-                <h2 className="section-title">BUSINESS LOANS WITHOUT COLLATERAL LOAN PROCESS</h2>
+                <h2 className="section-title text-black">BUSINESS LOANS WITHOUT COLLATERAL LOAN PROCESS</h2>
                 <p className="section-subtitle">You can apply for a Business Loan Without Collateral by following these
                     three simple steps:</p>
             </div>
@@ -294,7 +295,7 @@ export default function BusinessLoan() {
 
 
     {/* <!-- FAQ Section --> */}
-    <section className="faq-section">
+    {/* <section className="faq-section">
         <div className="container">
             <div className="text-center mb-5">
                 <h2>Frequently Asked Questions</h2>
@@ -363,7 +364,8 @@ export default function BusinessLoan() {
                 </div>
             </div>
         </div>
-    </section>
+    </section> */}
+    <Faq/>
 
       <Footer />
     </>

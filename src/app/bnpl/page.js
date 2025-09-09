@@ -4,6 +4,7 @@
 import Head from "next/head";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import Faq from "../Components/Faq";
 
 export default function BNPL() {
   return (
@@ -20,13 +21,13 @@ export default function BNPL() {
 
       {/* Hero Section */}
       <section className="personal-loan-hero">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="hero-content">
             <div className="row align-items-center">
               {/* Left */}
               <div className="col-lg-6" data-aos="fade-right">
-                <h1>Shop Now, Pay Later with Zero Interest</h1>
-                <p>
+                <h1 className="text-black">Shop Now, Pay Later with Zero Interest</h1>
+                <p className="text-black">
                   Enjoy your purchases today and pay in easy EMIs with our Buy
                   Now, Pay Later service. No hidden charges, no complex
                   paperwork.
@@ -38,7 +39,7 @@ export default function BNPL() {
                   Get Started
                 </a>
 
-                <div className="hero-stats">
+                <div className="hero-stats text-black">
                   <div className="stat-item">
                     <i className="fas fa-percentage"></i>
                     <div className="stat-text">
@@ -73,14 +74,14 @@ export default function BNPL() {
 
       {/* Features Section */}
       <section className="features-section">
-        <div className="container text-center mb-5">
+        <div className="container text-center mb-5 p-sm-5 p-4">
           <h2 className="section-title">Why Choose Our BNPL Service</h2>
           <p className="section-subtitle">
             Experience the future of shopping with flexible payment options
           </p>
         </div>
 
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="row">
             {[
               {
@@ -105,7 +106,7 @@ export default function BNPL() {
                 data-aos-delay={i * 100}
                 key={i}
               >
-                <div className="feature-card">
+                <div className="feature-card ">
                   <div className="feature-icon">
                     <i className={`fas ${f.icon}`}></i>
                   </div>
@@ -120,14 +121,14 @@ export default function BNPL() {
 
       {/* Partners Section */}
       <section className="partners-section">
-        <div className="container text-center mb-5">
+        <div className="container text-center mb-5 p-sm-5 p-4">
           <h2 className="section-title">Shop at Your Favorite Stores</h2>
           <p className="section-subtitle">
             Use BNPL at thousands of online and offline retailers
           </p>
         </div>
 
-        <div className="container partner-grid">
+        <div className="container partner-grid p-sm-5 p-4">
           {[
             "amazon-logo.jpg",
             "croma.png",
@@ -153,7 +154,7 @@ export default function BNPL() {
 
       {/* How It Works */}
       <section className="how-it-works">
-        <div className="container text-center mb-5">
+        <div className="container text-center mb-5 p-sm-5 p-4">
           <h2 className="section-title">How It Works</h2>
           <p className="section-subtitle">
             Get started with BNPL in three simple steps
@@ -204,7 +205,7 @@ export default function BNPL() {
 
       {/* Benefits */}
       <section className="benefits-section">
-        <div className="container row align-items-center">
+        <div className="container row align-items-center p-sm-5 p-4">
           <div className="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
             <img
               src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80"
@@ -213,7 +214,7 @@ export default function BNPL() {
             />
           </div>
           <div className="col-lg-6" data-aos="fade-left">
-            <h2 className="mb-4">Benefits of Using BNPL</h2>
+            <h2 className="mb-4 text-black">Benefits of Using BNPL</h2>
             {[
               {
                 icon: "fa-wallet",
@@ -231,13 +232,13 @@ export default function BNPL() {
                 desc: "Responsible use of BNPL can help you build a positive credit history.",
               },
             ].map((b, i) => (
-              <div className="benefit-item d-flex mb-3" key={i}>
+              <div className="benefit-item d-flex mb-3 text-black" key={i}>
                 <div className="benefit-icon me-3">
-                  <i className={`fas ${b.icon}`}></i>
+                  <i className={`fas ${b.icon}` }></i>
                 </div>
                 <div>
-                  <h5>{b.title}</h5>
-                  <p>{b.desc}</p>
+                  <h5 className="text-black">{b.title}</h5>
+                  <p  className="text-black">{b.desc}</p>
                 </div>
               </div>
             ))}
@@ -247,14 +248,14 @@ export default function BNPL() {
 
       {/* Testimonials */}
       <section className="testimonials-section">
-        <div className="container text-center mb-5">
+        <div className="container text-center mb-5 p-sm-5 p-4">
           <h2 className="section-title">What Our Customers Say</h2>
           <p className="section-subtitle">
             Join thousands of satisfied users who enjoy flexible payments
           </p>
         </div>
 
-        <div className="container row">
+        <div className="container row p-sm-5 p-4">
           {[
             {
               rating: 5,
@@ -317,9 +318,9 @@ export default function BNPL() {
 
       {/* CTA */}
       <section className="cta-section text-center">
-        <div className="container">
-          <h2>Ready to Shop Smarter?</h2>
-          <p>
+        <div className="container p-sm-5 p-4">
+          <h2 className="text-black">Ready to Shop Smarter?</h2>
+          <p className="text-black">
             Join thousands of savvy shoppers who are using BNPL to make their
             purchases more affordable
           </p>
@@ -330,7 +331,7 @@ export default function BNPL() {
       </section>
 
       {/* <!-- FAQ Section --> */}
-    <section className="faq-section">
+    {/* <section className="faq-section">
         <div className="container">
             <div className="text-center mb-5">
                 <h2 className="section-title">Frequently Asked Questions</h2>
@@ -391,7 +392,9 @@ export default function BNPL() {
                 </div>
             </div>
         </div>
-    </section>
+    </section> */}
+
+    <Faq/>
 
       <Footer />
     </>

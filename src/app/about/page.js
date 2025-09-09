@@ -22,9 +22,9 @@ export default function About() {
       <main>
         {/* Hero Section */}
         <section className="about-hero">
-          <div className="container">
-            <h1>About RupeeLoan</h1>
-            <p>
+         <div className="container d-flex flex-column justify-content-center" style={{minHeight:"65vh"}}>
+            <h1 className="text-black">About RupeeLoan</h1>
+            <p className=" text-black">
               Your trusted financial partner for over a decade, providing
               seamless loan experiences with transparency, security, and speed.
             </p>
@@ -92,8 +92,8 @@ export default function About() {
         </section>
 
         {/* Story Section */}
-        <section className="story-section">
-          <div className="container">
+        <section className="story-section ">
+          <div className="container p-sm-5 p-4 ">
             <div className="row">
               <div className="col-lg-12">
                 <h2 className="mb-4 text-center">Our Journey</h2>
@@ -146,7 +146,7 @@ export default function About() {
 
         {/* Values Section */}
         <section className="values-section">
-          <div className="container">
+          <div className="container p-sm-5 p-4">
             <div className="row text-center mb-5">
               <div className="col-lg-8 mx-auto">
                 <h2 className="mb-4">Our Values</h2>
@@ -206,9 +206,9 @@ export default function About() {
 
         {/* CTA Section */}
         <section className="cta-section">
-          <div className="container">
-            <h2>Ready to Get Started?</h2>
-            <p>
+          <div className="container p-sm-5 p-4">
+            <h2 className="text-black">Ready to Get Started?</h2>
+            <p className="text-black">
               Join thousands of satisfied customers who have achieved their
               financial goals with RupeeLoan.
             </p>

@@ -4,14 +4,21 @@ import Head from "next/head";
 import { useState } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import { motion } from "framer-motion";
 
 export default function FAQ() {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [openQuestion, setOpenQuestion] = useState(null);
+  const [openQuestion, setOpenQuestion] = useState([]);
 
   const toggleAnswer = (index) => {
-    setOpenQuestion(openQuestion === index ? null : index);
-  };
+  if (openQuestion.includes(index)) {
+    // Agar already open hai to remove kar do
+    setOpenQuestion(openQuestion.filter((i) => i !== index));
+  } else {
+    // Agar open nahi hai to add kar do
+    setOpenQuestion([...openQuestion, index]);
+  }
+};
 
   const faqs = [
     {
@@ -96,9 +103,9 @@ export default function FAQ() {
       <main>
         {/* Hero Section */}
         <section className="faq-hero">
-          <div className="container text-center">
-            <h1>Frequently Asked Questions</h1>
-            <p>
+          <div className="container d-flex flex-column justify-content-center" style={{minHeight:"65vh"}}>
+            <h1 className="text-dark mt-md-4">Frequently Asked Questions</h1>
+            <p className="text-dark">
               Find answers to common questions about our loan products,
               application process, and more.
             </p>
@@ -107,7 +114,28 @@ export default function FAQ() {
 
         {/* FAQ Section */}
         <section className="faq-content py-5">
-          <div className="container">
+          <div className="container faq-section">
+
+            <motion.h2
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          Frequently <span>Asked Questions</span>
+        </motion.h2>
+
+             {/* Search */}
+        <motion.div
+          className="faq-search"
+          initial={{ scale: 0.9, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <input type="text" placeholder="Search" />
+          <i className="fas fa-search"></i>
+        </motion.div>
+
             {/* Tabs */}
             <div className="faq-tabs d-flex justify-content-center mb-4 flex-wrap">
               {categories.map((cat) => (
@@ -136,7 +164,7 @@ export default function FAQ() {
                   <div
                     key={index}
                     className={`faq-item mb-3 p-3 border rounded ${
-                      openQuestion === index ? "active" : ""
+                      openQuestion.includes(index) ? "active" : ""
                     }`}
                   >
                     <div
@@ -145,11 +173,15 @@ export default function FAQ() {
                       style={{ cursor: "pointer" }}
                     >
                       <span>{faq.q}</span>
-                      <span className="icon">
-                        {openQuestion === index ? "−" : "+"}
-                      </span>
+                     <motion.span
+                  className="icon"
+                  animate={{ rotate: openQuestion.includes(index) ? 45 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  +
+                </motion.span>
                     </div>
-                    {openQuestion === index && (
+                    {openQuestion.includes(index) && (
                       <div className="faq-answer mt-2">{faq.a}</div>
                     )}
                   </div>

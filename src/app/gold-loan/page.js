@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
+import Faq from "../Components/Faq";
 
 export default function GoldLoan() {
   return (
@@ -10,12 +11,12 @@ export default function GoldLoan() {
       <Navbar />
       {/* <!-- Hero Section --> */}
       <section className="personal-loan-hero">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="hero-content">
             <div className="row align-items-center">
               <div className="col-lg-6" data-aos="fade-right">
-                <h1>Unlock the Value of Your Gold</h1>
-                <p>
+                <h1 className="text-black">Unlock the Value of Your Gold</h1>
+                <p className="text-black">
                   Get instant loans against your gold ornaments with minimal
                   documentation and the highest value per gram in the market.
                 </p>
@@ -26,7 +27,7 @@ export default function GoldLoan() {
                   Apply Now
                 </Link>
 
-                <div className="hero-stats">
+                <div className="hero-stats text-black">
                   <div className="stat-item">
                     <i className="fas fa-percentage"></i>
                     <div className="stat-text">
@@ -59,7 +60,7 @@ export default function GoldLoan() {
 
       {/* <!-- Features Section --> */}
       <section className="gold-feature features-section">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="text-center mb-5">
             <h2 className="section-title">Benefits of Gold Loan</h2>
             <p className="section-subtitle">
@@ -173,7 +174,7 @@ export default function GoldLoan() {
 
       {/* <!-- Gold Types Section --> */}
       <section className="gold-types">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="text-center mb-5">
             <h2 className="section-title">Accepted Gold Items</h2>
             <p className="section-subtitle">
@@ -321,7 +322,7 @@ export default function GoldLoan() {
 
       {/* <!-- Process Section --> */}
       <section className="gold-feature process-section">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="text-center mb-5">
             <h2 className="section-title">Simple 4-Step Process</h2>
             <p className="section-subtitle">
@@ -399,10 +400,10 @@ export default function GoldLoan() {
 
       {/* <!-- Calculator Section --> */}
       <section className="calculator-section">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="text-center mb-5">
-            <h2 className="section-title">Gold Loan Calculator</h2>
-            <p className="section-subtitle">
+            <h2 className="section-title text-black">Gold Loan Calculator</h2>
+            <p className="section-subtitle text-black">
               Calculate your loan amount and EMI instantly
             </p>
           </div>
@@ -563,7 +564,7 @@ export default function GoldLoan() {
 
       {/* <!-- Documents Section --> */}
       <section className="documents-section">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="text-center mb-5">
             <h2 className="section-title">Required Documents</h2>
             <p className="section-subtitle">
@@ -627,11 +628,11 @@ export default function GoldLoan() {
 
       {/* <!-- CTA Section --> */}
       <section className="cta-section gold-cta">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="row justify-content-center">
             <div className="col-lg-8 text-center" data-aos="zoom-in">
-              <h2>Ready to Get Instant Funds Against Your Gold?</h2>
-              <p>
+              <h2 className="text-black">Ready to Get Instant Funds Against Your Gold?</h2>
+              <p className="text-black">
                 Apply now and get the best value for your gold with minimal
                 paperwork and quick disbursal.
               </p>
@@ -646,7 +647,7 @@ export default function GoldLoan() {
       </section>
 
       {/* <!-- FAQ Section --> */}
-      <section className="faq-section">
+      {/* <section className="faq-section">
         <div className="container">
           <div className="text-center mb-5">
             <h2 className="section-title">Frequently Asked Questions</h2>
@@ -733,7 +734,8 @@ export default function GoldLoan() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+      <Faq/>
 
       <Footer />
     </>

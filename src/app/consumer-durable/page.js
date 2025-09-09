@@ -3,6 +3,7 @@
 import Head from "next/head";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import Faq from "../Components/Faq";
 
 
 export default function ConsumerDurableLoan() {
@@ -20,12 +21,12 @@ export default function ConsumerDurableLoan() {
 
       {/* Hero Section */}
       <section className="personal-loan-hero">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="hero-content">
             <div className="row align-items-center">
               <div className="col-lg-6">
-                <h1>Upgrade Your Lifestyle with Consumer Durable Loans</h1>
-                <p>
+                <h1 className="text-black" >Upgrade Your Lifestyle with Consumer Durable Loans</h1>
+                <p className="text-black">
                   Get the latest electronics, appliances, and furniture without
                   straining your finances. Enjoy zero down payment, flexible EMI
                   options, and quick approval.
@@ -37,11 +38,11 @@ export default function ConsumerDurableLoan() {
                   Apply Now
                 </a>
 
-                <div className="hero-stats">
+                <div className="hero-stats text-black">
                   <div className="stat-item">
                     <i className="fas fa-tv"></i>
                     <div className="stat-text">
-                      <strong>50K+</strong>
+                      <strong >50K+</strong>
                       <span>Products Financed</span>
                     </div>
                   </div>
@@ -77,7 +78,7 @@ export default function ConsumerDurableLoan() {
 
       {/* Premium Section */}
       <section className="premium-section">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="premium-row justify-center mb-60">
             <div className="premium-col col-lg-10 text-center">
               <h2 className="premium-title">
@@ -152,7 +153,7 @@ export default function ConsumerDurableLoan() {
 
       {/* Products Section */}
       <section className="products-section">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="text-center mb-5">
             <h2>Products You Can Finance</h2>
             <p className="lead">
@@ -221,7 +222,7 @@ export default function ConsumerDurableLoan() {
 
       {/* Documents Section */}
       <section className="documents-section">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="row">
             {/* Left */}
             <div className="col-lg-6">
@@ -300,9 +301,9 @@ export default function ConsumerDurableLoan() {
 
       {/* Loan Process Section */}
       <section className="loan-process-section">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="section-header">
-            <h2 className="section-title">CONSUMER DURABLE LOAN PROCESS</h2>
+            <h2 className="section-title text-black">CONSUMER DURABLE LOAN PROCESS</h2>
             <p className="section-subtitle">
               Get your desired product in three simple steps:
             </p>
@@ -349,7 +350,7 @@ export default function ConsumerDurableLoan() {
       </section>
 
       {/* FAQ Section */}
-      <section className="faq-section">
+      {/* <section className="faq-section">
         <div className="container">
           <div className="text-center mb-5">
             <h2>Frequently Asked Questions</h2>
@@ -393,7 +394,8 @@ export default function ConsumerDurableLoan() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+      <Faq/>
 
       <Footer />
     </>

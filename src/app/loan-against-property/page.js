@@ -6,6 +6,7 @@ import Head from "next/head";
 import { useState } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import Faq from "../Components/Faq";
 
 export default function LoanAgainstProperty() {
   // EMI Calculator States
@@ -41,23 +42,23 @@ export default function LoanAgainstProperty() {
 
       {/* Hero Section */}
       <section className="personal-loan-hero">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
             <div className="hero-content">
                <div className="row align-items-center">
                 <div className="col-lg-6" data-aos="fade-right">
-                    <h1>Unlock Your Property's Value</h1>
-                    <p>Get high-value loans against your residential or commercial property at attractive interest rates with flexible repayment options.</p>
+                    <h1 className="text-black">Unlock Your Property's Value</h1>
+                    <p className="text-black">Get high-value loans against your residential or commercial property at attractive interest rates with flexible repayment options.</p>
                     <a href="property-form.html" className="btn btn-light btn-lg rounded-pill px-4 py-3">Apply Now</a>
 
                     <div className="hero-stats">
-                        <div className="stat-item">
+                        <div className="stat-item text-black">
                             <i className="fas fa-percentage"></i>
                             <div className="stat-text">
                                 <strong>8.5%*</strong>
                                 <span>Interest Rate</span>
                             </div>
                         </div>
-                        <div className="stat-item">
+                        <div className="stat-item text-black">
                             <i className="fas fa-rupee-sign"></i>
                             <div className="stat-text">
                                 <strong>5 Cr</strong>
@@ -78,7 +79,7 @@ export default function LoanAgainstProperty() {
 
       {/* Features Section */}
       <section className="features-section">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
             <div className="text-center mb-5">
                 <h2 className="section-title">Benefits of Loan Against Property</h2>
                 <p className="section-subtitle">Leverage your property's value to meet your financial needs</p>
@@ -150,7 +151,7 @@ export default function LoanAgainstProperty() {
 
       {/* Property Types */}
       <section className="property-types">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
             <div className="text-center mb-5">
                 <h2 className="section-title">Eligible Property Types</h2>
                 <p className="section-subtitle">We accept various types of properties as collateral</p>
@@ -254,7 +255,7 @@ export default function LoanAgainstProperty() {
 
     {/* <!-- Process Section --> */}
     <section className="process-section">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
             <div className="text-center mb-5">
                 <h2 className="section-title">Application Process</h2>
                 <p className="section-subtitle">Simple and transparent process for loan against property</p>
@@ -387,7 +388,7 @@ export default function LoanAgainstProperty() {
 
     {/* <!-- Documents Section --> */}
     <section className="documents-section">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
             <div className="text-center mb-5">
                 <h2 className="section-title">Required Documents</h2>
                 <p className="section-subtitle">Keep these documents ready for smooth processing</p>
@@ -451,7 +452,7 @@ export default function LoanAgainstProperty() {
 
     {/* <!-- Testimonials Section --> */}
     <section className="testimonials-section">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
             <div className="text-center mb-5">
                 <h2 className="section-title">Customer Experiences</h2>
                 <p className="section-subtitle">Hear from our satisfied customers</p>
@@ -528,7 +529,7 @@ export default function LoanAgainstProperty() {
     </section>
 
     {/* <!-- FAQ Section --> */}
-    <section className="faq-section">
+    {/* <section className="faq-section">
         <div className="container">
             <div className="text-center mb-5">
                 <h2 className="section-title">Frequently Asked Questions</h2>
@@ -589,13 +590,14 @@ export default function LoanAgainstProperty() {
                 </div>
             </div>
         </div>
-    </section>
+    </section> */}
+    <Faq/>
 
       {/* CTA */}
       <section className="cta-section text-center py-5 bg-danger text-white">
-        <div className="container">
-          <h2>Ready to unlock your property&apos;s value?</h2>
-          <p>Apply today with minimal paperwork and quick approval.</p>
+        <div className="container p-sm-5 p-4">
+          <h2 className="text-black">Ready to unlock your property&apos;s value?</h2>
+          <p className="text-black">Apply today with minimal paperwork and quick approval.</p>
           <a href="/form" className="btn btn-light btn-lg rounded-pill mt-3">
             Apply Now
           </a>

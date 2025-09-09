@@ -2,10 +2,15 @@
 import { useEffect, useState , useContext } from "react";
 import Link from "next/link";
 import { LoggedDataContext } from "../context/Context";
+import { usePathname } from "next/navigation";
+
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const {loggedUserData} = useContext(LoggedDataContext);
+
+  const pathname = usePathname();
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +24,8 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const loanPaths = ["/personal-loan", "/business-loan", "/loan-against-property"];
 
   return (
     <>
@@ -37,10 +44,18 @@ export default function Navbar() {
         <ul className="navbar-nav ms-auto mb-2 mb-lg-0" style={{alignItems:"center"}}>
           {/* <!-- Loans Mega Dropdown --> */}
           <li className="nav-item dropdown main-list-item">
-            <a className="nav-link dropdown-toggle" href="#" id="loanDropdown" role="button" data-bs-toggle="dropdown">
-              Loans
-              <i className="bi bi-chevron-down ms-1"></i>
-            </a>
+            <a
+  className={`nav-link dropdown-toggle ${
+    loanPaths.includes(pathname) ? "nav-link-active" : ""
+  }`}
+  href="#"
+  id="loanDropdown"
+  role="button"
+  data-bs-toggle="dropdown"
+>
+  Loans
+  <i className="bi bi-chevron-down ms-1"></i>
+</a>
             <div className="dropdown-menu p-3" aria-labelledby="loanDropdown">
               <div className="row g-3">
                 <div className="col-lg-4 col-md-6">
@@ -120,21 +135,21 @@ export default function Navbar() {
           </li>
 
           {/* <!-- Other Menus --> */}
-          <li className="nav-item"><a className="nav-link" href="#">Save </a></li>
-          <li className="nav-item"><a className="nav-link" href="#">Insure </a></li>
-          <li className="nav-item"><a className="nav-link" href="#">Track </a></li>
-          <li className="nav-item"><a className="nav-link" href="#">Pay </a></li>
-          <li className="nav-item"><a className="nav-link" href="#">Calculators </a></li>
-          <li className="nav-item"><a className="nav-link" href="#">Contact Us</a></li>
+          <li className="nav-item"><a   className={`nav-link ${pathname === "/save" ? "nav-link-active" : ""}`} href="#">Save </a></li>
+          <li className="nav-item"><a  className={`nav-link ${pathname === "/insure" ? "nav-link-active" : ""}`} href="#">Insure </a></li>
+          <li className="nav-item"><a   className={`nav-link ${pathname === "/track" ? "nav-link-active" : ""}`} href="#">Track </a></li>
+          <li className="nav-item"><a   className={`nav-link ${pathname === "/pay" ? "nav-link-active" : ""}`} href="#">Pay </a></li>
+          <li className="nav-item"><a  className={`nav-link ${pathname === "/calculators" ? "nav-link-active" : ""}`} href="#">Calculators </a></li>
+          <li className="nav-item"><a   className={`nav-link ${pathname === "/support" ? "nav-link-active" : ""}`} href="/support">Contact Us</a></li>
 
          {
           loggedUserData? (
-            <li className="nav-item"> <a className="nav-link" href="/sign-up">
+            <li className="nav-item"> <a className="nav-link" href="/profile">
               <img src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png" style={{height:"30px" , width:"30px" }}></img>
               </a></li> 
           ):
           (
-             <li className="nav-item"> <a className="nav-link" href="/sign-up"> Sign In</a></li> 
+             <li className="nav-item "> <a className="nav-link sign-in-btn" href="/sign-up"> Sign In</a></li> 
           )
          }
         </ul>
@@ -174,10 +189,10 @@ export default function Navbar() {
         <li className="nav-item"><a className="nav-link" href="#">Track</a></li>
         <li className="nav-item"><a className="nav-link" href="#">Pay</a></li>
         <li className="nav-item"><a className="nav-link" href="#">Calculators</a></li>
-        <li className="nav-item"><a className="nav-link" href="#">Contact Us</a></li>
+        <li className="nav-item"><a className="nav-link" href="/support">Contact Us</a></li>
          {
           loggedUserData? (
-            <li className="nav-item"> <a className="nav-link" href="/sign-up">
+            <li className="nav-item"> <a className="nav-link" href="/profile">
               Profile
               </a></li> 
           ):

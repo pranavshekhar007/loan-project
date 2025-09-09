@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { FaSpinner } from "react-icons/fa";
 import { LoggedDataContext } from "../context/Context";
 import Footer from "../Components/Footer";
+import CountryPhoneInput from "../Components/CountryPhoneInput";
 
 
 export default function AuthPage() {
@@ -287,11 +288,18 @@ const [rememberMe, setRememberMe] = useState(false);
               </div>
               <div className="form-col">
                 <div className="form-group">
-                  <FaPhone className="form-icon phone-icon" />
+                  {/* <FaPhone className="form-icon phone-icon" />
                   <input type="tel" placeholder="Phone Number"
                     name="phone"
                    value={signUpFormData.phone}
-                    onChange={handleSignUpChange} required />
+                    onChange={handleSignUpChange} required /> */}
+                     <CountryPhoneInput
+                value={signUpFormData.phone}
+                onChange={(value) =>
+    setSignUpFormData((prev) => ({ ...prev, phone: value }))
+  } required
+              />
+                    
                 </div>
               </div>
             </div>

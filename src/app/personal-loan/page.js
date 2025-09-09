@@ -4,6 +4,7 @@ import Head from "next/head";
 import { useState } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import Faq from "../Components/Faq";
 
 export default function PersonalLoan() {
   // Loan Calculator States
@@ -36,7 +37,7 @@ export default function PersonalLoan() {
 
       {/* Hero Section */}
       <section className="personal-loan-hero">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
           <div className="row align-items-center">
             {/* Left Side */}
             <div className="col-lg-6">
@@ -51,24 +52,24 @@ export default function PersonalLoan() {
               </a>
 
               <div className="hero-stats mt-4 d-flex gap-4">
-                <div className="stat-item text-center">
+                <div className="stat-item text-center text-black">
                   <i className="fas fa-users fa-2x"></i>
                   <div>
-                    <strong>50K+</strong>
+                    <strong className="text-black"> 50K+</strong>
                     <p>Happy Customers</p>
                   </div>
                 </div>
-                <div className="stat-item text-center">
+                <div className="stat-item text-center text-black">
                   <i className="fas fa-clock fa-2x"></i>
                   <div>
-                    <strong>24h</strong>
+                    <strong className="text-black">24h</strong>
                     <p>Quick Approval</p>
                   </div>
                 </div>
-                <div className="stat-item text-center">
+                <div className="stat-item text-center text-black">
                   <i className="fas fa-percentage fa-2x"></i>
                   <div>
-                    <strong>10.25%</strong>
+                    <strong className="text-black">10.25%</strong>
                     <p>Lowest Interest</p>
                   </div>
                 </div>
@@ -159,7 +160,7 @@ export default function PersonalLoan() {
 
       {/* Features Section */}
       <section className="features-section py-5 bg-light">
-        <div className="container text-center">
+        <div className="container text-center p-sm-5 p-4">
           <h2>Why Choose Our Personal Loans?</h2>
           <p className="lead">
             Experience the best personal loan services with unmatched benefits
@@ -215,7 +216,7 @@ export default function PersonalLoan() {
 
       {/* <!-- Eligibility Section --> */}
     <section className="eligibility-section">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
             <div className="row">
                 <div className="col-lg-6 left">
                     <h2>Eligibility Criteria</h2>
@@ -283,7 +284,7 @@ export default function PersonalLoan() {
 
     {/* <!-- Process Section --> */}
     <section className="process-section">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
             <div className="text-center mb-5">
                 <h2>Simple Application Process</h2>
                 <p className="lead">Get your personal loan in just 4 easy steps</p>
@@ -331,7 +332,7 @@ export default function PersonalLoan() {
 
     {/* <!-- Documents Section --> */}
     <section className="documents-section">
-        <div className="container">
+        <div className="container p-sm-5 p-4">
             <div className="row">
                 <div className="col-lg-6">
                     <h2>Required Documents</h2>
@@ -404,7 +405,7 @@ export default function PersonalLoan() {
     </section>
 
     {/* <!-- FAQ Section --> */}
-    <section className="faq-section">
+    {/* <section className="faq-section">
         <div className="container">
             <div className="text-center mb-5">
                 <h2>Frequently Asked Questions</h2>
@@ -470,8 +471,9 @@ export default function PersonalLoan() {
                 </div>
             </div>
         </div>
-    </section>
+    </section> */}
 
+    <Faq/>
 
 
       {/* CTA */}
