@@ -6,6 +6,8 @@ import Footer from "../Components/Footer";
 import { motion ,   AnimatePresence,} from "framer-motion";
 import { useState } from "react";
 import Faq from "../Components/Faq";
+import { contactQueryServ } from "../services/support.service";
+import { toast } from "react-toastify";
 
 const faqData = [
                   {
@@ -41,6 +43,49 @@ export default function Support() {
         setActiveIndexes([...activeIndexes, index]);
       }
     };
+
+    const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    contactNumber: "",
+    subject: "",
+    message: "",
+  });
+
+   const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Submitted Form Data:", formData);
+
+    try{
+       const res = await contactQueryServ(formData);
+       if(res?.statusCode == 200){
+        console.log("contact quesry successfull");
+        toast.success(res?.message);
+        setFormData({
+           firstName: "",
+    lastName: "",
+    email: "",
+    contactNumber: "",
+    subject: "",
+    message: "",
+        })
+       }
+    }
+    catch(err){
+      console.log("err", err);
+         toast.error(err?.response?.data?.message)
+    }
+  };
+
 
   return (
     <>
@@ -121,7 +166,7 @@ export default function Support() {
 
               <div className="col-lg-6">
                 <div className="contact-form">
-                  <form>
+                  <form onSubmit={handleSubmit}>
                     <div className="row">
                       <div className="col-md-6">
                         <input
@@ -129,6 +174,9 @@ export default function Support() {
                           className="form-control"
                           placeholder="First Name"
                           required
+                           name="firstName"
+                          value={formData.firstName}
+                          onChange={handleChange}
                         />
                       </div>
                       <div className="col-md-6">
@@ -137,6 +185,9 @@ export default function Support() {
                           className="form-control"
                           placeholder="Last Name"
                           required
+                           name="lastName"
+                          value={formData.lastName}
+                          onChange={handleChange}
                         />
                       </div>
                     </div>
@@ -145,13 +196,21 @@ export default function Support() {
                       className="form-control"
                       placeholder="Email Address"
                       required
+                        name="email"
+                      value={formData.email}
+                      onChange={handleChange}
                     />
                     <input
                       type="tel"
                       className="form-control"
                       placeholder="Phone Number"
+                       name="contactNumber"
+                      value={formData.contactNumber}
+                      onChange={handleChange}
                     />
-                    <select className="form-control" required>
+                    <select className="form-control" required   name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}>
                       <option value="" disabled selected>
                         Select Inquiry Type
                       </option>
@@ -167,6 +226,9 @@ export default function Support() {
                       rows="5"
                       placeholder="How can we help you?"
                       required
+                        name="message"
+                      value={formData.message}
+                      onChange={handleChange}
                     ></textarea>
                     <button type="submit" className="btn btn-submit d-flex justify-content-center">
                       Submit Request

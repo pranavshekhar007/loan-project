@@ -207,13 +207,13 @@ export default function LoanAgainstProperty() {
                 <div className="col-lg-6" data-aos="fade-left">
                     <h2 className="mb-4">Eligibility Criteria</h2>
                     
-                    <div className="eligibility-item">
+                    <div className="eligibility-item text-black">
                         <div className="eligibility-icon">
                             <i className="fas fa-user"></i>
                         </div>
                         <div>
-                            <h5>Age Requirement</h5>
-                            <p>Applicants must be between 21-65 years of age at the time of loan maturity.</p>
+                            <h5 className="text-black">Age Requirement</h5>
+                            <p className="text-black">Applicants must be between 21-65 years of age at the time of loan maturity.</p>
                         </div>
                     </div>
                     
@@ -222,8 +222,8 @@ export default function LoanAgainstProperty() {
                             <i className="fas fa-briefcase"></i>
                         </div>
                         <div>
-                            <h5>Employment Status</h5>
-                            <p>Salaried individuals, self-employed professionals, and business owners can apply.</p>
+                            <h5 className="text-black">Employment Status</h5>
+                            <p className="text-black" >Salaried individuals, self-employed professionals, and business owners can apply.</p>
                         </div>
                     </div>
                     
@@ -232,8 +232,8 @@ export default function LoanAgainstProperty() {
                             <i className="fas fa-money-bill-wave"></i>
                         </div>
                         <div>
-                            <h5>Income Criteria</h5>
-                            <p>Minimum annual income of ₹3 lakhs for salaried and ₹5 lakhs for self-employed individuals.</p>
+                            <h5 className="text-black" >Income Criteria</h5>
+                            <p className="text-black" >Minimum annual income of ₹3 lakhs for salaried and ₹5 lakhs for self-employed individuals.</p>
                         </div>
                     </div>
                     
@@ -242,8 +242,8 @@ export default function LoanAgainstProperty() {
                             <i className="fas fa-home"></i>
                         </div>
                         <div>
-                            <h5>Property Requirements</h5>
-                            <p>Property should be self-owned, with clear title deeds and free from any legal disputes.</p>
+                            <h5 className="text-black" >Property Requirements</h5>
+                            <p className="text-black" >Property should be self-owned, with clear title deeds and free from any legal disputes.</p>
                         </div>
                     </div>
 
@@ -594,7 +594,7 @@ export default function LoanAgainstProperty() {
     <Faq/>
 
       {/* CTA */}
-      <section className="cta-section text-center py-5 bg-danger text-white">
+      {/* <section className="cta-section text-center py-5 bg-danger text-white">
         <div className="container p-sm-5 p-4">
           <h2 className="text-black">Ready to unlock your property&apos;s value?</h2>
           <p className="text-black">Apply today with minimal paperwork and quick approval.</p>
@@ -602,7 +602,7 @@ export default function LoanAgainstProperty() {
             Apply Now
           </a>
         </div>
-      </section>
+      </section> */}
 
       <Footer />
     </>

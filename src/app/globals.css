@@ -1396,7 +1396,7 @@ p {
 
  .offcanvas-body .navbar-nav .nav-link {
    padding: 0.75rem 1rem;
-   border-radius: 12px;
+   /* border-radius: 12px; */
  }
 
  .offcanvas-body .d-flex {
@@ -5416,7 +5416,7 @@ font-weight: 700;
    width: 500px;
    height: 500px;
    border-radius: 50%;
-   background: linear-gradient(135deg, rgba(100, 198, 93, 0.15) 0%, rgba(44, 139, 255, 0.15) 100%);
+   background: linear-gradient(135deg, rgba(100, 198, 93, 0.15) 0%, rgb(247 44 255 / 15%) 100%);
    top: -250px;
    right: -250px;
    z-index: 0;
@@ -5542,8 +5542,8 @@ font-weight: 700;
    justify-content: center;
    margin: 0 auto 20px;
    font-size: 30px;
-   background: rgba(255, 62, 62, 0.1);
-   color: #ff3e3e;
+   background: #e3daed8b;
+   color: var(--primary);
  }
 
  /* Eligibility Section */
@@ -6660,10 +6660,12 @@ font-weight: 700;
             display: flex;
             align-items: flex-start;
             margin-bottom: 40px;
-            background: #fcd5043b;
+            background: #e0c6ef3b;
+            color: #000;
             padding: 20px;
             border-radius: 12px;
-            border-left: 4px solid var(--gold);
+            /* border-left: 4px solid var(--gold); */
+             border-left: 4px solid var(--primary);
         }
 
         .eligibility-icon {
@@ -6674,8 +6676,8 @@ font-weight: 700;
             align-items: center;
             justify-content: center;
             margin-right: 20px;
-            background: var(--gradient-gold);
-            color: var(--dark);
+            background: var(--primary-gradient);
+            color: white;
             font-size: 1.3rem;
             flex-shrink: 0;
         }
@@ -6716,7 +6718,7 @@ font-weight: 700;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
-            background: var(--gradient-gold);
+            background: var(--primary-gradient);
             color: var(--dark);
             font-weight: bold;
             font-size: 1.3rem;
@@ -8002,7 +8004,7 @@ font-weight: 700;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
-             background-image: linear-gradient(90deg, #ff3e3e, #ff2d4e 50%, #ff552b);
+             background-image: var(--primary-gradient);
             color: white;
             font-weight: bold;
             font-size: 1.5rem;
@@ -9819,3 +9821,89 @@ color: #281b36;
   border-bottom: 2px solid #281B36;
 }
        
+
+/* applied loan */
+
+/* .loan-table thead th {
+   padding-bottom: 50px; 
+} */
+
+
+.loans-table tbody tr {
+  position: relative;
+  background-color: transparent;
+}
+
+.loans-table tbody tr::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  /* top: ; */
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #eee;
+}
+
+
+.loans-table tbody td {
+  padding: 8px 12px; /* td ke andar padding rahe */
+}
+
+.loans-table table {
+  border-collapse: separate;
+  border-spacing: 0 20px; /* horizontal 0, vertical 12px */
+  
+  min-width: 735px;
+}
+
+/* .loans-table{
+overflow-x: scroll;
+} */
+
+@media (max-width:1150px) {
+  .loans-table{
+overflow-x: scroll;
+}
+}
+
+.loans-table thead {
+   background-color:  #f8f6fb;
+}
+
+.loan-status{
+  text-align: center;
+    /* color: #441d5d;
+    background: #faf4fe; */
+    border-radius: 8px;
+    
+}
+
+.status-approved {
+   background-color: #f5ffe0;
+  /* color: #055dbc; */
+  color: #78a61b;
+  border: 1px solid #eaefdf;
+}
+
+.status-new {
+  background-color: #e2efff;
+  color: #055dbc;
+ 
+   border: 1px solid #e2efff;
+}
+
+
+.log-out-btn {
+    background-color: var(--red);
+    color: white;
+    padding: 11px ;
+}
+
+.log-out-icon{
+  filter: brightness(0)invert(1);
+}
+
+.log-out-btn:hover .log-out-icon {
+    filter: none;
+}

@@ -167,7 +167,9 @@ export default function Navbar() {
       <ul className="navbar-nav">
         {/* <!-- Loans Dropdown --> */}
         <li className="nav-item">
-          <a className="nav-link d-flex flex-row justify-content-between align-items-center" href="#loanMenu"
+          <a className={`nav-link d-flex flex-row justify-content-between align-items-center  ${
+    loanPaths.includes(pathname) ? "nav-link-active" : ""
+  }` } href="#loanMenu"
             data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="loanMenu">
             Loans
             <i className="bi bi-chevron-down"></i>
@@ -189,15 +191,19 @@ export default function Navbar() {
         <li className="nav-item"><a className="nav-link" href="#">Track</a></li>
         <li className="nav-item"><a className="nav-link" href="#">Pay</a></li>
         <li className="nav-item"><a className="nav-link" href="#">Calculators</a></li>
-        <li className="nav-item"><a className="nav-link" href="/support">Contact Us</a></li>
+        <li className="nav-item"><a  className={`nav-link ${pathname === "/support" ? "nav-link-active" : ""}`} href="/support">Contact Us</a></li>
          {
           loggedUserData? (
-            <li className="nav-item"> <a className="nav-link" href="/profile">
+            <li className="nav-item"> <a className={`nav-link  ${pathname === "/profile" ? "nav-link-active" : ""}`} href="/profile">
               Profile
               </a></li> 
           ):
           (
-             <li className="nav-item"> <a className="nav-link" href="/sign-up"> Sign In</a></li> 
+             <li className="nav-item">
+               <a className={`nav-link  ${pathname === "/sign-up" ? "nav-link-active" : ""}`}
+                href="/sign-up"
+                
+                > Sign In </a></li> 
           )
          }
       </ul>
