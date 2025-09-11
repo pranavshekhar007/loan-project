@@ -7,36 +7,35 @@ import ProfileSidebar from '../Components/ProfileSidebar';
 
 const page = () => {
 
-    const loans = [
+     const loans = [
         {
-            id: "RL001",
+            // id: "RL001",
             type:"Gold Loan",
             branch: "CHD Branch",
             startDate:"10-09-2025",
-            endDate:"10-12-205",
+             endDate:"N/A",
             amount:"10000",
-            status:"New Request",
+            status:"Pending",
         },
          {
-            id: "RL002",
+            // id: "RL002",
             type:"Buisness Loan",
             branch: "CHD Branch",
             startDate:"10-09-2025",
-            endDate:"10-12-205",
+             endDate:"N/A",
             amount:"6000",
-            status:"Approved",
+            status:"Pending",
         },
          {
-            id: "RL004",
+            // id: "RL004",
             type:"Eduation Loan",
             branch: "CHD Branch",
             startDate:"10-09-2025",
-            endDate:"10-12-205",
+            endDate:"N/A",
             amount:"10000",
-            status:"Approved",
+            status:"Pending",
         },
     ]
-
     
   return (
     <> 
@@ -49,8 +48,8 @@ const page = () => {
         <div className="profile-container">
             <div className="profile-header">
                 <div className="profile-info">
-                    <h1>Loan Applications</h1>
-                    <p>Track and manage all your applied loan requests here</p>
+                    <h1>Emi Reminder</h1>
+                    <p>Stay updated with your upcoming EMI schedules and payments</p>
                 </div>
                 {/* <div className="credit-score">
                     <span className="score">782</span>
@@ -61,52 +60,45 @@ const page = () => {
             <div className="main-content">
                 <div className="section">
                     <h2 className="section-title">
-                        Applied Loans
+                        EMI
                         {/* <button className="edit-btn" id="editProfileBtn">
                             <i className="fas fa-edit"></i> Edit Profile
                         </button> */}
                     </h2>
                    
-                   <div className='loans-table'>
-                          <table className='w-100 '>
+                   <div  className='loans-table'>
+                             <table className='w-100 '>
                            <thead className=''>
       <tr>
-        <th className='py-3 ps-2'>ID</th>
-        <th className='py-3'>Type</th>
+        {/* <th className='py-3 ps-2'>ID</th> */}
+        <th className='py-3 ps-2'>Loan Name</th>
         <th className='py-3'>Branch</th>
-        <th>Start Date</th>
-        <th>End Date</th>
         <th>Amount</th>
-        <th className='text-center'>Status</th>
-        <th>Action</th>
+        <th>Expected Date</th>
+        <th>Paid Date</th>
+        {/* <th className='text-center'>Status</th> */}
+        <th className='text-center'>Action</th>
       </tr>
     </thead>
 
      <tbody>
       {loans.map((loan) => (
         <tr key={loan.id} >
-          <td className='ps-2' >{loan.id}</td>
-          <td >{loan.type}</td>
+          {/* <td className='ps-2' >{loan.id}</td> */}
+          <td className='ps-2'  >{loan.type}</td>
           <td >{loan.branch}</td>
+            <td >₹{loan.amount}</td>
           <td >{loan.startDate}</td>
           <td >{loan.endDate}</td>
-          <td >₹{loan.amount}</td>
-         <td
-  className={`loan-status ${
-    loan.status === "Approved"
-      ? "status-approved"
-      : loan.status === "New Request"
-      ? "status-new"
-      : "status-default"
-  }`}
->
+        
+         <td className='emi-status'>
   {loan.status}
 </td>
-          <td>
+          {/* <td>
            <div className='d-flex justify-content-center text-center'>
                <i className="fas fa-eye action-icon" title="View"></i>
            </div>
-          </td>
+          </td> */}
         </tr>
       ))}
     </tbody> 

@@ -9813,6 +9813,11 @@ color: #281b36;
                 font-size: 16px;
                 padding: 12px 15px 12px 50px;
             }
+
+                .info-input {
+        font-size: 16px;
+        padding: 12px 15px 12px 50px;
+    }
         }
 
  .nav-link-active {
@@ -9822,11 +9827,7 @@ color: #281b36;
 }
        
 
-/* applied loan */
 
-/* .loan-table thead th {
-   padding-bottom: 50px; 
-} */
 
 
 .loans-table tbody tr {
@@ -9886,6 +9887,14 @@ overflow-x: scroll;
   border: 1px solid #eaefdf;
 }
 
+.emi-status{
+   background-color: #e2efff;
+  color: #055dbc;
+   text-align: center;
+   border: 1px solid #e2efff;
+    border-radius: 8px;
+    
+}
 .status-new {
   background-color: #e2efff;
   color: #055dbc;
@@ -9906,4 +9915,21 @@ overflow-x: scroll;
 
 .log-out-btn:hover .log-out-icon {
     filter: none;
+}
+
+.info-input{
+    background: #f8fafc;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s;
+    width: 100%;
+    font-size: 15px;
+    padding: 14px 15px 14px 50px;
+    color: #2d3748;
+}
+
+.info-input:focus {
+  outline: none !important;
+  border: 1px solid #cedef2;
+
 }

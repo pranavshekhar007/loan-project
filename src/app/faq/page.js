@@ -1,7 +1,7 @@
 "use client";
 
 import Head from "next/head";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { motion } from "framer-motion";
@@ -76,7 +76,6 @@ export default function FAQ() {
   //   { key: "eligibility", label: "Eligibility" },
   // ];
 
-
   const [activeCategory, setActiveCategory] = useState("All Questions");
   const [openQuestion, setOpenQuestion] = useState([]);
   const [searchValue, setSearchValue] = useState("");
@@ -90,57 +89,58 @@ export default function FAQ() {
       setOpenQuestion([...openQuestion, index]);
     }
   };
-  
-  const [categories , setCategories] = useState([]);
-  const [faqs , setFaqs] = useState([]);
+
+  const [categories, setCategories] = useState([]);
+  const [faqs, setFaqs] = useState([]);
 
   // const payload = {
   //     category : ""
   // }
 
-   const getFaqList = async (category = "") => {
-     try{
-       const payload = {
+  const getFaqList = async (category = "") => {
+    try {
+      const payload = {
         category: category === "All Questions" ? "" : category,
+        searchKey: searchValue || " "
       };
 
-       const res = await faqListServ(payload);
+      const res = await faqListServ(payload);
       // if(res?.statusCode == 200){
-        console.log("faq list res" , res?.data);
-        setFaqs(res?.data);
+      console.log("faq list res", res?.data);
+      setFaqs(res?.data);
       // }
-     }
-     catch(err){
-      console.log("error" , err)
-     }
+    } catch (err) {
+      console.log("error", err);
     }
-  
-      const getLoanList = async () => {
-       try{
-         const res = await loanListServ();
-        // if(res?.statusCode == 200){
-          console.log(" loan  list res" , res?.data);
-          const loanNames = res.data.map(item => item.name);
-
-     setCategories(["All Questions", ...loanNames]);
-        // }
-       }
-       catch(err){
-        console.log("error" , err)
-       }
-    
-      }
-
-
-    useEffect (() => {
-        getFaqList();
-        getLoanList();
-      },[]);
-
- const handleCategoryClick = (cat) => {
-    setActiveCategory(cat);
-    getFaqList(cat); 
   };
+
+  const getLoanList = async () => {
+    try {
+      const res = await loanListServ();
+      // if(res?.statusCode == 200){
+      console.log(" loan  list res", res?.data);
+      const loanNames = res.data.map((item) => item.name);
+
+      setCategories(["All Questions", ...loanNames]);
+      // }
+    } catch (err) {
+      console.log("error", err);
+    }
+  };
+
+  useEffect(() => {
+    getFaqList();
+    getLoanList();
+  }, []);
+
+  const handleCategoryClick = (cat) => {
+    setActiveCategory(cat);
+    getFaqList(cat);
+  };
+
+  useEffect( () => {
+         getFaqList(activeCategory);
+  },[searchValue])
 
   return (
     <>
@@ -199,7 +199,7 @@ export default function FAQ() {
 
             {/* Tabs */}
             <div className="faq-tabs d-flex justify-content-center mb-4 flex-wrap">
-              {categories?.map((cat , i) => (
+              {categories?.map((cat, i) => (
                 <div
                   key={i}
                   className={`faq-tab mx-2 ${
@@ -216,11 +216,6 @@ export default function FAQ() {
             {/* FAQ Items */}
             <div className="faq-items">
               {faqs
-                .filter(
-                  (faq) =>
-                   faq.question.toLowerCase().includes(searchValue.toLowerCase())
-                )
-
                 .map((faq, index) => (
                   <div
                     key={index}
