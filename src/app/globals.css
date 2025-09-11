@@ -9933,3 +9933,13 @@ overflow-x: scroll;
   border: 1px solid #cedef2;
 
 }
+/* 
+//applied loan details page */
+
+.applied-details p {
+   font-size: 17px;
+}
+
+.applied-details .para {
+    font-weight: bold;
+}

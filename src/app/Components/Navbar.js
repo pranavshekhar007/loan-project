@@ -33,7 +33,7 @@ export default function Navbar() {
   <nav className={`navbar navbar-expand-lg ${scrolled ? "scrolled" : ""}`}>
     <div className="container-fluid">
       <a className="navbar-brand" href="/">
-        <img src="assets/rupeeloan_logo.png" alt="logo" />
+        <img src="/assets/rupeeloan_logo.png" alt="logo" />
       </a>
       <button className="navbar-toggler mobile-menu-button" type="button" data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" style={{width:"auto"}}>

@@ -4,6 +4,8 @@ import Navbar from '../Components/Navbar'
 import Footer from '../Components/Footer'
 import { useState } from 'react'
 import ProfileSidebar from '../Components/ProfileSidebar';
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const page = () => {
 
