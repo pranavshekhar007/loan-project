@@ -76,8 +76,8 @@ const page = () => {
           <div className="profile-container">
             <div className="profile-header">
               <div className="profile-info">
-                <h1>Loan Applications</h1>
-                <p>Track and manage all your applied loan requests here</p>
+                <h1>Pending Loan Applications</h1>
+                <p>Track and manage your Pending loan requests here</p>
               </div>
               {/* <div className="credit-score">
                     <span className="score">782</span>

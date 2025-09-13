@@ -14,7 +14,7 @@ const page = () => {
     <div className='profile-page'>
         <div className="dashboard-container">
 
-          <ProfileSidebar/>
+          <ProfileSidebar title={"Notifications"}/>
 
         <div className="profile-container">
             <div className="profile-header">

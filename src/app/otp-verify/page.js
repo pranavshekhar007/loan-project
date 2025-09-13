@@ -85,7 +85,7 @@ const page = () => {
     <>
 
     <Navbar/>
-
+     
     <div className='loginform'>
         <div className='otp-verify bg-white shadow p-5' style={{borderRadius:"35px"}}>
             <form onSubmit={handleOtpVerify}>

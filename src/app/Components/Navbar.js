@@ -12,18 +12,30 @@ export default function Navbar() {
   const pathname = usePathname();
 
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (window.scrollY > 50) {
+  //       setScrolled(true);
+  //     } else {
+  //       setScrolled(false);
+  //     }
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
+  
+  useEffect(() => {
+  const handleScroll = () => {
+    const isScrolled = window.scrollY > 50;
+    setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  handleScroll(); // initial check
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
 
   const loanPaths = ["/personal-loan", "/business-loan", "/loan-against-property"];
 
