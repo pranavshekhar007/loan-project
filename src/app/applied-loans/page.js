@@ -49,10 +49,12 @@ const page = () => {
     try {
       const res = await AppliedLoanListServ({ userId: loggedUserData?._id });
       const sortedLoans = [...(res?.data || [])].sort(
-      (a, b) => new Date(b.createdAt || b.startDate) - new Date(a.createdAt || a.startDate)
-    );
+        (a, b) =>
+          new Date(b.createdAt || b.startDate) -
+          new Date(a.createdAt || a.startDate)
+      );
 
-    setLoans(sortedLoans);
+      setLoans(sortedLoans);
     } catch (err) {
       console.log("error", err);
     } finally {
@@ -65,6 +67,15 @@ const page = () => {
       loanApplicationList();
     }
   }, [loggedUserData?._id]);
+
+  const statusMapping = {
+  disbursed: { label: "Active", className: "status-active" },
+  pending: { label: "Pending", className: "status-pending" },
+  rejected: { label: "Rejected", className: "status-rejected" },
+  completed: { label: "Closed", className: "status-completed" },
+  approved: { label: "Approved", className: "status-approved" },
+};
+
 
   return (
     <>
@@ -110,143 +121,171 @@ const page = () => {
                     </thead>
 
                     <tbody>
-                      {loading
-                        ? Array.from({ length: 3 }).map((_, index) => (
-                            <tr key={index}>
-                              <td className="ps-2">
-                                <Skeleton width={80} height={20} />
-                              </td>
-                              <td>
-                                <Skeleton width={100} height={20} />
-                              </td>
-                              <td>
-                                <Skeleton width={120} height={20} />
-                              </td>
-                              <td>
-                                <Skeleton width={100} height={20} />
-                              </td>
-                              <td>
-                                <Skeleton width={100} height={20} />
-                              </td>
-                              <td>
-                                <Skeleton width={70} height={20} />
-                              </td>
-                              <td>
-                                <Skeleton width={80} height={20} />
-                              </td>
-                              <td>
-                                <Skeleton width={30} height={20} />
-                              </td>
-                            </tr>
-                          ))
-                        : loans.length === 0 ? (
-    <tr>
-      <td colSpan="8" className="text-center py-4 text-muted">
-        No loan applications found.
-      </td>
-    </tr>
-  ) :  loans.map((loan) => (
-                            <tr key={loan._id}>
-                              <td className="ps-2">{loan.code}</td>
-                              <td>{loan.loanId?.name}</td>
-                              <td>{loan.branchId?.name}</td>
-                              <td>{loan.startDate}</td>
-                              <td>{loan.endDate}</td>
-                              <td>₹{loan.loanAmount}</td>
-                              <td
-                                className={`loan-status ${
-                                  loan.status === "approved"
-                                    ? "status-approved"
-                                    : loan.status === "pending"
-                                    ? "status-new"
-                                    : "status-default"
-                                }`}
-                              >
-                               {loan.status.charAt(0).toUpperCase() + loan.status.slice(1)}
-                              </td>
-                              <td>
-                                <div className="d-flex justify-content-center text-center">
-                                  <i
-                                    className="fas fa-eye action-icon"
-                                    title="View"
-                                  ></i>
-                                </div>
-                              </td>
-                            </tr>
-                          ))}
+                      {loading ? (
+                        Array.from({ length: 3 }).map((_, index) => (
+                          <tr key={index}>
+                            <td className="ps-2">
+                              <Skeleton width={80} height={20} />
+                            </td>
+                            <td>
+                              <Skeleton width={100} height={20} />
+                            </td>
+                            <td>
+                              <Skeleton width={120} height={20} />
+                            </td>
+                            <td>
+                              <Skeleton width={100} height={20} />
+                            </td>
+                            <td>
+                              <Skeleton width={100} height={20} />
+                            </td>
+                            <td>
+                              <Skeleton width={70} height={20} />
+                            </td>
+                            <td>
+                              <Skeleton width={80} height={20} />
+                            </td>
+                            <td>
+                              <Skeleton width={30} height={20} />
+                            </td>
+                          </tr>
+                        ))
+                      ) : loans.length === 0 ? (
+                        <tr>
+                          <td
+                            colSpan="8"
+                            className="text-center py-4 text-muted"
+                          >
+                            No loan applications found.
+                          </td>
+                        </tr>
+                      ) : (
+                        loans.map((loan) => (
+                          <tr key={loan._id}>
+                            <td className="ps-2">{loan.code}</td>
+                            <td>{loan.loanId?.name}</td>
+                            <td>{loan.branchId?.name}</td>
+                            <td>{loan.startDate}</td>
+                            <td>{loan.endDate}</td>
+                            <td>₹{loan.loanAmount}</td>
+                          <td
+  className={`loan-status ${
+    statusMapping[loan.status]?.className || "status-default"
+  }`}
+>
+  {statusMapping[loan.status]?.label || loan.status}
+</td>
+
+
+                            <td>
+                              <div className="d-flex justify-content-center text-center">
+                                <i
+                                  className="fas fa-eye action-icon"
+                                  title="View"
+                                ></i>
+                              </div>
+                            </td>
+                          </tr>
+                        ))
+                      )}
                     </tbody>
                   </table>
                 </div>
 
+                {/* cards view */}
 
-           <div className="loan-cards d-lg-none d-flex row">
-  {loading
-    ? Array.from({ length: 4 }).map((_, index) => (
-        <div key={index} className="col-sm-6 col-12 p-2">
-          <div className="loan-card">
-            {/* Card Title */}
-            <h3><Skeleton width="60%" height={20} /></h3>
+                <div className="loan-cards d-lg-none d-flex row">
+                  {loading ? (
+                    Array.from({ length: 4 }).map((_, index) => (
+                      <div key={index} className="col-sm-6 col-12 p-2">
+                        <div className="loan-card">
+                          
+                          <h3>
+                            <Skeleton width="60%" height={20} />
+                          </h3>
+                          <p>
+                            <strong>
+                              <Skeleton width={80} height={15} />
+                            </strong>{" "}
+                            <Skeleton width="50%" height={15} />
+                          </p>
+                          <p>
+                            <strong>
+                              <Skeleton width={70} height={15} />
+                            </strong>{" "}
+                            <Skeleton width="40%" height={15} />
+                          </p>
+                          <p>
+                            <strong>
+                              <Skeleton width={90} height={15} />
+                            </strong>{" "}
+                            <Skeleton width="50%" height={15} />
+                          </p>
+                          <p>
+                            <strong>
+                              <Skeleton width={100} height={15} />
+                            </strong>{" "}
+                            <Skeleton width="60%" height={15} />
+                          </p>
+                          {/* Status Line */}
+                          <p className="d-flex justify-content-between">
+                            <strong>
+                              <Skeleton width={70} height={15} />
+                            </strong>{" "}
+                            <Skeleton width={80} height={20} />
+                          </p>
+                        </div>
+                      </div>
+                    ))
+                  ) : loans.length === 0 ? (
+                    <div className="col-12 text-center text-muted py-4">
+                      It looks like you haven’t applied for any loans yet.
+                    </div>
+                  ) : (
+                    loans.map((loan, index) => (
+                      <div key={index} className="col-sm-6 col-12 p-2">
+                        <div className="loan-card">
+                          <h3>{loan.loanId?.name}</h3>
+                          <p className="d-flex  gap-2 ">
+                            <strong style={{ width: "110px" }}>Id:</strong>{" "}
+                            {loan.code}
+                          </p>
+                          <p className="d-flex  gap-2 ">
+                            <strong style={{ width: "110px" }}>Branch:</strong>{" "}
+                            {loan.branchId?.name}
+                          </p>
+                          <p className="d-flex  gap-2 ">
+                            <strong style={{ width: "110px" }}>Amount:</strong>{" "}
+                            ₹{loan.loanAmount}
+                          </p>
+                          <p className="d-flex  gap-2 ">
+                            <strong style={{ width: "110px" }}>
+                              Start Date:
+                            </strong>{" "}
+                            {loan.startDate}
+                          </p>
+                          <p className="d-flex  gap-2 ">
+                            <strong style={{ width: "110px" }}>
+                              End Date:
+                            </strong>{" "}
+                            {loan.endDate}
+                          </p>
+                          <p className="d-flex gap-2">
+                            <strong style={{ width: "110px" }}>Status:</strong>{" "}
+                           <span
+  className={`loan-status ${
+    statusMapping[loan.status]?.className || "status-default"
+  }`}
+>
+  {statusMapping[loan.status]?.label || loan.status}
+</span>
 
-            {/* Card Body */}
-            <p>
-              <strong><Skeleton width={80} height={15} /></strong>{" "}
-              <Skeleton width="50%" height={15} />
-            </p>
-            <p>
-              <strong><Skeleton width={70} height={15} /></strong>{" "}
-              <Skeleton width="40%" height={15} />
-            </p>
-            <p>
-              <strong><Skeleton width={90} height={15} /></strong>{" "}
-              <Skeleton width="50%" height={15} />
-            </p>
-            <p>
-              <strong><Skeleton width={100} height={15} /></strong>{" "}
-              <Skeleton width="60%" height={15} />
-            </p>
-
-            {/* Status Line */}
-            <p className="d-flex justify-content-between">
-              <strong><Skeleton width={70} height={15} /></strong>{" "}
-              <Skeleton width={80} height={20} />
-            </p>
-          </div>
-        </div>
-      ))
-    : loans.length === 0 ? (
-        <div className="col-12 text-center text-muted py-4">
-          It looks like you haven’t applied for any loans yet.
-        </div>
-      ) : (
-        loans.map((loan, index) => (
-          <div key={index} className="col-sm-6 col-12 p-2">
-            <div className="loan-card">
-              <h3>{loan.loanId?.name}</h3>
-              <p className="d-flex  gap-2 " ><strong  style={{width:"110px"}}>Id:</strong> {loan.code}</p>
-              <p className="d-flex  gap-2 "><strong  style={{width:"110px"}}>Branch:</strong> {loan.branchId?.name}</p>
-              <p className="d-flex  gap-2 "><strong  style={{width:"110px"}}>Amount:</strong> ₹{loan.loanAmount}</p>
-              <p className="d-flex  gap-2 "><strong  style={{width:"110px"}}>Start Date:</strong> {loan.startDate}</p>
-              <p className="d-flex  gap-2 "><strong  style={{width:"110px"}}>End Date:</strong> {loan.endDate}</p>
-              <p className="d-flex gap-2">
-                <strong  style={{width:"110px"}}>Status:</strong>{" "}
-                <span
-                  className={`loan-status px-2 ${
-                    loan.status === "approved"
-                      ? "status-approved"
-                      : loan.status === "pending"
-                      ? "status-new"
-                      : "status-default"
-                  }`}
-                >
-                  {loan.status.charAt(0).toUpperCase() + loan.status.slice(1)}
-                </span>
-              </p>
-            </div>
-          </div>
-        ))
-      )}
-</div>
-
+                          </p>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
               </div>
             </div>
           </div>

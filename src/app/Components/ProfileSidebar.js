@@ -138,10 +138,11 @@ const ProfileSidebar = ({title}) => {
       path: "",
       children: [
          { name: "All Loans", icon: "fa-solid fa-check-double", path: "/applied-loans" },
+         { name: "Pending Loans", icon: "fa-solid fa-clock", path: "/pending-loans" },
+         { name: "Approved Loans", icon: "fa-solid fa-check", path: "/approved-loans" },
         { name: "Active Loans", icon: "fa-solid fa-chart-line", path: "/active-loans" },
-        { name: "Pending Loans", icon: "fa-solid fa-clock", path: "/pending-loans" },
         { name: "Rejected Loans", icon: "fa-solid fa-xmark", path: "/rejected-loans" },
-        { name: "Completed Loans", icon: "fa-solid fa-circle-check", path: "/completed-loans" },
+        { name: "Closed Loans", icon: "fa-solid fa-circle-check", path: "/completed-loans" },
       ]
     },
     {
@@ -263,8 +264,8 @@ const ProfileSidebar = ({title}) => {
                   {item.children.map((child, idx) => (
                     <div
                       key={idx}
-                      className={`submenu-item  d-flex gap-2 align-items-center mb-3 ${
-                        pathname === child.path ? "active" : ""
+                      className={`submenu-item  d-flex gap-2 align-items-center mb-3  ${
+                        pathname === child.path ? "active" : " "
                       }`}
                       onClick={() => {
                         setActiveMenu(child.name);
@@ -311,13 +312,13 @@ const ProfileSidebar = ({title}) => {
         </div>
 
         <div className="sidebar">
-          <div className="sidebar-profile">
-            <div className="sidebar-avatar">
-              <span>AS</span>
-            </div>
-            <div className="sidebar-name">Aarav Sharma</div>
-            <div className="sidebar-id">RL7894561230</div>
+         <div className="sidebar-profile">
+          <div className="sidebar-avatar">
+            <span>{getInitials(loggedUserData?.firstName, loggedUserData?.lastName)}</span>
           </div>
+          <div className="sidebar-name">{loggedUserData?.firstName} {" " } {loggedUserData?.lastName}</div>
+          <div className="sidebar-id">{loggedUserData?._id}</div>
+        </div>
 
           <div className="sidebar-menu">
             {menuItems.map((item, i) => (
@@ -351,7 +352,7 @@ const ProfileSidebar = ({title}) => {
                     {item.children.map((child, idx) => (
                       <div
                         key={idx}
-                        className={`submenu-item  d-flex gap-2 align-items-center mb-3${
+                        className={`submenu-item  d-flex gap-2 align-items-center mb-3 ${
                           pathname === child.path ? "active" : ""
                         }`}
                         onClick={() => {

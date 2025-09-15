@@ -47,7 +47,7 @@ const page = () => {
   const loanApplicationList = async () => {
     setLoading(true);
     try {
-      const res = await AppliedLoanListServ({ userId: loggedUserData?._id });
+      const res = await AppliedLoanListServ({ userId: loggedUserData?._id , status:"completed" });
       const sortedLoans = [...(res?.data || [])].sort(
       (a, b) => new Date(b.createdAt || b.startDate) - new Date(a.createdAt || a.startDate)
     );
@@ -77,7 +77,7 @@ const page = () => {
             <div className="profile-header">
               <div className="profile-info">
                 <h1>Completed Loan Applications</h1>
-                <p>Track and manage your completed applied loan requests here</p>
+<p>Browse through all loans that have been successfully completed</p>
               </div>
               {/* <div className="credit-score">
                     <span className="score">782</span>
@@ -154,15 +154,10 @@ const page = () => {
                               <td>{loan.endDate}</td>
                               <td>₹{loan.loanAmount}</td>
                               <td
-                                className={`loan-status ${
-                                  loan.status === "approved"
-                                    ? "status-approved"
-                                    : loan.status === "pending"
-                                    ? "status-new"
-                                    : "status-default"
-                                }`}
+                                className="loan-status status-completed"
                               >
-                               {loan.status.charAt(0).toUpperCase() + loan.status.slice(1)}
+                               {/* {loan.status.charAt(0).toUpperCase() + loan.status.slice(1)} */}
+                               Closed
                               </td>
                               <td>
                                 <div className="d-flex justify-content-center text-center">
@@ -230,15 +225,10 @@ const page = () => {
               <p className="d-flex gap-2">
                 <strong  style={{width:"110px"}}>Status:</strong>{" "}
                 <span
-                  className={`loan-status px-2 ${
-                    loan.status === "approved"
-                      ? "status-approved"
-                      : loan.status === "pending"
-                      ? "status-new"
-                      : "status-default"
-                  }`}
+                  className="loan-status status-completed"
                 >
-                  {loan.status.charAt(0).toUpperCase() + loan.status.slice(1)}
+                  {/* {loan.status.charAt(0).toUpperCase() + loan.status.slice(1)} */}
+                  Closed
                 </span>
               </p>
             </div>

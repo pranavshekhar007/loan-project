@@ -461,9 +461,11 @@ const page = () => {
     if (!formData?.phone?.trim()) {
       newErrors.phone = "This field can't be empty";
     }
+
     // else if (!/^[0-9]{10}$/.test(formData.phone)) {
     //   newErrors.phone = "Mobile number must be 10 digits";
     // }
+  
 
     if (formData?.aadharNumber && !/^[0-9]{12}$/.test(formData.aadharNumber)) {
       newErrors.aadharNumber = "Aadhar number must be 12 digits";
@@ -503,6 +505,10 @@ const page = () => {
         fd.append("profilePic", profilePicFile);
         hasChanges = true;
       }
+        if (formData.countryCode !== originalData.countryCode) {
+  fd.append("countryCode", formData.countryCode);
+  hasChanges = true;
+}
 
       if (!hasChanges) {
         setIsEditing(false);
@@ -658,24 +664,24 @@ const page = () => {
                         /> */}
 
                           <CountryPhoneInput
-                            value={formData?.phone}
+                            value={{
+                              countryCode: formData?.countryCode || "+91",
+                              phone: formData?.phone || "",
+                            }}
                             onChange={(val) =>
                               setFormData((prev) => ({
                                 ...prev,
-                                phone: val,
+                                phone: val.phone,
+                                countryCode: val.countryCode,
                               }))
-                            }
-                            //  maxLength={10}
-                            onInput={(e) =>
-                              (e.target.value = e.target.value.replace(
-                                /[^0-9]/g,
-                                ""
-                              ))
                             }
                           />
                         </>
                       ) : (
-                        <div className="info-value">{formData?.phone}</div>
+                        <div className="info-value">
+  {formData?.countryCode} {formData?.phone}
+</div>
+
                       )}
                     </div>
                     {errors.phone && (
@@ -836,157 +842,167 @@ const page = () => {
                       <small className="text-danger">{errors.pincode}</small>
                     )}
                   </div>
-
-
                 </div>
 
                 <h5 className="mt-5 mb-4">Employment details</h5>
 
-                
-              <div className="info-grid">
- {/* Employment Type */}
-<div className="info-item">
-  <div className="input-with-icon">
-    <div className="input-icon">
-      <i className="fas fa-briefcase"></i>
-    </div>
-    <label htmlFor="employementType">Employment Type</label>
-    {isEditing ? (
-      <select
-        name="employementType"
-        className="info-input"
-        value={formData?.employementType || ""}
-        onChange={handleChange}
-      >
-        <option value="">Select Employment Type</option>
-        <option value="Salaried">Salaried</option>
-        <option value="Self-Employed">Self-Employed</option>
-        <option value="Business Owner">Business Owner</option>
-        <option value="Freelancer">Freelancer</option>
-        <option value="Student">Student</option>
-        <option value="Retired">Retired</option>
-        <option value="Unemployed">Unemployed</option>
-      </select>
-    ) : (
-      <div className="info-value">{formData?.employementType}</div>
-    )}
-  </div>
-</div>
+                <div className="info-grid">
+                  {/* Employment Type */}
+                  <div className="info-item">
+                    <div className="input-with-icon">
+                      <div className="input-icon">
+                        <i className="fas fa-briefcase"></i>
+                      </div>
+                      <label htmlFor="employementType">Employment Type</label>
+                      {isEditing ? (
+                        <select
+                          name="employementType"
+                          className="info-input"
+                          value={formData?.employementType || ""}
+                          onChange={handleChange}
+                        >
+                          <option value="">Select Employment Type</option>
+                          <option value="Salaried">Salaried</option>
+                          <option value="Self-Employed">Self-Employed</option>
+                          <option value="Business Owner">Business Owner</option>
+                          <option value="Freelancer">Freelancer</option>
+                          <option value="Student">Student</option>
+                          <option value="Retired">Retired</option>
+                          <option value="Unemployed">Unemployed</option>
+                        </select>
+                      ) : (
+                        <div className="info-value">
+                          {formData?.employementType}
+                        </div>
+                      )}
+                    </div>
+                  </div>
 
+                  {/* Monthly Income */}
+                  <div className="info-item">
+                    <div className="input-with-icon">
+                      <div className="input-icon">
+                        <i className="fas fa-wallet"></i>
+                      </div>
+                      <label htmlFor="">Monthly Income</label>
+                      {isEditing ? (
+                        <input
+                          type="text"
+                          name="monthlyIncome"
+                          className="info-input"
+                          value={formData?.monthlyIncome || ""}
+                          onChange={handleChange}
+                          onInput={(e) =>
+                            (e.target.value = e.target.value.replace(
+                              /[^0-9]/g,
+                              ""
+                            ))
+                          }
+                        />
+                      ) : (
+                        <div className="info-value">
+                          {formData?.monthlyIncome}
+                        </div>
+                      )}
+                    </div>
+                  </div>
 
-  {/* Monthly Income */}
-  <div className="info-item">
-    <div className="input-with-icon">
-      <div className="input-icon">
-        <i className="fas fa-wallet"></i>
-      </div>
-      <label htmlFor="">Monthly Income</label>
-      {isEditing ? (
-        <input
-          type="text"
-          name="monthlyIncome"
-          className="info-input"
-          value={formData?.monthlyIncome || ""}
-          onChange={handleChange}
-          onInput={(e) =>
-            (e.target.value = e.target.value.replace(/[^0-9]/g, ""))
-          }
-        />
-      ) : (
-        <div className="info-value">{formData?.monthlyIncome}</div>
-      )}
-    </div>
-  </div>
+                  {/* Annual Income */}
+                  <div className="info-item">
+                    <div className="input-with-icon">
+                      <div className="input-icon">
+                        <i className="fas fa-money-bill-wave"></i>
+                      </div>
+                      <label htmlFor="">Annual Income</label>
+                      {isEditing ? (
+                        <input
+                          type="text"
+                          name="annualIncome"
+                          className="info-input"
+                          value={formData?.annualIncome || ""}
+                          onChange={handleChange}
+                          onInput={(e) =>
+                            (e.target.value = e.target.value.replace(
+                              /[^0-9]/g,
+                              ""
+                            ))
+                          }
+                        />
+                      ) : (
+                        <div className="info-value">
+                          {formData?.annualIncome}
+                        </div>
+                      )}
+                    </div>
+                  </div>
 
-  {/* Annual Income */}
-  <div className="info-item">
-    <div className="input-with-icon">
-      <div className="input-icon">
-        <i className="fas fa-money-bill-wave"></i>
-      </div>
-      <label htmlFor="">Annual Income</label>
-      {isEditing ? (
-        <input
-          type="text"
-          name="annualIncome"
-          className="info-input"
-          value={formData?.annualIncome || ""}
-          onChange={handleChange}
-          onInput={(e) =>
-            (e.target.value = e.target.value.replace(/[^0-9]/g, ""))
-          }
-        />
-      ) : (
-        <div className="info-value">{formData?.annualIncome}</div>
-      )}
-    </div>
-  </div>
+                  {/* Current Company */}
+                  <div className="info-item">
+                    <div className="input-with-icon">
+                      <div className="input-icon">
+                        <i className="fas fa-building"></i>
+                      </div>
+                      <label htmlFor="">Current Company</label>
+                      {isEditing ? (
+                        <input
+                          type="text"
+                          name="currentCompany"
+                          className="info-input"
+                          value={formData?.currentCompany || ""}
+                          onChange={handleChange}
+                        />
+                      ) : (
+                        <div className="info-value">
+                          {formData?.currentCompany}
+                        </div>
+                      )}
+                    </div>
+                  </div>
 
-  {/* Current Company */}
-  <div className="info-item">
-    <div className="input-with-icon">
-      <div className="input-icon">
-        <i className="fas fa-building"></i>
-      </div>
-      <label htmlFor="">Current Company</label>
-      {isEditing ? (
-        <input
-          type="text"
-          name="currentCompany"
-          className="info-input"
-          value={formData?.currentCompany || ""}
-          onChange={handleChange}
-        />
-      ) : (
-        <div className="info-value">{formData?.currentCompany}</div>
-      )}
-    </div>
-  </div>
+                  {/* Residence City */}
+                  <div className="info-item">
+                    <div className="input-with-icon">
+                      <div className="input-icon">
+                        <i className="fa-solid fa-city"></i>
+                      </div>
+                      <label htmlFor="">Residence City</label>
+                      {isEditing ? (
+                        <input
+                          type="text"
+                          name="residenceCity"
+                          className="info-input"
+                          value={formData?.residenceCity || ""}
+                          onChange={handleChange}
+                        />
+                      ) : (
+                        <div className="info-value">
+                          {formData?.residenceCity}
+                        </div>
+                      )}
+                    </div>
+                  </div>
 
-  {/* Residence City */}
-  <div className="info-item">
-    <div className="input-with-icon">
-      <div className="input-icon">
-        <i className="fa-solid fa-city"></i>
-      </div>
-      <label htmlFor="">Residence City</label>
-      {isEditing ? (
-        <input
-          type="text"
-          name="residenceCity"
-          className="info-input"
-          value={formData?.residenceCity || ""}
-          onChange={handleChange}
-        />
-      ) : (
-        <div className="info-value">{formData?.residenceCity}</div>
-      )}
-    </div>
-  </div>
-
-  {/* Salary Bank */}
-  <div className="info-item">
-    <div className="input-with-icon">
-      <div className="input-icon">
-        <i className="fas fa-university"></i>
-      </div>
-      <label htmlFor="">Salary Bank</label>
-      {isEditing ? (
-        <input
-          type="text"
-          name="salaryBank"
-          className="info-input"
-          value={formData?.salaryBank || ""}
-          onChange={handleChange}
-        />
-      ) : (
-        <div className="info-value">{formData?.salaryBank}</div>
-      )}
-    </div>
-  </div>
-</div>
-
-
+                  {/* Salary Bank */}
+                  <div className="info-item">
+                    <div className="input-with-icon">
+                      <div className="input-icon">
+                        <i className="fas fa-university"></i>
+                      </div>
+                      <label htmlFor="">Salary Bank</label>
+                      {isEditing ? (
+                        <input
+                          type="text"
+                          name="salaryBank"
+                          className="info-input"
+                          value={formData?.salaryBank || ""}
+                          onChange={handleChange}
+                        />
+                      ) : (
+                        <div className="info-value">{formData?.salaryBank}</div>
+                      )}
+                    </div>
+                  </div>
+                </div>
 
                 {isEditing && (
                   <div

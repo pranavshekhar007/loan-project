@@ -565,7 +565,7 @@ const [loadingResendOtp, setLoadingResendOtp] = useState(false);
   }
 };
 
-const [rememberMe, setRememberMe] = useState(false);
+const [rememberMe, setRememberMe] = useState(true);
 
 
   //signup
@@ -574,6 +574,7 @@ const [rememberMe, setRememberMe] = useState(false);
     firstName: "",
     lastName: "",
     email: "",
+     countryCode: "",
     phone: "",
     password: "",
     pincode: "",
@@ -649,6 +650,7 @@ const [rememberMe, setRememberMe] = useState(false);
 
      const [loginOtpFormData, setLoginOtpFormData] = useState({
     phone: "",
+    countryCode: "IN",
     otp: otp,
   });
 
@@ -665,7 +667,10 @@ const [rememberMe, setRememberMe] = useState(false);
   console.log("Send OTP Request" , loginOtpFormData?.phone);
      setLoadingSendOtp(true);
     try{
-       const res = await loginWithOtpServ({phone: loginOtpFormData?.phone});
+       const res = await loginWithOtpServ({
+          phone: loginOtpFormData?.phone,
+      countryCode: loginOtpFormData?.countryCode,
+      });
       if (res?.statusCode == 200){
          console.log("login successfully" , res);
          toast.success(res?.message)
@@ -685,6 +690,7 @@ const [rememberMe, setRememberMe] = useState(false);
 
    const payload = {
     phone: loginOtpFormData.phone,
+     countryCode: loginOtpFormData.countryCode,
     otp: loginOtpFormData.otp.join("") 
   };
     setLoadingSignIn(true);
@@ -803,12 +809,18 @@ const [rememberMe, setRememberMe] = useState(false);
                     name="phone"
                    value={signUpFormData.phone}
                     onChange={handleSignUpChange} required /> */}
-                     <CountryPhoneInput
-                value={signUpFormData.phone}
-                onChange={(value) =>
-    setSignUpFormData((prev) => ({ ...prev, phone: value }))
-  } required
-              />
+                  <CountryPhoneInput
+  value={{ phone: signUpFormData.phone, countryCode: signUpFormData.countryCode }}
+  onChange={(val) =>
+    setSignUpFormData((prev) => ({
+      ...prev,
+      phone: val.phone,
+      countryCode: val.countryCode,
+    }))
+  }
+  required
+/>
+
                     
                 </div>
               </div>
@@ -886,10 +898,32 @@ const [rememberMe, setRememberMe] = useState(false);
 
           
               
-                <div className="form-group">
+                {/* <div className="form-group">
                   <FaPhone className="form-icon phone-icon" />
-                  <input type="tel" placeholder="Phone Number" required  name="phone" value={loginOtpFormData?.phone} onChange={handleLoginOtpChange}/>
-                </div>
+                  <input type="tel" 
+                  placeholder="Phone Number" 
+                  required  name="phone" 
+                  value={loginOtpFormData?.phone} 
+                  onChange={handleLoginOtpChange}/>
+                </div> */}
+
+                <div className="form-group">
+  <CountryPhoneInput
+    value={{
+      phone: loginOtpFormData.phone,
+      countryCode: loginOtpFormData.countryCode,
+    }}
+    onChange={({ phone, countryCode }) =>
+      setLoginOtpFormData((prev) => ({
+        ...prev,
+        phone,
+        countryCode,
+      }))
+    }
+    required
+  />
+</div>
+
                 <button type="submit" className="otp" onClick={handleSendOtp} >{loadingSendOtp ? <FaSpinner className="spin" /> : "Send Otp"}
                  </button>
 

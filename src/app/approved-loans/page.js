@@ -47,7 +47,7 @@ const page = () => {
   const loanApplicationList = async () => {
     setLoading(true);
     try {
-      const res = await AppliedLoanListServ({ userId: loggedUserData?._id , status : "pending" });
+      const res = await AppliedLoanListServ({ userId: loggedUserData?._id , status: "approved" });
       const sortedLoans = [...(res?.data || [])].sort(
       (a, b) => new Date(b.createdAt || b.startDate) - new Date(a.createdAt || a.startDate)
     );
@@ -76,8 +76,8 @@ const page = () => {
           <div className="profile-container">
             <div className="profile-header">
               <div className="profile-info">
-                <h1>Pending Loan Applications</h1>
-<p>Track all loan requests that are awaiting approval</p>
+               <h1>Approved Loan Applications</h1>
+               <p>Check loan requests that have been approved and are ready for processing</p>
               </div>
               {/* <div className="credit-score">
                     <span className="score">782</span>
@@ -101,8 +101,8 @@ const page = () => {
                         <th className="py-3 ps-2">ID</th>
                         <th className="py-3">Type</th>
                         <th className="py-3">Branch</th>
-                        {/* <th>Start Date</th> */}
-                        <th>Applied Date</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
                         <th>Amount</th>
                         <th className="text-center">Status</th>
                         <th>Action</th>
@@ -150,11 +150,11 @@ const page = () => {
                               <td className="ps-2">{loan.code}</td>
                               <td>{loan.loanId?.name}</td>
                               <td>{loan.branchId?.name}</td>
-                              <td>{loan?.appliedDate}</td>
-                              {/* <td>{loan.endDate}</td> */}
+                              <td>{loan.startDate}</td>
+                              <td>{loan.endDate}</td>
                               <td>₹{loan.loanAmount}</td>
                               <td
-                                className="loan-status status-pending"
+                                className="loan-status  status-approved"
                               >
                                {loan.status.charAt(0).toUpperCase() + loan.status.slice(1)}
                               </td>
@@ -219,12 +219,12 @@ const page = () => {
               <p className="d-flex  gap-2 " ><strong  style={{width:"110px"}}>Id:</strong> {loan.code}</p>
               <p className="d-flex  gap-2 "><strong  style={{width:"110px"}}>Branch:</strong> {loan.branchId?.name}</p>
               <p className="d-flex  gap-2 "><strong  style={{width:"110px"}}>Amount:</strong> ₹{loan.loanAmount}</p>
-              {/* <p className="d-flex  gap-2 "><strong  style={{width:"110px"}}>Start Date:</strong> {loan.startDate}</p> */}
-              <p className="d-flex  gap-2 "><strong  style={{width:"110px"}}>Applied Date:</strong> {loan?.appliedDate}</p>
+              <p className="d-flex  gap-2 "><strong  style={{width:"110px"}}>Start Date:</strong> {loan.startDate}</p>
+              <p className="d-flex  gap-2 "><strong  style={{width:"110px"}}>End Date:</strong> {loan.endDate}</p>
               <p className="d-flex gap-2">
                 <strong  style={{width:"110px"}}>Status:</strong>{" "}
                 <span
-                  className="loan-status status-pending"
+                  className="loan-status status-approved"
                 >
                   {loan.status.charAt(0).toUpperCase() + loan.status.slice(1)}
                 </span>

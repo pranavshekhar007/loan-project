@@ -134,7 +134,19 @@ const page = () => {
                           <td>{loan.expectedDate}</td>
                           <td>{loan.paidDate || "N/A"}</td>
 
-                          <td className="emi-status">{loan.status}</td>
+                          <td  className={`loan-status ${
+                                loan.status === "disbursed"
+                                  ? "status-active"
+                                  : loan.status === "pending"
+                                  ? "status-pending"
+                                  : loan.status === "rejected"
+                                  ? "status-rejected"
+                                  : loan.status === "completed"
+                                  ? "status-completed"
+                                  : loan.status === "approved"
+                                  ? "status-approved"
+                                  : "status-default"
+                              }`} > {loan.status.charAt(0).toUpperCase() + loan.status.slice(1)} </td>
                           {/* <td>
            <div className='d-flex justify-content-center text-center'>
                <i className="fas fa-eye action-icon" title="View"></i>
@@ -195,7 +207,19 @@ const page = () => {
                       </p>
                       <p className="d-flex  gap-2 ">
                         <strong  style={{width:"110px"}}>Status:</strong>{" "}
-                        <span className="emi-status px-2">{loan.status}</span>
+                        <span className={`loan-status ${
+                                loan.status === "disbursed"
+                                  ? "status-active"
+                                  : loan.status === "pending"
+                                  ? "status-pending"
+                                  : loan.status === "rejected"
+                                  ? "status-rejected"
+                                  : loan.status === "completed"
+                                  ? "status-completed"
+                                  : loan.status === "approved"
+                                  ? "status-approved"
+                                  : "status-default"
+                              }`} >  {loan.status.charAt(0).toUpperCase() + loan.status.slice(1)} </span>
                       </p>
                     </div>
                     </div>
