@@ -48,7 +48,8 @@ export default function Navbar() {
         <img src="/assets/rupeeloan_logo.png" alt="logo" />
       </a> */}
       <a className="navbar-brand" href="/">
-        <img src="/assets/logo.png" alt="logo" />
+        <img src="/assets/logo.jpeg" alt="logo" />
+        <span className="nav-brand-text">Rupee Loan</span>
       </a>
       <button className="navbar-toggler mobile-menu-button" type="button" data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" style={{width:"auto"}}>
