@@ -517,7 +517,7 @@ export default function Home() {
 
                   <div className="service-footer">
                     <a href={service.link} className="learn-more-btn">
-                      Apply Now <i className="fas fa-arrow-right"></i>
+                      View Details <i className="fas fa-arrow-right"></i>
                     </a>
                     <div className="footer-icon">
                       {/* <img src={service.img} alt={service.title} /> */}
@@ -1185,7 +1185,7 @@ export default function Home() {
                 prefix={stat.prefix || ""}
                 suffix={stat.suffix || ""}
               />
-              <p>{stat.label}</p>
+              <p className="mb-0">{stat.label}</p>
             </motion.div>
           ))}
         </motion.div>

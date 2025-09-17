@@ -42,7 +42,8 @@ export default function Navbar() {
   return (
     <>
      {/* <!-- Header --> */}
-  <nav className={`navbar navbar-expand-lg ${scrolled ? "scrolled" : ""}`}>
+  {/* <nav className={`navbar navbar-expand-lg ${scrolled ? "scrolled" : ""}`}> */}
+  <nav className={`navbar navbar-expand-lg `}>
     <div className="container-fluid">
       {/* <a className="navbar-brand" href="/">
         <img src="/assets/rupeeloan_logo.png" alt="logo" />

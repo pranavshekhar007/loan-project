@@ -7,6 +7,8 @@ import Footer from "../Components/Footer";
 import { motion } from "framer-motion";
 import { faqListServ } from "../services/support.service";
 import { loanListServ } from "../services/loan.service";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function FAQ() {
   // const faqs = [
@@ -80,6 +82,10 @@ export default function FAQ() {
   const [openQuestion, setOpenQuestion] = useState([]);
   const [searchValue, setSearchValue] = useState("");
 
+    const [loadingFaqs, setLoadingFaqs] = useState(true);
+  const [loadingCats, setLoadingCats] = useState(true);
+
+
   const toggleAnswer = (index) => {
     if (openQuestion.includes(index)) {
       // Agar already open hai to remove kar do
@@ -99,6 +105,7 @@ export default function FAQ() {
 
   const getFaqList = async (category = "") => {
     try {
+       setLoadingFaqs(true);
       const payload = {
         category: category === "All Questions" ? "" : category,
         searchKey: searchValue || " "
@@ -111,11 +118,14 @@ export default function FAQ() {
       // }
     } catch (err) {
       console.log("error", err);
+    }finally {
+      setLoadingFaqs(false);
     }
   };
 
   const getLoanList = async () => {
     try {
+       setLoadingCats(true);
       const res = await loanListServ();
       // if(res?.statusCode == 200){
       console.log(" loan  list res", res?.data);
@@ -125,6 +135,8 @@ export default function FAQ() {
       // }
     } catch (err) {
       console.log("error", err);
+    }finally {
+      setLoadingCats(false);
     }
   };
 
@@ -199,7 +211,15 @@ export default function FAQ() {
 
             {/* Tabs */}
             <div className="faq-tabs d-flex justify-content-center mb-4 flex-wrap">
-              {categories?.map((cat, i) => (
+              {loadingCats
+                ? Array(5)
+                    .fill()
+                    .map((_, i) => (
+                      <div key={i} className="mx-2">
+                        <Skeleton width={120} height={30} />
+                      </div>
+                    ))
+                : categories?.map((cat, i) => (
                 <div
                   key={i}
                   className={`faq-tab mx-2 ${
@@ -215,7 +235,16 @@ export default function FAQ() {
 
             {/* FAQ Items */}
             <div className="faq-items">
-              {faqs
+              {loadingFaqs
+                ? Array(5)
+                    .fill()
+                    .map((_, i) => (
+                      <div key={i} className="mb-3 p-3 rounded">
+                        <Skeleton width="90%" height={40} />
+                        
+                      </div>
+                    ))
+                : faqs
                 .map((faq, index) => (
                   <div
                     key={index}

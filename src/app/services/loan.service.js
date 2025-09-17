@@ -27,3 +27,16 @@ export const AppliedLoanListServ = async (formData) => {
     throw error;
   }
 };
+
+//applied loans details
+
+export const AppliedLoanDetailsServ = async (formData , id) => {
+
+  try {
+    const response = await axios.get(BASE_URL + `loan-application/details/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("loan list Error:", error);
+    throw error;
+  }
+};

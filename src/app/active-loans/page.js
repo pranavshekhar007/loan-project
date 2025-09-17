@@ -8,6 +8,7 @@ import { AppliedLoanListServ } from "../services/loan.service";
 import { LoggedDataContext } from "../context/Context";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useRouter } from "next/navigation";
 
 const page = () => {
   // const loans = [
@@ -43,6 +44,12 @@ const page = () => {
   const { loggedUserData } = useContext(LoggedDataContext);
   const [loans, setLoans] = useState([]);
   const [loading, setLoading] = useState(true);
+
+   const router = useRouter();
+
+     const handleDtailClick = (loan) => {
+    router.push(`/applied-loans/${loan?._id}`)
+  }
 
   const loanApplicationList = async () => {
     setLoading(true);
@@ -173,8 +180,10 @@ const page = () => {
                             </td>
                             <td>
                               <div className="d-flex justify-content-center text-center">
-                                <i
+                                 <i 
+                                onClick={() => handleDtailClick(loan)}
                                   className="fas fa-eye action-icon"
+                                  style={{cursor:"pointer"}}
                                   title="View"
                                 ></i>
                               </div>
@@ -239,7 +248,7 @@ const page = () => {
                   ) : (
                     loans.map((loan, index) => (
                       <div key={index} className="col-sm-6 col-12 p-2">
-                        <div className="loan-card">
+                        <div className="loan-card"  onClick={() => handleDtailClick(loan)}>
                           <h3>{loan.loanId?.name}</h3>
                           <p className="d-flex  gap-2 ">
                             <strong style={{ width: "110px" }}>Id:</strong>{" "}

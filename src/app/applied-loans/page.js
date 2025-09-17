@@ -8,6 +8,7 @@ import { AppliedLoanListServ } from "../services/loan.service";
 import { LoggedDataContext } from "../context/Context";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useRouter } from "next/navigation";
 
 const page = () => {
   // const loans = [
@@ -40,6 +41,7 @@ const page = () => {
   //     },
   // ]
 
+  const router = useRouter();
   const { loggedUserData } = useContext(LoggedDataContext);
   const [loans, setLoans] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -69,13 +71,16 @@ const page = () => {
   }, [loggedUserData?._id]);
 
   const statusMapping = {
-  disbursed: { label: "Active", className: "status-active" },
-  pending: { label: "Pending", className: "status-pending" },
-  rejected: { label: "Rejected", className: "status-rejected" },
-  completed: { label: "Closed", className: "status-completed" },
-  approved: { label: "Approved", className: "status-approved" },
-};
+    disbursed: { label: "Active", className: "status-active" },
+    pending: { label: "Pending", className: "status-pending" },
+    rejected: { label: "Rejected", className: "status-rejected" },
+    completed: { label: "Closed", className: "status-completed" },
+    approved: { label: "Approved", className: "status-approved" },
+  };
 
+  const handleDtailClick = (loan) => {
+    router.push(`/applied-loans/${loan?._id}`)
+  }
 
   return (
     <>
@@ -107,7 +112,7 @@ const page = () => {
 
                 <div className="loans-table d-lg-block d-none">
                   <table className="w-100 ">
-                    <thead className="">
+                    <thead className="loan-table-head">
                       <tr>
                         <th className="py-3 ps-2">ID</th>
                         <th className="py-3">Type</th>
@@ -168,19 +173,21 @@ const page = () => {
                             <td>{loan.startDate}</td>
                             <td>{loan.endDate}</td>
                             <td>₹{loan.loanAmount}</td>
-                          <td
-  className={`loan-status ${
-    statusMapping[loan.status]?.className || "status-default"
-  }`}
->
-  {statusMapping[loan.status]?.label || loan.status}
-</td>
-
+                            <td
+                              className={`loan-status ${
+                                statusMapping[loan.status]?.className ||
+                                "status-default"
+                              }`}
+                            >
+                              {statusMapping[loan.status]?.label || loan.status}
+                            </td>
 
                             <td>
                               <div className="d-flex justify-content-center text-center">
-                                <i
+                                <i 
+                                onClick={() => handleDtailClick(loan)}
                                   className="fas fa-eye action-icon"
+                                  style={{cursor:"pointer"}}
                                   title="View"
                                 ></i>
                               </div>
@@ -199,7 +206,6 @@ const page = () => {
                     Array.from({ length: 4 }).map((_, index) => (
                       <div key={index} className="col-sm-6 col-12 p-2">
                         <div className="loan-card">
-                          
                           <h3>
                             <Skeleton width="60%" height={20} />
                           </h3>
@@ -244,7 +250,7 @@ const page = () => {
                   ) : (
                     loans.map((loan, index) => (
                       <div key={index} className="col-sm-6 col-12 p-2">
-                        <div className="loan-card">
+                        <div className="loan-card"  onClick={() => handleDtailClick(loan)}>
                           <h3>{loan.loanId?.name}</h3>
                           <p className="d-flex  gap-2 ">
                             <strong style={{ width: "110px" }}>Id:</strong>{" "}
@@ -272,14 +278,14 @@ const page = () => {
                           </p>
                           <p className="d-flex gap-2">
                             <strong style={{ width: "110px" }}>Status:</strong>{" "}
-                           <span
-  className={`loan-status ${
-    statusMapping[loan.status]?.className || "status-default"
-  }`}
->
-  {statusMapping[loan.status]?.label || loan.status}
-</span>
-
+                            <span
+                              className={`loan-status ${
+                                statusMapping[loan.status]?.className ||
+                                "status-default"
+                              }`}
+                            >
+                              {statusMapping[loan.status]?.label || loan.status}
+                            </span>
                           </p>
                         </div>
                       </div>
