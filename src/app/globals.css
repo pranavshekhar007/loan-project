@@ -530,7 +530,7 @@ p {
 
 
 .navbar {
-  padding: 20px 5%;
+  padding: 15px 5%;
   background: #fff;
   position: sticky;
   top: 0;
@@ -540,7 +540,7 @@ p {
 
 /* Scroll ke baad effect */
 .navbar.scrolled {
-  padding: 12px 5%;
+  /* padding: 12px 5%; */
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
   backdrop-filter: blur(10px);
@@ -569,6 +569,12 @@ p {
   align-items: center;
   transition: all 0.2s ease;
   font-size: 18px; /* Reduced font size for medium screens */
+}
+
+.nav-link:hover{
+  /* font-weight: bold; */
+    /* color: #281B36 !important; */
+    border-bottom: 2px solid #281B36;
 }
 
 .nav-link i::before {
@@ -1995,7 +2001,7 @@ p {
    color: var(--primary-dark);
    border: 2px solid var(--primary-dark);
    border-radius: 50px;
-   padding: 8px 9px;
+   padding: 8px 20px;
    font-weight: 600;
    transition: all 0.3s ease;
    text-decoration: none;
@@ -2013,8 +2019,9 @@ p {
    left: 0;
    width: 0%;
    height: 100%;
-   background: #010a2d;
-   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   /* background: #010a2d; */
+   background: var(--primary-gradient-hover);
+   /* transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
    z-index: -1;
  }
 
@@ -3775,7 +3782,7 @@ box-shadow: 0 4px 12px rgba#1e012d;
  }
 
  .faq-btn button {
-   padding: 12px 30px;
+   padding: 12px 35px;
    /* background: #010a2d; */
    background: var(--primary-dark);
    border: none;
@@ -3784,13 +3791,18 @@ box-shadow: 0 4px 12px rgba#1e012d;
    cursor: pointer;
    font-size: 1rem;
    font-weight: 500;
+   width: fit-content;
    /* box-shadow: 0 5px 15px rgba(233,30,99,0.3); */
    transition: 0.3s;
  }
 
  .faq-btn button:hover {
-   transform: translateY(-2px);
-   box-shadow: 0 8px 20px #010a2d;
+   /* transform: translateY(-1px); */
+   /* box-shadow: 0 8px 20px #010a2d; */
+   background: var(--primary-gradient-hover);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(208, 208, 208, 0.4);
+   /* background-color: #2b0d39fa; */
  }
 
 
@@ -4272,9 +4284,12 @@ font-weight: 700;
 }
 
 .cta-btn:hover {
-  background: #f1f1f1;
+  /* background: #f1f1f1;
   color: #00796b;
-  transform: translateY(-3px);
+  transform: translateY(-3px); */
+  background: var(--primary-gradient-hover);
+  transform: translateY(-5px) scale(1.05);
+  /* box-shadow: 0 15px 30px rgba(208, 208, 208, 0.4); */
 }
 
 .consultation-right {
@@ -5118,7 +5133,7 @@ font-weight: 700;
 
 .rl-step-cta {
   display: inline-block;
-  padding: 15px 35px;
+  padding: 12px 35px;
   position: relative;
   background: var(--primary-gradient);
   color: white;
@@ -5159,7 +5174,7 @@ font-weight: 700;
   /* background: linear-gradient(90deg, #0056d2, #003c9e); */
   background: var(--primary-gradient-hover);
   transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 15px 30px rgba(62, 107, 255, 0.4);
+  box-shadow: 0 15px 30px rgba(208, 208, 208, 0.4);
 }
 
 .rl-step-visual {
@@ -6243,6 +6258,7 @@ font-weight: 700;
    transition: all 0.3s ease;
    position: relative;
    overflow: hidden;
+   cursor: pointer;
  }
 
  .cta-button:hover {
@@ -7129,20 +7145,23 @@ font-weight: 700;
     }
 
     .cta-btn {
-      background: white;
-      color: #010a2d;
+      background: var(--primary);
+      color: white;
       border: none;
       border-radius: 50px;
-      padding: 15px 40px;
+      padding: 12px 35px;
       font-weight: 600;
       font-size: 1.1rem;
       transition: all 0.3s ease;
     }
 
     .cta-btn:hover {
-      background: black;
+      /* background: black;
       color: white;
-      transform: translateY(-3px);
+      transform: translateY(-3px); */
+      background: var(--primary-gradient-hover);
+  transform: translateY(-5px) scale(1.05);
+ 
     }
 
     /* Responsive Styles */
@@ -7925,9 +7944,12 @@ font-weight: 700;
     .btn-submit:hover {
       /* background-color: rgba(62, 107, 255, 0.1);
       color: #3e6bff; */
-      background-color: rgb(171 122 191 / 10%);
+      /* background-color: rgb(171 122 191 / 10%);
       color:  #4b2d6a;
-      border: 1px solid #f0e5f5;
+      border: 1px solid #f0e5f5; */
+      background: var(--primary-gradient-hover);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(208, 208, 208, 0.4);
     }
 
     .btn-prev {
@@ -8366,7 +8388,7 @@ font-weight: 700;
       color: white;
       border: none;
       border-radius: 50px;
-      padding: 12px 30px;
+      padding: 12px 35px;
       font-weight: 600;
       width: 100%;
       transition: all 0.3s ease;
@@ -8500,6 +8522,7 @@ font-weight: 700;
     font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.3s ease;
+     cursor: pointer;
   }
   
   .rl-arrows-nav button:hover {
@@ -8827,6 +8850,7 @@ button {
   /* box-shadow: 0 4px 10px rgba(79, 172, 254, 0.3); */
   box-shadow: 0 4px 10px rgb(149 113 175 / 21%);
   margin-bottom: 20px;
+
 }
 
 .otp {
@@ -9591,8 +9615,8 @@ color: #281b36;
             background: #281b36;
             color: white;
             border: none;
-            padding: 10px 16px;
-            border-radius: 8px;
+            padding: 12px 35px;
+            border-radius: 50px;
             cursor: pointer;
             font-size: 14px;
             display: flex;
@@ -9601,15 +9625,18 @@ color: #281b36;
             gap: 8px;
             transition: all 0.3s;
             box-shadow: 0 4px 10px rgba(40, 27, 54, 0.25);
-            width: 100%;
-            max-width: 200px;
+            width: fit-content;
+            /* max-width: 200px; */
             align-self: flex-end;
         }
 
         .edit-btn:hover {
-            background: #1e1427;
+            /* background: #1e1427;
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(40, 27, 54, 0.3);
+            box-shadow: 0 6px 15px rgba(40, 27, 54, 0.3); */
+            background: var(--primary-gradient-hover);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(208, 208, 208, 0.4);
         }
 
         @media (max-width:768px) {
@@ -9693,6 +9720,7 @@ color: #281b36;
             gap: 10px;
             font-size: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+             cursor: pointer;
         }
 
         .btn-primary {
@@ -9866,6 +9894,17 @@ color: #281b36;
        
 
 
+.save-btn{
+  width: "fit-content";
+  border-radius: 50px;
+  padding: 12px 35px;
+
+}
+.save-btn:hover{
+  background: var(--primary-gradient-hover);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(208, 208, 208, 0.4);
+}
 
 
 .loans-table tbody tr {
@@ -9884,7 +9923,7 @@ color: #281b36;
 }
 
 .loans-table tbody td {
-  padding: 8px 12px; 
+  padding: 8px 0px; 
 }
 
 .loans-table table {
@@ -10216,3 +10255,7 @@ overflow-x: scroll;
 .loan-detail-table table tbody tr:hover {
   background-color: #fbfbfb !important; 
 } */
+
+.rotate-icon{
+ transform: rotate(180deg);
+}

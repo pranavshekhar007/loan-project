@@ -1012,7 +1012,7 @@ const page = () => {
                     <button
                       className="save-btn"
                       onClick={handleUpdate}
-                      style={{ marginTop: "6px" }}
+                      style={{ marginTop: "6px" , width:"fit-content"} }
                     >
                       <i className="fas fa-save"></i> Save Changes
                     </button>

@@ -128,7 +128,7 @@ const Faq = () => {
                   transition={{ duration: 0.5, delay: 0.3 }}
                 >
                   <a href="/faq">
-                    <motion.button whileHover={{ scale: 1.1 }}>All FAQs</motion.button>
+                    <motion.button whileHover={{ scale: 1.1 }}>View All FAQs</motion.button>
                   </a>
                 </motion.div>
                       </div>

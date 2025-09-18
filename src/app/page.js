@@ -326,9 +326,9 @@ export default function Home() {
             platform offers personalized loan options with competitive rates and
             no hidden fees.
           </p>
-          <div className="hero-btn">
+          {/* <div className="hero-btn">
             Apply Now <i className="fas fa-arrow-right"></i>
-          </div>
+          </div> */}
 
           <div className="cta-buttons">
             <a href="#" className="btn">
@@ -373,9 +373,9 @@ export default function Home() {
             viewport={{ once: false, amount: 0.2 }} // 👈 scroll trigger
             variants={staggerContainer}
           >
-            <motion.h1 className="text-center fw-bold" variants={fadeUp}>
+            <motion.h2 className="text-center fw-bold" variants={fadeUp}>
               Your Trusted Partner in Easy & Secure Loans
-            </motion.h1>
+            </motion.h2>
             <motion.p className="text-center text-muted fs-5" variants={fadeUp}>
               We are committed to making borrowing simple, fast, and
               transparent. Our platform connects you with the best banks and
@@ -516,7 +516,7 @@ export default function Home() {
                   <p className="service-description">{service?.description}</p>
 
                   <div className="service-footer">
-                    <a href={service.link} className="learn-more-btn">
+                    <a href={service.link} className="learn-more-btn" style={{cursor:"pointer"}}>
                       View Details <i className="fas fa-arrow-right"></i>
                     </a>
                     <div className="footer-icon">
@@ -809,8 +809,10 @@ export default function Home() {
                 </li>
               </ul>
               <Link href="/interest-rate" className="rl-step-cta">
-                Learn About Interest
+                {/* Learn About Interest */}
+                View Interest Rates
               </Link>
+              
             </div>
             <div className="rl-step-visual">
               <div className="rl-phone-mockup">
@@ -846,7 +848,8 @@ export default function Home() {
                 </li>
               </ul>
               <Link href="/cibil" className="rl-step-cta">
-                Check Cibil Now
+                {/* Check Cibil Now */}
+                Check CIBIL Score
               </Link>
             </div>
             <div className="rl-step-visual">

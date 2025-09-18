@@ -153,7 +153,7 @@ const page = () => {
       </td>
     </tr>
   ) :  loans.map((loan) => (
-                            <tr key={loan._id}>
+                            <tr key={loan._id}  onClick={() => handleDtailClick(loan)}>
                               <td className="ps-2">{loan.code}</td>
                               <td>{loan.loanId?.name}</td>
                               <td>{loan.branchId?.name}</td>

@@ -230,7 +230,7 @@ export default function Support() {
                       value={formData.message}
                       onChange={handleChange}
                     ></textarea>
-                    <button type="submit" className="btn btn-submit d-flex justify-content-center">
+                    <button type="submit" className="btn-submit d-flex justify-content-center" style={{width:"fit-content"}}>
                       Submit Request
                     </button>
                   </form>
@@ -276,7 +276,7 @@ export default function Support() {
                     Chat with our support agents in real-time for quick
                     solutions
                   </p>
-                  <button className="btn btn-submit mt-3 d-flex justify-content-center">Start Chat</button>
+                  <button className="btn-submit mt-3 d-flex justify-content-center justify-self-center" style={{width:"fit-content" , justifySelf:"center"}}>Start Chat</button>
                 </div>
               </div>
 

@@ -213,7 +213,8 @@ export default function About() {
               financial goals with RupeeLoan.
             </p>
             <a href="#" className="cta-btn text-decoration-none">
-              Apply for a Loan Today
+              {/* Apply for a Loan Today */}
+              Get Started Now
             </a>
           </div>
         </section>
