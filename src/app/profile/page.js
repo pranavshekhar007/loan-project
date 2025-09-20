@@ -799,7 +799,7 @@ const page = () => {
                       <div className="input-icon">
                         <i className="fas fa-calendar"></i>
                       </div>
-                      <label for="">Date Of Birth</label>
+                      <label for="">Date of Birth</label>
                       {isEditing ? (
                         <input
                           type="date"

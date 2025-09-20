@@ -51,7 +51,7 @@ export default function About() {
                   <div className="mission-icon">
                     <i className="fas fa-bullseye"></i>
                   </div>
-                  <h3>Our Mission</h3>
+                  <h3 className="h3">Our Mission</h3>
                   <p>
                     To make borrowing simple, accessible, and transparent for
                     every Indian by leveraging technology and partnerships with
@@ -65,7 +65,7 @@ export default function About() {
                   <div className="mission-icon">
                     <i className="fas fa-eye"></i>
                   </div>
-                  <h3>Our Vision</h3>
+                  <h3 className="h3">Our Vision</h3>
                   <p>
                     To become India's most trusted financial platform that
                     empowers individuals and businesses to achieve their dreams
@@ -79,7 +79,7 @@ export default function About() {
                   <div className="mission-icon">
                     <i className="fas fa-hand-holding-heart"></i>
                   </div>
-                  <h3>Our Promise</h3>
+                  <h3 className="h3">Our Promise</h3>
                   <p>
                     We promise complete transparency, competitive rates, quick
                     approvals, and 24/7 support to ensure a hassle-free
@@ -96,7 +96,7 @@ export default function About() {
           <div className="container p-sm-5 p-4 ">
             <div className="row">
               <div className="col-lg-12">
-                <h2 className="mb-4 text-center">Our Journey</h2>
+                <h2 className="mb-4 text-center h2">Our Journey</h2>
                 <p className="lead">
                   From humble beginnings to becoming a trusted name in the
                   lending industry, our journey has been marked by innovation
@@ -118,7 +118,7 @@ export default function About() {
                 <p>
                   With a strong network of financial partners, RupeeLoan offers
                   a wide range of loan products, including personal loans,
-                  business loans, loan against property, and consumer durable
+                  business loans, Loan Against Property, and consumer durable
                   loans—tailored to suit diverse customer needs.
                 </p>
                 <p>
@@ -149,7 +149,7 @@ export default function About() {
           <div className="container p-sm-5 p-4">
             <div className="row text-center mb-5">
               <div className="col-lg-8 mx-auto">
-                <h2 className="mb-4">Our Values</h2>
+                <h2 className="mb-4 h2">Our Values</h2>
                 <p className="lead">
                   These core values guide everything we do at RupeeLoan and
                   define our company culture.
@@ -195,7 +195,7 @@ export default function About() {
                     <div className="value-icon">
                       <i className={val.icon}></i>
                     </div>
-                    <h3>{val.title}</h3>
+                    <h3 className="h3">{val.title}</h3>
                     <p>{val.desc}</p>
                   </div>
                 </div>
@@ -207,7 +207,7 @@ export default function About() {
         {/* CTA Section */}
         <section className="cta-section">
           <div className="container p-sm-5 p-4">
-            <h2 className="text-black">Ready to Get Started?</h2>
+            <h2 className="text-black h2">Ready to Get Started?</h2>
             <p className="text-black">
               Join thousands of satisfied customers who have achieved their
               financial goals with RupeeLoan.

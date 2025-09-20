@@ -104,7 +104,7 @@ export default function Support() {
         {/* Support Hero Section */}
         <section className="support-hero">
           <div className="container d-flex flex-column justify-content-center" style={{minHeight:"65vh"}}>
-            <h1 className="text-black">We're Here to Help</h1>
+            <h1 className="text-black h2">We're Here to Help</h1>
             <p className="text-black">
               Get assistance with your loan application, account management, or
               any other queries you might have. Our support team is available
@@ -129,7 +129,7 @@ export default function Support() {
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-6 mb-5 mb-lg-0 gx-0 px-md-5 px-3">
-                <h2>Get in Touch</h2>
+                <h2 className="small-h2">Get in Touch</h2>
                 <p className="text-muted">
                   Have a question or need assistance? Fill out the form and our
                   team will contact you shortly.
@@ -242,9 +242,9 @@ export default function Support() {
 
         {/* Support Options */}
         <section className="support-options">
-          <div className="container">
+          <div className="container p-sm-5 p-4">
             <div className="text-center mb-5">
-              <h2>How can we help you today?</h2>
+              <h2 className="h2">How can we help you today?</h2>
               <p className="text-muted">
                 Choose from our support options to get the help you need
               </p>
@@ -256,10 +256,10 @@ export default function Support() {
                   <div className="support-icon">
                     <i className="fas fa-phone-alt"></i>
                   </div>
-                  <h3>Call Support</h3>
+                  <h3 className="h3">Call Support</h3>
                   <p>
                     Speak directly with our support team for immediate
-                    assistance
+                    assistance.
                   </p>
                   <p className="fw-bold mt-3">+91 98*** ***10</p>
                   <p className="text-muted">Available 24/7</p>
@@ -271,10 +271,10 @@ export default function Support() {
                   <div className="support-icon">
                     <i className="fas fa-comments"></i>
                   </div>
-                  <h3>Live Chat</h3>
+                  <h3 className="h3">Live Chat</h3>
                   <p>
                     Chat with our support agents in real-time for quick
-                    solutions
+                    solutions.
                   </p>
                   <button className="btn-submit mt-3 d-flex justify-content-center justify-self-center" style={{width:"fit-content" , justifySelf:"center"}}>Start Chat</button>
                 </div>
@@ -285,9 +285,9 @@ export default function Support() {
                   <div className="support-icon">
                     <i className="fas fa-envelope"></i>
                   </div>
-                  <h3>Email Support</h3>
+                  <h3 className="h3" >Email Support</h3>
                   <p>
-                    Send us an email and we'll get back to you within 24 hours
+                    Send us an email and we'll get back to you within 24 hours.
                   </p>
                   <p className="fw-bold mt-3">support@RupeeLoan.com</p>
                 </div>

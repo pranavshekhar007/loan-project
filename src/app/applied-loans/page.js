@@ -87,7 +87,7 @@ const page = () => {
       <Navbar />
       <div className="profile-page">
         <div className="dashboard-container">
-          <ProfileSidebar title={"Aplied Loans"} />
+          <ProfileSidebar title={"Applied Loans"} />
 
           <div className="profile-container">
             <div className="profile-header">

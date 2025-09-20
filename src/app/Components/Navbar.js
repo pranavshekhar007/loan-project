@@ -223,7 +223,7 @@ export default function Navbar() {
               <li className="nav-item">
                 <a
                   className={`nav-link ${
-                    pathname === "/calculators" ? "nav-link-active" : ""
+                    pathname === "/calculator" ? "nav-link-active" : ""
                   }`}
                   href="/calculator"
                 >

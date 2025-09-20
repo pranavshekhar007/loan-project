@@ -174,7 +174,7 @@ export default function FAQ() {
             className="container d-flex flex-column justify-content-center"
             style={{ minHeight: "65vh" }}
           >
-            <h1 className="text-dark mt-md-4">Frequently Asked Questions</h1>
+            <h1 className="text-dark mt-md-4 ">Frequently Asked Questions</h1>
             <p className="text-dark">
               Find answers to common questions about our loan products,
               application process, and more.
