@@ -574,7 +574,7 @@ const page = () => {
                     {profilePic ? (
                       <img
                         src={profilePic}
-                        alt="Profile"
+                        alt="Profile Photo"
                         className="profile-pic"
                       />
                     ) : (

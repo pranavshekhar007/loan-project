@@ -9,28 +9,28 @@ import Faq from "../Components/Faq";
 import { contactQueryServ } from "../services/support.service";
 import { toast } from "react-toastify";
 
-const faqData = [
-                  {
-                    question: "How do I apply for a loan?",
-                    answer: "You can apply for a loan through our website or mobile app. The process is simple: 1) Select the loan type you need, 2) Fill out the application form with your details, 3) Upload necessary documents, 4) Get approval decision within minutes, and 5) Receive funds in your account after verification.",
-                  },
-                  {
-                    question: "What documents are required for a personal loan?",
-                    answer: "For a personal loan, you typically need: 1) Identity proof (Aadhaar, PAN card, or passport), 2) Address proof (utility bill, rental agreement, or Aadhaar), 3) Income proof (salary slips for salaried individuals or bank statements for self-employed), and 4) Recent photographs.",
-                  },
-                  {
-                    question: "How long does it take to get loan approval?",
-                    answer: "Most loan applications are approved within 15 minutes to 2 hours during business hours. After approval, funds are typically disbursed within 24-48 hours after document verification.",
-                  },
-                  {
-                    question: "What is the minimum credit score required?",
-                    answer: "We consider applicants with a credit score of 650 and above. However, even if your score is lower, we might still be able to offer you a loan with different terms. Apply now to check your eligibility.",
-                  },
-                  {
-                    question: "Can I prepay my loan without penalties?",
-                    answer: "Yes, you can prepay your loan after 6 EMIs without any prepayment charges. For foreclosing your loan within the first 6 months, a nominal fee may apply depending on your loan agreement.",
-                  },
-                ]
+// const faqData = [
+//                   {
+//                     question: "How do I apply for a loan?",
+//                     answer: "You can apply for a loan through our website or mobile app. The process is simple: 1) Select the loan type you need, 2) Fill out the application form with your details, 3) Upload necessary documents, 4) Get approval decision within minutes, and 5) Receive funds in your account after verification.",
+//                   },
+//                   {
+//                     question: "What documents are required for a personal loan?",
+//                     answer: "For a personal loan, you typically need: 1) Identity proof (Aadhaar, PAN card, or passport), 2) Address proof (utility bill, rental agreement, or Aadhaar), 3) Income proof (salary slips for salaried individuals or bank statements for self-employed), and 4) Recent photographs.",
+//                   },
+//                   {
+//                     question: "How long does it take to get loan approval?",
+//                     answer: "Most loan applications are approved within 15 minutes to 2 hours during business hours. After approval, funds are typically disbursed within 24-48 hours after document verification.",
+//                   },
+//                   {
+//                     question: "What is the minimum credit score required?",
+//                     answer: "We consider applicants with a credit score of 650 and above. However, even if your score is lower, we might still be able to offer you a loan with different terms. Apply now to check your eligibility.",
+//                   },
+//                   {
+//                     question: "Can I prepay my loan without penalties?",
+//                     answer: "Yes, you can prepay your loan after 6 EMIs without any prepayment charges. For foreclosing your loan within the first 6 months, a nominal fee may apply depending on your loan agreement.",
+//                   },
+//                 ]
 
 export default function Support() {
 

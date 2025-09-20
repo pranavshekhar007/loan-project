@@ -56,7 +56,7 @@ export default function Navbar() {
         <img src="/assets/rupeeloan_logo.png" alt="logo" />
       </a> */}
           <a className="navbar-brand" href="/">
-            <img src="/assets/logo.jpeg" alt="logo" />
+            <img src="/assets/logo.jpeg" alt="Logo" />
             <span className="nav-brand-text">Rupee Loan</span>
           </a>
           <button
@@ -225,9 +225,9 @@ export default function Navbar() {
                   className={`nav-link ${
                     pathname === "/calculators" ? "nav-link-active" : ""
                   }`}
-                  href="#"
+                  href="/calculator"
                 >
-                  Calculators{" "}
+                  Calculator{" "}
                 </a>
               </li>
               <li className="nav-item">
@@ -247,6 +247,7 @@ export default function Navbar() {
                   <a className="nav-link" href="/profile">
                     <img
                       src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png"
+                      alt="Profile"
                       style={{ height: "30px", width: "30px" }}
                     ></img>
                   </a>

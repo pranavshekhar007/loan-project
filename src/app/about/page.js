@@ -36,7 +36,7 @@ export default function About() {
           <div className="container">
             <div className="row text-center mb-5">
               <div className="col-lg-8 mx-auto">
-                <h2 className="mb-4">Our Mission & Vision</h2>
+                <h2 className="mb-4 h2">Our Mission & Vision</h2>
                 <p className="lead">
                   We're on a mission to democratize access to credit in India
                   through technology, transparency, and customer-centric
@@ -106,7 +106,7 @@ export default function About() {
                   Founded in 2010, RupeeLoan started with a simple goal: to make
                   the loan application process easier for everyday Indians. What
                   began as a small operation has now grown into a platform
-                  serving over 50,000 customers across India.
+                  serving over 50K customers across India.
                 </p>
                 <p>
                   Over the years, we have continuously upgraded our technology

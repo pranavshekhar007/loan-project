@@ -396,6 +396,7 @@ const ProfileSidebar = ({title}) => {
                 <img
                   className="log-out-icon"
                   src="https://cdn-icons-png.flaticon.com/128/9208/9208320.png"
+                  alt="log out icon"
                   style={{ height: "22px", width: "22px" }}
                 ></img>
                 {" "}

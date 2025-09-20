@@ -80,8 +80,8 @@ const Faq = () => {
                       </p>
                     </div>
         
-                    <div className="row justify-content-center">
-                      <div className="col-lg-10">
+                    <div className="row justify-content-center gx-0">
+                      <div className="col-lg-10 m-0">
                       <div className="faq-list">
                   {faqData.map((faq, index) => (
                     <motion.div
