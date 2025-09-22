@@ -140,7 +140,7 @@ const Page = () => {
           <div className="profile-container">
             <div className="profile-header">
               <div className="profile-info">
-                <h1>Notifications</h1>
+                <h3 className="h3-big fw-bold">Notifications</h3>
                 <p>View all your loan notifications here."</p>
               </div>
             </div>

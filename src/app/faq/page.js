@@ -222,7 +222,7 @@ export default function FAQ() {
                 : categories?.map((cat, i) => (
                 <div
                   key={i}
-                  className={`faq-tab mx-2 ${
+                  className={`faq-tab ${
                     activeCategory === cat ? "active" : ""
                   }`}
                   onClick={() => handleCategoryClick(cat)}

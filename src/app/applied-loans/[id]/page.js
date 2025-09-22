@@ -83,7 +83,7 @@ const page = () => {
           <div className="profile-container">
             <div className="profile-header">
               <div className="profile-info">
-                <h1>Loan Details</h1>
+                <h3 className="h3-big fw-bold">Loan Details</h3>
                 <p>
                   View complete information and status of your selected loan
                 </p>
@@ -95,7 +95,7 @@ const page = () => {
               
             <p style={{fontSize:"14px" , cursor:"pointer"}} onClick={() => router.push("/applied-loans")}>
               <i className="fa fa-arrow-left me-1"></i> Back to Loans</p>
-                <h2 className="section-title">Applied Loan Details</h2>
+                <h3 className="section-title">Applied Loan Details</h3>
 
                 <div className="applied-details">
                   <div className="row mb-5">
@@ -511,11 +511,11 @@ const page = () => {
                   </div>
 
                   <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-7">
                       {Array.isArray(loan?.emiSchedule) &&
                         loan.emiSchedule.length > 0 && (
                           <div className="section mt-5">
-                            <h2 className="section-title">EMI Schedule</h2>
+                            <h5 className="section-title">EMI Schedule</h5>
 
                             <div
                               className=" loans-table d-sm-block d-none"
@@ -535,6 +535,7 @@ const page = () => {
                                     <th className="py-3">Expected Date</th>
                                     <th className="py-3">Amount</th>
                                     <th className="py-3 text-center">Status</th>
+                                    <th className="py-3 text-center"> Action</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -554,6 +555,18 @@ const page = () => {
                                           {emi.status.charAt(0).toUpperCase() +
                                             emi.status.slice(1)}
                                         </span>
+                                      </td>
+                                      <td className="text-center">
+                                        {emi.status == "pending" ? (
+                                          <div className="mx-2 py-2 text-center text-white pay-button" style={{fontWeight:"600" , backgroundColor:"#28a745" , borderRadius:"10px" , cursor:"pointer"}}>Pay</div>
+                                        ):(
+                                            <i 
+                                // onClick={() => handleDtailClick(loan)}
+                                  className="fas fa-eye action-icon"
+                                  style={{cursor:"pointer" , textAlign:"center"}}
+                                  title="View"
+                                ></i>
+                                        )}
                                       </td>
                                     </tr>
                                   ))}
@@ -590,6 +603,16 @@ const page = () => {
                                         {loan.status}
                                       </span>
                                     </p>
+                                    <p className="d-flex gap-2">
+                                      <strong style={{width: "110px"}}>
+                                        Action
+                                      </strong>
+                                        {loan.status == "pendin" ? (
+                                          <div className="px-4 py-1 text-center text-white " style={{fontWeight:"600" , backgroundColor:"#28a745" , borderRadius:"10px" , cursor:"pointer"}}>Pay</div>
+                                        ):(
+                                             <div className="px-4 py-1 text-center text-white " style={{fontWeight:"600" , backgroundColor:"#281b36" , borderRadius:"10px" , cursor:"pointer"}}>View</div>
+                                        )}
+                                    </p>
                                   </div>
                                 </div>
                               ))}
@@ -598,11 +621,11 @@ const page = () => {
                         )}
                     </div>
 
-                    <div className="col-lg-6">
-                      {Array.isArray(loan?.transactions) &&
-                        loan.transactions.length > 0 && (
+                    <div className="col-lg-5">
+                      {/* {Array.isArray(loan?.transactions) &&
+                        loan.transactions.length > 0 && ( */}
                           <div className="section mt-5">
-                            <h2 className="section-title">Transactions</h2>
+                            <h5 className="section-title">Transactions</h5>
 
                             <div
                               className=" loans-table d-sm-block d-none"
@@ -624,60 +647,60 @@ const page = () => {
                                     <th className="py-3 text-center">Amount</th>
                                   </tr>
                                 </thead>
-                                <tbody>
-                                  {loan?.transactions?.map((emi, index) => (
-                                    <tr key={emi.id}>
-                                      <td className="ps-3">{emi?.id}</td>
-                                      <td>{emi.date}</td>
-                                      <td>{emi.message}</td>
-                                      <td className="text-center">
-                                        ₹{emi.amount}
-                                      </td>
-                                    </tr>
-                                  ))}
-                                </tbody>
+                              <tbody>
+  {Array.isArray(loan?.transactions) && loan.transactions.length > 0 ? (
+    loan.transactions.map((emi) => (
+      <tr key={emi.id}>
+        <td className="ps-3">{emi?.id}</td>
+        <td>{emi.date}</td>
+        <td>{emi.message}</td>
+        <td className="text-center">₹{emi.amount}</td>
+      </tr>
+    ))
+  ) : (
+    <tr>
+      <td colSpan="4" className="text-center py-3 text-muted">
+        No transactions found
+      </td>
+    </tr>
+  )}
+</tbody>
+
                               </table>
                             </div>
 
-                            <div className="loan-cards d-sm-none d-flex row">
-                              {loan?.transactions?.map((loan, index) => (
-                                <div
-                                  key={index}
-                                  className="col-sm-6 col-12 p-2"
-                                >
-                                  <div className="loan-card">
-                                    {/* <h3>{loan.loanId?.name}</h3> */}
-                                    <p className="d-flex  gap-2 ">
-                                      <strong style={{ width: "85px" }}>
-                                        ID:
-                                      </strong>{" "}
-                                      {loan.id}
-                                    </p>
-                                    <p className="d-flex  gap-2 ">
-                                      <strong style={{ width: "85px" }}>
-                                        Date:
-                                      </strong>{" "}
-                                      {loan.date}
-                                    </p>
-                                    <p className="d-flex  gap-2 ">
-                                      <strong style={{ width: "85px" }}>
-                                        Amount:
-                                      </strong>{" "}
-                                      {loan.amount}
-                                    </p>
-                                   <p className="d-flex gap-2">
-  <strong className="flex-shrink-0" style={{ width: "85px" }}>
-    Message:
-  </strong>
-  <span>{loan.message}</span>
-</p>
+                           <div className="loan-cards d-sm-none d-flex row">
+  {Array.isArray(loan?.transactions) && loan.transactions.length > 0 ? (
+    loan.transactions.map((txn, index) => (
+      <div key={index} className="col-sm-6 col-12 p-2">
+        <div className="loan-card">
+          <p className="d-flex gap-2">
+            <strong style={{ width: "85px" }}>ID:</strong> {txn.id}
+          </p>
+          <p className="d-flex gap-2">
+            <strong style={{ width: "85px" }}>Date:</strong> {txn.date}
+          </p>
+          <p className="d-flex gap-2">
+            <strong style={{ width: "85px" }}>Amount:</strong> ₹{txn.amount}
+          </p>
+          <p className="d-flex gap-2">
+            <strong className="flex-shrink-0" style={{ width: "85px" }}>
+              Message:
+            </strong>
+            <span>{txn.message}</span>
+          </p>
+        </div>
+      </div>
+    ))
+  ) : (
+    <div className="col-12 text-center py-3 text-muted">
+      No transactions found
+    </div>
+  )}
+</div>
 
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
                           </div>
-                        )}
+                        {/* )} */}
                     </div>
                   </div>
                 </div>

@@ -47,7 +47,7 @@ const page = () => {
       <Navbar />
       <div className="emi-calculator">
         <div className="container p-sm-5 p-3 my-4">
-          <h3 className="fw-bold ">EMI Calculator</h3>
+          <h3 className="fw-bold h3-big ">EMI Calculator</h3>
           <div className="row align-items-center">
             <div className="col-md-6 py-4 col-12">
               <div className="mb-5">

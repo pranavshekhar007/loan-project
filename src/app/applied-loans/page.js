@@ -92,7 +92,7 @@ const page = () => {
           <div className="profile-container">
             <div className="profile-header">
               <div className="profile-info">
-                <h1>Loan Applications</h1>
+                <h3 className="h3-big fw-bold">Loan Applications</h3>
                 <p>Track and manage all your applied loan requests here</p>
               </div>
               {/* <div className="credit-score">

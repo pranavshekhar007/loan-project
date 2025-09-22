@@ -515,6 +515,20 @@ p {
 
 
 
+.h2 {
+   /* font-size: 2.8rem;
+  background: var(--primary-gradient); */
+   font-size: 2.7rem;
+   color: #000;
+   font-weight: 800;
+   -webkit-background-clip: text;
+   background-clip: text;
+   margin-bottom: 20px;
+   letter-spacing: -0.5px;
+ }
+.h3-big{
+  font-size: 1.75rem;
+}
 
 .h3{
   font-size: 1.4rem ;
@@ -894,7 +908,7 @@ p {
    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
    background-color: #281b36;
    color: white;
-   padding: 60px 40px;
+   padding: 60px 40px 0px 40px;
    position: relative;
    height: 95vh;
    display: flex;
@@ -904,7 +918,7 @@ p {
    max-width: 600px;
    z-index: 2;
    position: relative;
-   padding: 90px 0;
+   /* padding: 90px 0; */
  }
 
  h1 {
@@ -2572,19 +2586,7 @@ p {
    margin-bottom: 60px;
  }
 
- .h2 {
-   /* font-size: 2.8rem;
-  background: var(--primary-gradient); */
-   font-size: 2.7rem;
-   color: #000;
-   font-weight: 800;
-   -webkit-background-clip: text;
-   background-clip: text;
-   /* color: transparent; */
-   margin-bottom: 20px;
-   letter-spacing: -0.5px;
- }
-
+ 
  .platform-header p {
    font-size: 1.2rem;
    color: #64748b;
@@ -3695,7 +3697,7 @@ p {
 
  .faq-section h2 span {
    /* color: #010a2d; */
-   color: var(--primary-dark);
+   /* color: var(--primary-dark); */
    font-weight: 700;
  }
 
@@ -3811,6 +3813,9 @@ p {
  @media (max-width:424px) {
    .faq-answer {
      padding: 0 7px;
+   }
+   .faq-tabs {
+     gap: 8px;
    }
  }
 
@@ -6232,7 +6237,7 @@ p {
  }
 
  .section-title {
-   font-size: 2.8rem;
+   /* font-size: 2.8rem; */
    font-weight: 700;
    color: var(--dark);
    margin-bottom: 20px;
@@ -6415,13 +6420,13 @@ p {
    }
 
    .section-title {
-     font-size: 2.3rem;
+     /* font-size: 2.3rem; */
    }
  }
 
  @media (max-width: 576px) {
    .section-title {
-     font-size: 2rem;
+     /* font-size: 2rem; */
    }
 
    .step-card {
@@ -6992,7 +6997,7 @@ p {
    }
 
    .section-title {
-     font-size: 2.2rem;
+     /* font-size: 2.2rem; */
    }
 
    .feature-card,
@@ -7010,7 +7015,7 @@ p {
  /* Hero Section */
  .about-hero {
    background-image: var(--primary-gradient);
-   padding: 150px 0 100px;
+   /* padding: 150px 0 100px; */
    color: white;
    text-align: center;
    position: relative;
@@ -7041,13 +7046,13 @@ p {
 
  .about-hero h1 {
    /* font-size: 3.5rem; */
-   font-size: 3.2rem;
+   /* font-size: 3.2rem; */
    margin-bottom: 20px;
    font-weight: 700;
  }
 
  .about-hero p {
-   font-size: 1.2rem;
+   /* font-size: 1.2rem; */
    max-width: 700px;
    margin: 0 auto 30px;
    opacity: 0.9;
@@ -7252,13 +7257,13 @@ p {
    text-align: center;
  }
 
- .cta-section h2 {
+ /* .cta-section h2 {
    font-size: 2.7rem;
    margin-bottom: 20px;
- }
+ } */
 
  .cta-section p {
-   font-size: 1.2rem;
+   /* font-size: 1.2rem; */
    max-width: 700px;
    margin: 0 auto 40px;
    opacity: 0.9;
@@ -7297,8 +7302,7 @@ p {
  }
 
  .light-btn:hover {
-   background: white;
-   color: var(--primary);
+   background: var(--primary-gradient-hover);
    transform: translateY(-5px) scale(1.05);
    /* box-shadow: 0 15px 30px rgba(208, 208, 208, 0.4); */
  }
@@ -7306,7 +7310,7 @@ p {
  /* Responsive Styles */
  @media (max-width: 992px) {
    .about-hero h1 {
-     font-size: 2.8rem;
+     /* font-size: 2.8rem; */
    }
 
    .mission-card,
@@ -7316,12 +7320,12 @@ p {
  }
 
  @media (max-width: 768px) {
-   .about-hero {
+   /* .about-hero {
      padding: 120px 0 80px;
-   }
+   } */
 
    .about-hero h1 {
-     font-size: 2.3rem;
+     /* font-size: 2.3rem; */
    }
 
    .story-timeline {
@@ -7335,12 +7339,12 @@ p {
 
  @media (max-width: 576px) {
    .about-hero h1 {
-     font-size: 2rem;
+     /* font-size: 2rem; */
    }
 
-   .cta-section h2 {
+   /* .cta-section h2 {
      font-size: 2.2rem;
-   }
+   } */
 
    .light-btn,
    .faq-btn button,
@@ -7356,21 +7360,22 @@ p {
  /* FAQ Hero Section */
  .faq-hero {
    background-image: var(--primary-gradient);
-   padding: 150px 0 80px;
+   /* padding: 100px 0 80px; */
    color: white;
    text-align: center;
  }
 
- .faq-hero h1 {
+ /* .faq-hero h1 {
    font-size: 3.2rem;
    margin-bottom: 20px;
- }
+ } */
 
  .faq-hero p {
-   font-size: 1.2rem;
+   /* font-size: 1.2rem; */
    max-width: 700px;
    margin: 0 auto;
  }
+
 
 
  /* Hero Section */
@@ -7387,7 +7392,7 @@ p {
  }
 
  .rates-hero p {
-   font-size: 1.2rem;
+   /* font-size: 1.2rem; */
    max-width: 700px;
    margin: 0 auto;
  }
@@ -7623,7 +7628,7 @@ p {
  }
 
  .policy-intro p {
-   font-size: 1.1rem;
+   /* font-size: 1.1rem; */
    line-height: 1.7;
    color: #495057;
  }
@@ -8357,7 +8362,7 @@ p {
    }
 
    .section-title {
-     font-size: 2.2rem;
+     /* font-size: 2.2rem; */
    }
 
    .feature-card,
@@ -8466,18 +8471,18 @@ p {
  /* Support Hero Section */
  .support-hero {
    background-image: var(--primary-gradient);
-   padding: 87px 0 80px;
+   /* padding: 87px 0 80px; */
    color: white;
    text-align: center;
  }
 
- .support-hero h1 {
+ /* .support-hero h1 {
    font-size: 3.2rem;
    margin-bottom: 20px;
- }
+ } */
 
  .support-hero p {
-   font-size: 1.2rem;
+   /* font-size: 1.2rem; */
    max-width: 700px;
    margin: 0 auto 30px;
  }
@@ -8759,7 +8764,7 @@ p {
    }
 
    .rl-step-content h2 {
-     font-size: 1.9rem;
+     font-size: 1.5rem;
    }
 
    .rl-step-content p {
@@ -9825,8 +9830,8 @@ p {
  }
 
  .section-title {
-   font-size: 20px;
-   color: #281b36;
+   /* font-size: 20px;
+   color: #281b36; */
    margin-bottom: 20px;
    padding-bottom: 10px;
    border-bottom: 2px solid #e6e9f0;
@@ -10097,7 +10102,7 @@ p {
    }
 
    .section-title {
-     font-size: 22px;
+     /* font-size: 22px; */
    }
 
    .info-value {
@@ -10385,7 +10390,7 @@ overflow-x: scroll;
  }
 
  .ntf-message {
-   font-size: 17px;
+   /* font-size: 17px; */
  }
 
  @media (max-width:421px) {
@@ -10629,3 +10634,27 @@ overflow-x: scroll;
   width:37%;
 }
 }
+
+ .faq-hero , .support-hero , .about-hero {
+   padding: 87px 0 80px ;
+ }
+
+ @media (max-width:708px) {
+  .faq-hero , .support-hero , .about-hero {
+   padding: 4% 3%;
+ }
+ .small-h2{
+  font-size: 1.5rem;
+ }
+ .h3{
+  font-size: 1.3rem;
+ }
+ .h3-big{
+  font-size: 1.35rem;
+}
+ }
+ @media (max-width:996px) {
+  .faq-hero , .support-hero , .about-hero{
+   padding: 8% 6% ;
+ }
+ }

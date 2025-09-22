@@ -256,7 +256,7 @@ export default function Support() {
                   <div className="support-icon">
                     <i className="fas fa-phone-alt"></i>
                   </div>
-                  <h3 className="h3">Call Support</h3>
+                  <h3 className="h3-big">Call Support</h3>
                   <p>
                     Speak directly with our support team for immediate
                     assistance.
@@ -271,7 +271,7 @@ export default function Support() {
                   <div className="support-icon">
                     <i className="fas fa-comments"></i>
                   </div>
-                  <h3 className="h3">Live Chat</h3>
+                  <h3 className="h3-big">Live Chat</h3>
                   <p>
                     Chat with our support agents in real-time for quick
                     solutions.
@@ -285,7 +285,7 @@ export default function Support() {
                   <div className="support-icon">
                     <i className="fas fa-envelope"></i>
                   </div>
-                  <h3 className="h3" >Email Support</h3>
+                  <h3 className="h3-big" >Email Support</h3>
                   <p>
                     Send us an email and we'll get back to you within 24 hours.
                   </p>

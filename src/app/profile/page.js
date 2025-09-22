@@ -541,7 +541,7 @@ const page = () => {
           <div className="profile-container">
             <div className="profile-header">
               <div className="profile-info">
-                <h1>Personal Information</h1>
+                <h3 className="h3-big fw-bold">Personal Information</h3>
                 <p>Manage your account details and personal information</p>
               </div>
               {/* <div className="credit-score">
