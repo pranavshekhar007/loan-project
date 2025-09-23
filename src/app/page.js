@@ -189,9 +189,9 @@ export default function Home() {
             no hidden fees. */}
             Get the financial support you need in minutes. Our AI-powered platform offers personalized loan options with competitive rates and zero hidden fees.
           </p>
-          {/* <div className="hero-btn">
+          <div className="hero-btn">
             Apply Now <i className="fas fa-arrow-right"></i>
-          </div> */}
+          </div>
 
           <div className="cta-buttons">
             <a href="#" className="btn">
@@ -216,7 +216,7 @@ export default function Home() {
         </div>
 
         <div className="loan-circle-section">
-          <img src="assets/girl-inr.png" alt="Hero section illustration" />
+          <img src="assets/girl-inr3.png" alt="Hero section illustration"  className="img-fluid"/>
           <i className="fa-solid fa-landmark icon"></i>
           <i className="fa-solid fa-credit-card icon"></i>
           <i className="fa-solid fa-piggy-bank icon"></i>

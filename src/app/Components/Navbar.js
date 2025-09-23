@@ -288,24 +288,25 @@ export default function Navbar() {
           <ul className="navbar-nav">
             {/* <!-- Loans Dropdown --> */}
             <li className="nav-item">
-              <a
-                className={`nav-link d-flex flex-row justify-content-between align-items-center  ${
-                  loanPaths.includes(pathname) ? "nav-link-active" : ""
-                }`}
-                href="#loanMenu"
-                data-bs-toggle="collapse"
-                role="button"
-                aria-expanded="false"
-                aria-controls="loanMenu"
-                 onClick={handleToggle}
-              >
-                Loans
-                <i
-        className={`bi bi-chevron-down transition-all duration-300 ${
-          isOpen ? "rotate-icon" : ""
-        }`}
-      ></i>
-              </a>
+             <a
+  className={`nav-link d-flex flex-row justify-content-between align-items-center ${
+    loanPaths.includes(pathname) ? "nav-link-active" : ""
+  }`}
+  href="#loanMenu"
+  data-bs-toggle="collapse"
+  role="button"
+  aria-expanded="false"
+  aria-controls="loanMenu"
+  onClick={handleToggle}
+>
+  Loans
+  <i
+    className={`bi bi-chevron-down transition-all duration-300 ${
+      isOpen ? "rotate-icon" : ""
+    }`}
+  ></i>
+</a>
+
               <div className="collapse" id="loanMenu">
                 <ul className="list-unstyled offcanvas-list ps-3">
                   <li>

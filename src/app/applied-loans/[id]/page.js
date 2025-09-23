@@ -49,6 +49,7 @@ const page = () => {
   const { loggedUserData } = useContext(LoggedDataContext);
   const [loan, setLoan] = useState(null);
   const [loading, setLoading] = useState(true);
+  const[popupShow , setPopupShow] = useState(false);
 
   const loanApplicationList = async () => {
     try {
@@ -558,11 +559,14 @@ const page = () => {
                                       </td>
                                       <td className="text-center">
                                         {emi.status == "pending" ? (
-                                          <div className="mx-2 py-2 text-center text-white pay-button" style={{fontWeight:"600" , backgroundColor:"#28a745" , borderRadius:"10px" , cursor:"pointer"}}>Pay</div>
+                                          <div className="mx-2 py-2 text-center text-white pay-button"
+                                          onClick={() => setPopupShow(!popupShow)}
+                                           style={{fontWeight:"600" , backgroundColor:"#28a745" , borderRadius:"10px" , cursor:"pointer"}}>Pay</div>
                                         ):(
                                             <i 
                                 // onClick={() => handleDtailClick(loan)}
                                   className="fas fa-eye action-icon"
+                                   onClick={() => setPopupShow(!popupShow)}
                                   style={{cursor:"pointer" , textAlign:"center"}}
                                   title="View"
                                 ></i>
@@ -708,6 +712,27 @@ const page = () => {
             </div>
           </div>
         </div>
+
+        {popupShow && (
+        <div
+          className="payment-popup position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
+          style={{ background: "rgba(0,0,0,0.5)", zIndex: 9999 }}
+        >
+          <div
+            className="bg-white p-4 shadow"
+            style={{ width: "440px", maxWidth: "90%" , borderRadius:"16px" }}
+          >
+            <div className="d-flex justify-content-center align-items-center mb-3">
+              <h3>PAY</h3>
+              <button className="btn-close" 
+         onClick={() => setPopupShow(!popupShow)}
+         ></button>
+            </div>
+
+            
+          </div>
+        </div>
+      )}
       </div>
       <Footer />
     </>
