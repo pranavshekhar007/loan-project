@@ -662,7 +662,18 @@ const [rememberMe, setRememberMe] = useState(true);
     }));
   };
 
+  const [phone, setPhone] = useState("");
+
   const handleSendOtp = async (e) => {
+
+     if (!loginOtpFormData?.phone) {
+    toast.error("Please enter your phone number");
+    return;
+  }
+  if (!/^[6-9]\d{9}$/.test(loginOtpFormData?.phone)) {
+    toast.error("Please enter a valid 10-digit phone number");
+    return;
+  }
   e.preventDefault();
   console.log("Send OTP Request" , loginOtpFormData?.phone);
      setLoadingSendOtp(true);
@@ -685,6 +696,13 @@ const [rememberMe, setRememberMe] = useState(true);
   }
 
   const handleLoginOtpSubmit = async (e) => {
+      e.preventDefault();
+    const otpValue = otp.join("");
+
+
+  
+
+
   e.preventDefault();
   console.log("Login OTP Data:", loginOtpFormData);
 
@@ -693,6 +711,19 @@ const [rememberMe, setRememberMe] = useState(true);
      countryCode: loginOtpFormData.countryCode,
     otp: loginOtpFormData.otp.join("") 
   };
+  // ✅ Validation
+  if (!payload?.phone) {
+    toast.error("Phone number is missing. Please try again.");
+    return;
+  }
+  if (!/^[6-9]\d{9}$/.test(payload?.phone)) {
+    toast.error("Please enter a valid 10-digit phone number");
+    return;
+  }
+  if (otpValue.length !== 4) {
+    toast.error("Please enter a valid 4-digit OTP");
+    return;
+  }
     setLoadingSignIn(true);
    try{
        const res = await verifyOtpServ(payload);
@@ -744,10 +775,10 @@ const [rememberMe, setRememberMe] = useState(true);
   return (
     <>
     <Navbar/>
-     <section className="loginform">
+     <section className="loginform" style={{minHeight:"90vh"}}>
       <div
         className={`container ${isRightPanelActive ? "right-panel-active" : ""}`}
-        id="container"
+        id="container" style={{minHeight:"81vh"}}
       >
         {/* Mobile Toggle Buttons */}
         <button
@@ -924,7 +955,7 @@ const [rememberMe, setRememberMe] = useState(true);
   />
 </div>
 
-                <button type="submit" className="otp" onClick={handleSendOtp} >{loadingSendOtp ? <FaSpinner className="spin" /> : "Send Otp"}
+                <button type="submit" className="otp" onClick={handleSendOtp} >{loadingSendOtp ? <FaSpinner className="spin" /> : "Send OTP"}
                  </button>
 
                 <div className="otp-inputs">
@@ -944,7 +975,7 @@ const [rememberMe, setRememberMe] = useState(true);
                 <div className="otp-note">
                   We’ll send an OTP to your phone number{" "}
                   <a onClick={handleResendOtp} className="resend-otp">
-                   {loadingResendOtp ? <FaSpinner className="spin" /> : "Resend Otp"}
+                   {loadingResendOtp ? <FaSpinner className="spin" /> : "Resend OTP"}
                   </a>
                 </div>
               
@@ -980,7 +1011,7 @@ const [rememberMe, setRememberMe] = useState(true);
               />
               <h1>Welcome Back to Rupee Loan!</h1>
               <p>Log in to check your active loans, EMI schedules and offers.</p>
-              <button className="ghost" onClick={() => setIsRightPanelActive(false)}>
+              <button className="ghost signin-change-btn" onClick={() => setIsRightPanelActive(false)}>
                 Sign In
               </button>
             </div>
@@ -996,7 +1027,7 @@ const [rememberMe, setRememberMe] = useState(true);
               />
               <h1>Need Quick Cash?</h1>
               <p>Sign up with Rupee Loan to apply for instant loans and track repayments.</p>
-              <button className="ghost" onClick={() => setIsRightPanelActive(true)}>
+              <button className="ghost signup-change-btn" onClick={() => setIsRightPanelActive(true)}>
                 Sign Up
               </button>
             </div>

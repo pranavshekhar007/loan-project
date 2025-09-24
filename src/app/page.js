@@ -189,9 +189,9 @@ export default function Home() {
             no hidden fees. */}
             Get the financial support you need in minutes. Our AI-powered platform offers personalized loan options with competitive rates and zero hidden fees.
           </p>
-          <div className="hero-btn">
+          {/* <div className="hero-btn">
             Apply Now <i className="fas fa-arrow-right"></i>
-          </div>
+          </div> */}
 
           <div className="cta-buttons">
             <a href="#" className="btn">
@@ -362,18 +362,18 @@ export default function Home() {
                 viewport={{ once: false }}
                 custom={i}
                 whileHover={{
-                  scale: 1.05,
-                  y: -5,
+                  scale: 0.3,
+                  y: -4,
                   boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
                 }}
                 transition={{ type: "spring", stiffness: 150 }}
               >
                 <div className="card-content">
                   <h4 className="service-title">
-                    <div className="service-icon">
+                    {/* <div className="service-icon">
                       <i className={service?.icon}></i>
-                      {/* <img src={service?.icon}  alt="icon" style={{height:"40px" , width:"40px"}}></img> */}
-                    </div>
+                     
+                    </div> */}
                     {service?.name}
                   </h4>
                   <p className="service-description">{service?.description}</p>

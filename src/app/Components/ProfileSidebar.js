@@ -176,7 +176,7 @@ const ProfileSidebar = ({title}) => {
   ];
 
   const [openDropdown, setOpenDropdown] = useState(null);
-
+const [isClosing, setIsClosing] = useState(false);
   const [showLoginPopup, setShowLoginPopup] = useState(null);
 
   const handleClick = (item) => {
@@ -200,18 +200,26 @@ const ProfileSidebar = ({title}) => {
   };
 
   const handleLogut = () => {
-    console.log("Logging out...");
+  setIsClosing(true);
+  setTimeout(() => {
     updateLoggedUserData(null);
     localStorage.removeItem("user");
     sessionStorage.removeItem("user");
-    console.log("Logged out...");
     toast.success("You’ve been logged out.");
     router.push("/sign-up");
-  };
+    setShowLoginPopup(false);
+    setIsClosing(false);
+  }, 300);
+};
 
   const handleClosePopup = () => {
+  setIsClosing(true);
+  setTimeout(() => {
     setShowLoginPopup(false);
-  }
+    setIsClosing(false);
+  }, 300);
+};
+
 
    const getInitials = (firstName, lastName) => {
     if (!firstName && !lastName) return "U"; // default U = User
@@ -260,7 +268,7 @@ const ProfileSidebar = ({title}) => {
 
               {/* Submenu render only if children exist */}
               {item.children && openDropdown === item.name && (
-                <div className="submenu " style={{ paddingLeft: "43px" }}>
+                <div className={`submenu ${openDropdown === item.name ? "open" : ""}`} style={{ paddingLeft: "43px" }}>
                   {item.children.map((child, idx) => (
                     <div
                       key={idx}
@@ -348,7 +356,7 @@ const ProfileSidebar = ({title}) => {
 
                 {/* Submenu render only if children exist */}
                 {item.children && openDropdown === item.name && (
-                  <div className="submenu " style={{ paddingLeft: "43px" }}>
+                  <div className={`submenu ${openDropdown === item.name ? "open" : ""}`} style={{ paddingLeft: "43px" }}>
                     {item.children.map((child, idx) => (
                       <div
                         key={idx}

@@ -47,8 +47,10 @@ const page = () => {
         otp: otp,
       });
 
+      const storedPhone = sessionStorage.getItem("signupPhone");
+
        useEffect(() => {
-    const storedPhone = sessionStorage.getItem("signupPhone");
+    
     if (storedPhone) {
       setOtpVerifyData((prev) => ({ ...prev, phone: storedPhone }));
     }
@@ -92,7 +94,10 @@ const page = () => {
 
            
                   <h1 style={{textAlign:"center"}}>Verify OTP</h1>
-                   <p>Enter the OTP sent to your phone</p>
+                   {/* <p className='text-center'>Enter the OTP sent to your phone Number <strong>{storedPhone}</strong></p> */}
+                    <p className="text-center">
+  Please enter the OTP sent to <strong>{storedPhone}</strong>
+</p>
 
                     <div className="otp-inputs">
                   {otp.map((digit, i) => (

@@ -5146,6 +5146,31 @@ p {
    transition: opacity 0.5s ease;
  }
 
+  .rl-step-container {
+   display: flex;
+   align-items: center;
+   max-width: 1300px;
+   width: 90%;
+   margin: 0 auto;
+   z-index: 2;
+   position: relative;
+   gap: 80px;
+   background: white;
+   border-radius: 25px;
+   box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.15);
+   padding: 40px;
+   transform: translateY(50px);
+   opacity: 0;
+   transition: all 0.8s ease;
+   margin-top: 55px;
+ }
+
+ @media (max-width:996px) {
+    .rl-step-container {
+      margin-top: 0px;
+    }
+ }
+
  @media (min-width: 996px) and (max-width: 1200px) {
     .rl-step-1 , .rl-step-2 , .rl-step-3{
   position: sticky;
@@ -5183,23 +5208,7 @@ p {
  }
 
 
- .rl-step-container {
-   display: flex;
-   align-items: center;
-   max-width: 1300px;
-   width: 90%;
-   margin: 0 auto;
-   z-index: 2;
-   position: relative;
-   gap: 80px;
-   background: white;
-   border-radius: 25px;
-   box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.15);
-   padding: 40px;
-   transform: translateY(50px);
-   opacity: 0;
-   transition: all 0.8s ease;
- }
+
 
  .rl-step.active .rl-step-container {
    transform: translateY(0);
@@ -5514,7 +5523,7 @@ p {
    .rl-step {
      position: relative;
      height: auto;
-     padding: 80px 0;
+     padding: 30px 0;
      opacity: 1 !important;
    }
 
@@ -9777,7 +9786,7 @@ p {
    border-radius: 10px;
    margin-bottom: 8px;
    cursor: pointer;
-   transition: all 0.3s;
+  transition: background-color 0.5s, color 0.5s;
    color: #4a5568;
    font-weight: 500;
  }
@@ -9789,11 +9798,13 @@ p {
  .menu-item:hover {
    background: #f1f5f9;
    color: #281b36;
+    transform: translateX(1px);
  }
 
  .menu-item.active {
    background: #281b36;
    color: white;
+     transform: scale(1.02); 
  }
 
  .menu-item i {
@@ -10193,7 +10204,17 @@ p {
  .loans-table tbody tr {
    position: relative;
    background-color: transparent;
+    transition: all 0.3s ease;
+     border-radius: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
  }
+
+ .loans-table tbody tr:hover {
+  background-color: #f9f6ff;
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+}
 
  .loans-table tbody tr::after {
    content: "";
@@ -10247,6 +10268,29 @@ overflow-x: scroll;
  }
 
 
+ .loans-table tbody tr:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.loans-table tbody tr:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.loans-table tbody tr:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.loans-table tbody tr:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeInRow {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
  .loan-status {
    text-align: center;
    border-radius: 8px;
@@ -10409,24 +10453,74 @@ overflow-x: scroll;
    color: var(--primary);
    font-weight: bold;
  }
+ /* .submenu {
+  transition: all 1s ease-in-out;
+} */
+
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 1s ease-in-out;
+}
+
+.submenu.open {
+  max-height: 500px; 
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
 
  .ntfDiv {
    background-color: #faf5ff;
    border: 1px solid #f1eef1;
    border-radius: 12px;
    box-shadow: 0px 4px 10px rgba(128, 128, 128, 0.3);
+   transition: all 0.3s ease-in-out;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.5s ease forwards;
+
  }
+ .ntfDiv:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0px 6px 14px rgba(128, 128, 128, 0.35);
+  background-color: #e6e0ed;
+  cursor: pointer;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
  .notify-cat {
    background-color: white;
    color: #000;
    border-radius: 20px;
    width: fit-content;
+   transition: all 0.3s ease;
  }
+
+ .notify-cat:hover {
+  background-color: #e6e0ed;
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
 
  .active-notify {
    background-color: var(--primary);
    color: white;
+   
  }
 
  .date-time {
@@ -10434,9 +10528,16 @@ overflow-x: scroll;
  }
 
  .ntf-icon {
-   width: 26px;
-   height: 26px;
- }
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+
+.ntfDiv:hover .ntf-icon {
+  transform: rotate(10deg) scale(1.1);
+}
+
 
  .ntf-message {
    /* font-size: 17px; */
@@ -10707,3 +10808,91 @@ overflow-x: scroll;
    padding: 8% 6% ;
  }
  }
+
+ /* Overlay animation */
+.payment-popup {
+  animation: fadeInBg 0.3s ease forwards;
+}
+
+@keyframes fadeInBg {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+.payment-popup .bg-white {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: popupScale 0.3s ease forwards;
+}
+
+@keyframes popupScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.payment-popup.closing {
+  animation: fadeOutBg 0.3s ease forwards;
+}
+@keyframes fadeOutBg {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+.payment-popup.closing .bg-white {
+  animation: popupScaleOut 0.3s ease forwards;
+}
+@keyframes popupScaleOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.8); }
+}
+.loans-detail-card {
+  border-radius: 16px;
+  background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* animation: fadeInUp 0.5s ease both; */
+}
+
+/* Hover effect */
+.loans-detail-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.signup-change-btn{
+  margin-top: 32px;
+}
+@media (max-width:1200px) {
+   .signup-change-btn{
+  margin-top: 20px;
+}
+}
+@media (max-width:998px) {
+   .signup-change-btn{
+  margin-top: 44px;
+}
+}
+
+.signin-change-btn{
+  margin-top: 59px;
+}
+@media (max-width:1200px) {
+   .signin-change-btn{
+  margin-top: 10px;
+}
+}
+@media (max-width:998px) {
+   .signin-change-btn{
+  margin-top: 25px;
+}
+}
+

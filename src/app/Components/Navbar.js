@@ -180,7 +180,7 @@ export default function Navbar() {
               </li>
 
               {/* <!-- Other Menus --> */}
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a
                   className={`nav-link ${
                     pathname === "/save" ? "nav-link-active" : ""
@@ -189,8 +189,8 @@ export default function Navbar() {
                 >
                   Save{" "}
                 </a>
-              </li>
-              <li className="nav-item">
+              </li> */}
+              {/* <li className="nav-item">
                 <a
                   className={`nav-link ${
                     pathname === "/insure" ? "nav-link-active" : ""
@@ -199,8 +199,8 @@ export default function Navbar() {
                 >
                   Insure{" "}
                 </a>
-              </li>
-              <li className="nav-item">
+              </li> */}
+              {/* <li className="nav-item">
                 <a
                   className={`nav-link ${
                     pathname === "/track" ? "nav-link-active" : ""
@@ -209,8 +209,8 @@ export default function Navbar() {
                 >
                   Track{" "}
                 </a>
-              </li>
-              <li className="nav-item">
+              </li> */}
+              {/* <li className="nav-item">
                 <a
                   className={`nav-link ${
                     pathname === "/pay" ? "nav-link-active" : ""
@@ -219,7 +219,7 @@ export default function Navbar() {
                 >
                   Pay{" "}
                 </a>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <a
                   className={`nav-link ${
@@ -235,7 +235,7 @@ export default function Navbar() {
                   className={`nav-link ${
                     pathname === "/support" ? "nav-link-active" : ""
                   }`}
-                  href="/support"
+                  href="/contact"
                 >
                   Contact Us
                 </a>
@@ -358,7 +358,7 @@ export default function Navbar() {
             </li>
 
             {/* <!-- Other Menus --> */}
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a className="nav-link" href="#">
                 Save
               </a>
@@ -377,7 +377,7 @@ export default function Navbar() {
               <a className="nav-link" href="#">
                 Pay
               </a>
-            </li>
+            </li> */}
             <li className="nav-item">
               <a className="nav-link" href="#">
                 Calculators
