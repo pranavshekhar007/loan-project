@@ -1,13 +1,13 @@
 import axios from "axios";
 
-import { BASE_URL } from "../utils/api_base_url_configration";
+import { AWS_BASE_URL } from "../utils/api_base_url_configration";
 
 //loan list
 
 export const loanListServ = async (formData) => {
 
   try {
-    const response = await axios.post(BASE_URL + "loan/list",formData );
+    const response = await axios.post(AWS_BASE_URL + "loan/list",formData );
     return response.data;
   } catch (error) {
     console.error("loan list Error:", error);
@@ -20,7 +20,7 @@ export const loanListServ = async (formData) => {
 export const AppliedLoanListServ = async (formData) => {
 
   try {
-    const response = await axios.post(BASE_URL + "loan-application/list",formData );
+    const response = await axios.post(AWS_BASE_URL + "loan-application/list",formData );
     return response.data;
   } catch (error) {
     console.error("loan list Error:", error);
@@ -33,7 +33,7 @@ export const AppliedLoanListServ = async (formData) => {
 export const AppliedLoanDetailsServ = async (formData , id) => {
 
   try {
-    const response = await axios.get(BASE_URL + `loan-application/details/${id}`);
+    const response = await axios.get(AWS_BASE_URL + `loan-application/details/${id}`);
     return response.data;
   } catch (error) {
     console.error("loan list Error:", error);

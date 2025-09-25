@@ -780,7 +780,7 @@ const page = () => {
                         <select
                           className="info-input"
                           name="gender"
-                          value={formData?.gender}
+                          value={formData?.gender || ""}
                           onChange={handleChange}
                         >
                           <option value="">Select Gender</option>
