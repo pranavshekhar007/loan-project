@@ -14,6 +14,8 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useRouter } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 const page = () => {
 
   const Transactions = [

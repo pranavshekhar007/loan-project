@@ -259,12 +259,12 @@ const page = () => {
                     )}
 
                      <div className="profile-pic-overlay">
-    <button className="icon-btn">
+    <div className="icon-btn">
       <FaEye />   {/* View icon */}
-    </button>
-    <button className="icon-btn">
+    </div>
+    <div className="icon-btn">
       <FaEdit />  {/* Edit icon */}
-    </button>
+    </div>
   </div>
                   </label>
                   {isEditing && (
