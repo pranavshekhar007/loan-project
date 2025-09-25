@@ -154,16 +154,16 @@ const page = () => {
     </tr>
   ) :  loans.map((loan) => (
                             <tr key={loan._id} onClick={() => handleDtailClick(loan)}>
-                              <td className="ps-2">{loan.code}</td>
-                              <td>{loan.loanId?.name}</td>
-                              <td>{loan.branchId?.name}</td>
-                              <td>{loan?.appliedDate}</td>
+                              <td className="ps-2">{loan.code || "N/A"}</td>
+                              <td>{loan.loanId?.name || "N/A"}</td>
+                              <td>{loan.branchId?.name || "N/A"}</td>
+                              <td>{loan?.appliedDate || "N/A"}</td>
                               {/* <td>{loan.endDate}</td> */}
-                              <td>₹{loan.loanAmount}</td>
+                              <td>₹{loan.loanAmount || "N/A"}</td>
                               <td
                                 className="loan-status status-pending"
                               >
-                               {loan.status.charAt(0).toUpperCase() + loan.status.slice(1)}
+                               {loan.status.charAt(0).toUpperCase() + loan.status.slice(1) || "N/A"}
                               </td>
                               <td>
                                 <div className="d-flex justify-content-center text-center">
@@ -224,18 +224,18 @@ const page = () => {
         loans.map((loan, index) => (
           <div key={index} className="col-sm-6 col-12 p-2">
             <div className="loan-card"  onClick={() => handleDtailClick(loan)}>
-              <h3>{loan.loanId?.name}</h3>
-              <p className="d-flex  gap-2 " ><strong  style={{width:"110px"}}>Id:</strong> {loan.code}</p>
-              <p className="d-flex  gap-2 "><strong  style={{width:"110px"}}>Branch:</strong> {loan.branchId?.name}</p>
-              <p className="d-flex  gap-2 "><strong  style={{width:"110px"}}>Amount:</strong> ₹{loan.loanAmount}</p>
+              <h3>{loan.loanId?.name || "N/A"}</h3>
+              <p className="d-flex  gap-2 " ><strong  style={{width:"110px"}}>Id:</strong> {loan.code || "N/A"}</p>
+              <p className="d-flex  gap-2 "><strong  style={{width:"110px"}}>Branch:</strong> {loan.branchId?.name || "N/A"}</p>
+              <p className="d-flex  gap-2 "><strong  style={{width:"110px"}}>Amount:</strong> ₹{loan.loanAmount || "N/A"}</p>
               {/* <p className="d-flex  gap-2 "><strong  style={{width:"110px"}}>Start Date:</strong> {loan.startDate}</p> */}
-              <p className="d-flex  gap-2 "><strong  style={{width:"110px"}}>Applied Date:</strong> {loan?.appliedDate}</p>
+              <p className="d-flex  gap-2 "><strong  style={{width:"110px"}}>Applied Date:</strong> {loan?.appliedDate || "N/A"}</p>
               <p className="d-flex gap-2">
                 <strong  style={{width:"110px"}}>Status:</strong>{" "}
                 <span
                   className="loan-status status-pending"
                 >
-                  {loan.status.charAt(0).toUpperCase() + loan.status.slice(1)}
+                  {loan.status.charAt(0).toUpperCase() + loan.status.slice(1) || "N/A"}
                 </span>
               </p>
             </div>

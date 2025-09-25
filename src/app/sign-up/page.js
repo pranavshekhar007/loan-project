@@ -535,6 +535,7 @@ export default function AuthPage() {
 const [loadingSignIn, setLoadingSignIn] = useState(false);
 const [loadingSendOtp, setLoadingSendOtp] = useState(false);
 const [loadingResendOtp, setLoadingResendOtp] = useState(false);
+const [otpSent, setOtpSent] = useState(false);
 
   
 
@@ -685,6 +686,7 @@ const [rememberMe, setRememberMe] = useState(true);
       if (res?.statusCode == 200){
          console.log("login successfully" , res);
          toast.success(res?.message)
+           setOtpSent(true);
       } 
     }catch(err){
         console.log("login failed" , err)
@@ -957,7 +959,8 @@ const [rememberMe, setRememberMe] = useState(true);
 
                 <button type="submit" className="otp" onClick={handleSendOtp} >{loadingSendOtp ? <FaSpinner className="spin" /> : "Send OTP"}
                  </button>
-
+               {otpSent && (
+                <>
                 <div className="otp-inputs">
                   {otp.map((digit, i) => (
                     <input
@@ -982,7 +985,10 @@ const [rememberMe, setRememberMe] = useState(true);
           
 
             <button type="submit">{loadingSignIn ? <FaSpinner className="spin" /> : "Sign In"}
-</button>
+</button> 
+</>)
+}    
+<br></br>
 
             <a
               href="#"

@@ -165,12 +165,12 @@ const page = () => {
                       ) : (
                         loans.map((loan) => (
                           <tr key={loan._id}  onClick={() => handleDtailClick(loan)}>
-                            <td className="ps-2">{loan.code}</td>
-                            <td>{loan.loanId?.name}</td>
-                            <td>{loan.branchId?.name}</td>
-                            <td>{loan.startDate}</td>
-                            <td>{loan.endDate}</td>
-                            <td>₹{loan.loanAmount}</td>
+                            <td className="ps-2">{loan.code  || "N/A"}</td>
+                            <td>{loan.loanId?.name  || "N/A"}</td>
+                            <td>{loan.branchId?.name || "N/A"}</td>
+                            <td>{loan.startDate || "N/A"}</td>
+                            <td>{loan.endDate || "N/A"}</td>
+                            <td>₹{loan.loanAmount || "N/A"}</td>
                             <td
                               className="loan-status status-active"
                             >
@@ -249,30 +249,30 @@ const page = () => {
                     loans.map((loan, index) => (
                       <div key={index} className="col-sm-6 col-12 p-2">
                         <div className="loan-card"  onClick={() => handleDtailClick(loan)}>
-                          <h3>{loan.loanId?.name}</h3>
+                          <h3>{loan.loanId?.name || "N/A"}</h3>
                           <p className="d-flex  gap-2 ">
                             <strong style={{ width: "110px" }}>Id:</strong>{" "}
-                            {loan.code}
+                            {loan.code || "N/A"}
                           </p>
                           <p className="d-flex  gap-2 ">
                             <strong style={{ width: "110px" }}>Branch:</strong>{" "}
-                            {loan.branchId?.name}
+                            {loan.branchId?.name || "N/A"}
                           </p>
                           <p className="d-flex  gap-2 ">
                             <strong style={{ width: "110px" }}>Amount:</strong>{" "}
-                            ₹{loan.loanAmount}
+                            ₹{loan.loanAmount || "N/A"}
                           </p>
                           <p className="d-flex  gap-2 ">
                             <strong style={{ width: "110px" }}>
                               Start Date:
                             </strong>{" "}
-                            {loan.startDate}
+                            {loan.startDate || "N/A"}
                           </p>
                           <p className="d-flex  gap-2 ">
                             <strong style={{ width: "110px" }}>
                               End Date:
                             </strong>{" "}
-                            {loan.endDate}
+                            {loan.endDate || "N/A"}
                           </p>
                           <p className="d-flex gap-2">
                             <strong style={{ width: "110px" }}>Status:</strong>{" "}

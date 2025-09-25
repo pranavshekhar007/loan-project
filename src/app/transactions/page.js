@@ -31,7 +31,7 @@ const page = () => {
             <div className="main-content">
                 <div className="section">
                     <h2 className="section-title">
-                        Applied Loans
+                        Transactions
                         {/* <button className="edit-btn" id="editProfileBtn">
                             <i className="fas fa-edit"></i> Edit Profile
                         </button> */}
