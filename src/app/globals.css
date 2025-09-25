@@ -10404,7 +10404,7 @@ overflow-x: scroll;
    width: 100%;
    height: 100%;
    object-fit: cover;
-   /* image fix */
+ 
  }
 
  .default-pic {
@@ -10412,6 +10412,27 @@ overflow-x: scroll;
    color: #bbb;
    margin-left: -15px;
  }
+
+ .profile-pic-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;       
+  transition: opacity 0.3s; 
+  border-radius: 50%;
+}
+
+
+.profile-pic-wrapper:hover .profile-pic-overlay {
+  opacity: 1;
+}
 
  .loan-cards {
    /* display: flex;

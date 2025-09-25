@@ -13,6 +13,7 @@ import {
 import { LoggedDataContext } from "../context/Context";
 import { toast } from "react-toastify";
 import CountryPhoneInput from "../Components/CountryPhoneInput";
+import { FaEye, FaEdit } from "react-icons/fa";
 
 const page = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -215,6 +216,33 @@ const page = () => {
               <div className="section" style={{ textAlign: "start" }}>
                 
 
+                {/* <div className="profile-picture">
+                  <label
+                    htmlFor="profilePicUpload"
+                    className="profile-pic-wrapper"
+                  >
+                    {profilePic ? (
+                      <img
+                        src={profilePic}
+                        alt="Profile Photo"
+                        className="profile-pic"
+                      />
+                    ) : (
+                      <i className="fas fa-user-circle default-pic"></i>
+                    )}
+                  </label>
+                  {isEditing && (
+                    <input
+                      type="file"
+                      id="profilePicUpload"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      onChange={handleImageChange}
+                    />
+                  )}
+                  <label className="profile-label">Profile Picture</label>
+                </div> */}
+
                 <div className="profile-picture">
                   <label
                     htmlFor="profilePicUpload"
@@ -229,6 +257,15 @@ const page = () => {
                     ) : (
                       <i className="fas fa-user-circle default-pic"></i>
                     )}
+
+                     <div className="profile-pic-overlay">
+    <button className="icon-btn">
+      <FaEye />   {/* View icon */}
+    </button>
+    <button className="icon-btn">
+      <FaEdit />  {/* Edit icon */}
+    </button>
+  </div>
                   </label>
                   {isEditing && (
                     <input
