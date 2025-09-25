@@ -47,10 +47,10 @@ const page = () => {
         otp: otp,
       });
 
-      const storedPhone = sessionStorage.getItem("signupPhone");
+     
 
        useEffect(() => {
-    
+       const storedPhone = sessionStorage.getItem("signupPhone");
     if (storedPhone) {
       setOtpVerifyData((prev) => ({ ...prev, phone: storedPhone }));
     }
