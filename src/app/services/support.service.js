@@ -1,13 +1,13 @@
 import axios from "axios";
 
-import { AWS_BASE_URL } from "../utils/api_base_url_configration";
+import { VERCEL_BASE_URL } from "../utils/api_base_url_configration";
 
 //faq list
 
 export const faqListServ = async (formData) => {
 
   try {
-    const response = await axios.post(AWS_BASE_URL + "support/list-faq",formData );
+    const response = await axios.post(VERCEL_BASE_URL + "support/list-faq",formData );
     return response.data;
   } catch (error) {
     console.error("faq list Error:", error);
@@ -18,7 +18,7 @@ export const faqListServ = async (formData) => {
 export const contactQueryServ = async (formData) => {
 
   try {
-    const response = await axios.post(AWS_BASE_URL + "support/add-contact-query" , formData);
+    const response = await axios.post(VERCEL_BASE_URL + "support/add-contact-query" , formData);
     return response.data;
   } catch (error) {
     console.error("contact Error:", error);
