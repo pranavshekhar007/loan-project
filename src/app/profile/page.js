@@ -34,6 +34,10 @@ const page = () => {
   const id = loggedUserData?._id;
   const token = loggedUserData?.token;
 
+const [showPreview, setShowPreview] = useState(false);
+const fileInputRef = useRef(null);
+
+
   const getUserData = async () => {
     try {
       const res = await userDetailsServ(id);
@@ -243,41 +247,52 @@ const page = () => {
                   <label className="profile-label">Profile Picture</label>
                 </div> */}
 
-                <div className="profile-picture">
-                  <label
-                    htmlFor="profilePicUpload"
-                    className="profile-pic-wrapper"
-                  >
-                    {profilePic ? (
-                      <img
-                        src={profilePic}
-                        alt="Profile Photo"
-                        className="profile-pic"
-                      />
-                    ) : (
-                      <i className="fas fa-user-circle default-pic"></i>
-                    )}
+               <div className="profile-picture">
+  <div className="profile-pic-wrapper">
+    {profilePic ? (
+      <img src={profilePic} alt="Profile Photo" className="profile-pic" />
+    ) : (
+      <i className="fas fa-user-circle default-pic"></i>
+    )}
 
-                     <div className="profile-pic-overlay">
-    <div className="icon-btn">
-      <FaEye />   {/* View icon */}
+    <div className="profile-pic-overlay">
+      <div className="icon-btn" onClick={() => setShowPreview(true)}>
+        <FaEye />
+      </div>
+      {isEditing && (
+    <div className="icon-btn" onClick={() => fileInputRef.current?.click()}>
+      <FaEdit />
     </div>
-    <div className="icon-btn">
-      <FaEdit />  {/* Edit icon */}
+  )}
     </div>
   </div>
-                  </label>
-                  {isEditing && (
-                    <input
-                      type="file"
-                      id="profilePicUpload"
-                      accept="image/*"
-                      style={{ display: "none" }}
-                      onChange={handleImageChange}
-                    />
-                  )}
-                  <label className="profile-label">Profile Picture</label>
-                </div>
+
+  {/* Hidden Input */}
+  {isEditing && (
+    <input
+      ref={fileInputRef}
+      type="file"
+      id="profilePicUpload"
+      accept="image/*"
+      style={{ display: "none" }}
+      onChange={handleImageChange}
+    />
+  )}
+
+  <label className="profile-label">Profile Picture</label>
+</div>
+
+
+{showPreview && profilePic && (
+  <div className="modal-backdrop" onClick={() => setShowPreview(false)}>
+    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <img src={profilePic} alt="Preview" className="modal-image" />
+      <button className="close-btn" onClick={() => setShowPreview(false)}>
+        ✖
+      </button>
+    </div>
+  </div>
+)}
 
                 {/* <hr></hr> */}
 

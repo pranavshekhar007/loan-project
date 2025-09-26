@@ -126,7 +126,13 @@ const page = () => {
                                 </td>
                               </tr>
                             ))
-                        :emiList.map((loan) => (
+                        : emiList.length === 0 ? (
+    <tr>
+      <td colSpan="6" className="text-center py-4">
+        You don’t have any EMI reminders right now
+      </td>
+    </tr>
+  ) : emiList.map((loan) => (
                         <tr key={loan.applicationCode}>
                           <td className="ps-2">{loan.loanName}</td>
                           <td>{loan.branchName}</td>
@@ -189,7 +195,13 @@ const page = () => {
                             </div>
                           </div>
                         ))
-                      :emiList.map((loan, index) => (
+                      : emiList.length === 0 ? (
+    <tr>
+     <div className="col-12 text-center py-4">
+    You don’t have any EMI reminders right now
+  </div>
+    </tr>
+  ) : emiList.map((loan, index) => (
                     <div className="col-sm-6 col-12 p-2">
                     <div key={index} className="loan-card ">
                       <h3>{loan.loanName}</h3>

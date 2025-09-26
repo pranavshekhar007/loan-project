@@ -32,6 +32,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+
+         <link rel="icon" type="image/png" href="/assets/logo.jpeg" />
+        
       <link
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
           rel="stylesheet"
