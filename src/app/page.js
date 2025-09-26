@@ -41,8 +41,8 @@ export default function Home() {
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.2,
-        duration: 0.6,
+        delay: 0.2,
+        duration: 0.2,
         ease: "easeOut",
       },
     }),
@@ -362,7 +362,7 @@ export default function Home() {
                 viewport={{ once: false }}
                 custom={i}
                 whileHover={{
-                  scale: 0.3,
+                  scale: 1.1,
                   y: -4,
                   boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
                 }}

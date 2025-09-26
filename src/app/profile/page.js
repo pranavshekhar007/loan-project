@@ -13,7 +13,7 @@ import {
 import { LoggedDataContext } from "../context/Context";
 import { toast } from "react-toastify";
 import CountryPhoneInput from "../Components/CountryPhoneInput";
-import { FaEye, FaEdit } from "react-icons/fa";
+import { FaEye, FaEdit, FaSpinner } from "react-icons/fa";
 
 const page = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -22,6 +22,8 @@ const page = () => {
   const { loggedUserData, updateLoggedUserData } =
     useContext(LoggedDataContext);
   const [errors, setErrors] = useState({});
+
+   const [loadingUpdate, setLoadingUpdate] = useState(false);
 
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
@@ -177,6 +179,8 @@ const fileInputRef = useRef(null);
         return;
       }
 
+      setLoadingUpdate(true)
+
       fd.append("id", id);
       const res = await userDetailsUpdateServ(fd, token);
 
@@ -186,10 +190,13 @@ const fileInputRef = useRef(null);
         updateLoggedUserData(res?.data);
         setIsEditing(false);
         getUserData();
+        setLoadingUpdate(false)
       }
+
     } catch (err) {
       console.log("Update error:", err);
       toast.error(err?.message);
+       setLoadingUpdate(false);
     }
   };
 
@@ -717,11 +724,19 @@ const fileInputRef = useRef(null);
                     style={{ marginTop: "20px", textAlign: "end" }}
                   >
                     <button
-                      className="save-btn"
+                      className="save-btn text-center"
                       onClick={handleUpdate}
-                      style={{ marginTop: "6px", width: "fit-content" }}
+                      style={{ marginTop: "6px", width: "200px" }}
                     >
-                      <i className="fas fa-save"></i> Save Changes
+                      
+                       {loadingUpdate ? (
+  <FaSpinner className="spin"  />
+) : (
+  <>
+    <i className="fas fa-save"></i> Save Changes
+  </>
+)}
+
                     </button>
                   </div>
                 )}

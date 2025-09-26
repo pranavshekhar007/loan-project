@@ -10739,7 +10739,7 @@ overflow-x: scroll;
 
  /* EMI calculator */
 
- .emi-input-group{
+ /* .emi-input-group{
   padding: 6px 10px;
    background-color: #f3f0f7;
    color: #402b56;
@@ -10748,6 +10748,36 @@ overflow-x: scroll;
    display: flex;
    gap: 4px;
    align-items: center;
+ }
+
+ .calculatorInput {
+   background-color: #f3f0f7;
+   color: #402b56;
+   font-weight: 600;
+   border: none;
+ }
+
+ .calculatorInput:focus .emi-input-group{
+   outline: none;
+   border: 1px solid #58446ddb;
+ }
+
+  .calculatorInput:focus{
+   outline: none;
+  
+ } */
+
+  .emi-input-group{
+  padding: 6px 10px;
+   background-color: #f3f0f7;
+   color: #402b56;
+   font-weight: 600;
+   border: none;
+   display: flex;
+   gap: 4px;
+   align-items: center;
+   border: 1px solid #e9e5ee;
+   border-radius: 10px;
  }
 
  .calculatorInput {
@@ -10818,6 +10848,10 @@ overflow-x: scroll;
   background: #e0dff0;
 }
 
+.emi-calulator-output p{
+  font-size: 13px;
+
+}
 
 .emi-output {
   background-color: #f3f0f7;
@@ -10983,4 +11017,12 @@ overflow-x: scroll;
 
 .icon-btn{
   color: white;
+}
+
+.readonly-phone{
+  width: 100%;
+    font-size: 14px;
+    padding: 14px 15px 14px 50px;
+    background-color: rgb(248, 249, 250);
+    border: 1px solid rgb(233, 236, 239);
 }
