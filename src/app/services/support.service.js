@@ -25,3 +25,17 @@ export const contactQueryServ = async (formData) => {
     throw error;
   }
 };
+
+// terms and condition and privacy policy
+
+export const supportDetailsServ  = async () => {
+
+  try {
+    const response = await axios.get(BASE_URL + "support/details" );
+    return response.data;
+  } catch (error) {
+    console.error("contact Error:", error);
+    throw error;
+  }
+  
+};

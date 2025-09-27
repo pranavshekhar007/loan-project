@@ -11026,3 +11026,29 @@ overflow-x: scroll;
     background-color: rgb(248, 249, 250);
     border: 1px solid rgb(233, 236, 239);
 }
+/* support css */
+
+.ticket-table {
+  border-collapse: separate;
+  border-spacing: 0 12px;  
+}
+.ticket-table tbody tr {
+  background: #fff;      
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.ticket-table td {
+  background: #fff;       
+}
+
+.ticket-status{
+ border: 1px solid var(--primary);
+ border-radius: 8px;
+ padding: 3px;
+    width: 110px;
+    font-size: 1rem;
+    background-color: #efebf4;
+    border: 1px solid #d8d3dd;
+    text-align: center;
+    margin-bottom: 4px;
+}

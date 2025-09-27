@@ -162,8 +162,8 @@ const ProfileSidebar = ({title}) => {
       children: [
         { name: "Contact", icon: "fas fa-envelope", path: "/support" },
         { name: "FAQ", icon: "fas fa-question-circle", path: "/faq" },
-        { name: "Privacy Policy", icon: "fas fa-user-shield", path: "" },
-        { name: "Terms & Conditions", icon: "fas fa-file-contract", path: "" },
+        { name: "Privacy Policy", icon: "fas fa-user-shield", path: "/privacy-policy" },
+        { name: "Terms & Conditions", icon: "fas fa-file-contract", path: "/terms-condtion" },
       ],
       path: "",
     },

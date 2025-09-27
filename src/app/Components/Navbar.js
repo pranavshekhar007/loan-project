@@ -379,8 +379,8 @@ export default function Navbar() {
               </a>
             </li> */}
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Calculators
+              <a className="nav-link" href="/calculator">
+                Calculator
               </a>
             </li>
             <li className="nav-item">

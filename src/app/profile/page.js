@@ -526,7 +526,44 @@ const fileInputRef = useRef(null);
                       )}
                     </div>
                   </div>
-                  <div className="info-item">
+
+                 
+
+                    <div className="info-item">
+                    <div className="input-with-icon">
+                   
+                      {isEditing ? (
+                          <>
+                           <div className="input-icon" style={{top:"30%"}}>
+                        <i class="fa-solid fa-house-user"></i>
+                      </div>
+                      <label for="">Address</label>
+
+                        <textarea
+                        rows={2}
+                          type="text"
+                          name="address"
+                          className="info-input"
+                          value={formData?.address}
+                          onChange={handleChange}
+                        
+                        />
+                        </>
+                      ) : (
+                        <>
+                           <div className="input-icon">
+                        <i class="fa-solid fa-house-user"></i>
+                      </div>
+                      <label for="">Address</label>
+                        <div className="info-value">{formData?.address}</div>
+                        </>
+                      )}
+                    </div>
+                    
+                  </div>
+
+
+                   <div className="info-item">
                     <div className="input-with-icon">
                       <div className="input-icon">
                         <i className="fa-solid fa-location-dot"></i>

@@ -75,6 +75,7 @@ export default function Footer() {
           <div className="footer-links">
             <Link href="/privacy-policy">Privacy Policy</Link>
             <Link href="/terms-condtion">Terms of Service</Link>
+            <Link href="/cookie-policy">Cookie Policy</Link>
             <a href="#">Sitemap</a>
           </div>
         </div>

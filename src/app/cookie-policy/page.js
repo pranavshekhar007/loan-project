@@ -6,33 +6,34 @@ import { supportDetailsServ } from '../services/support.service';
 
 const page = () => {
 
-  const [details , setDetails] = useState();
-   
- const getDetails = async () => {
-   try{
-    const res = await supportDetailsServ();
-    setDetails(res?.data?.privacyPolicy);
-  }  
-  catch{
-      console.log("getting error")
-  }
- }
-
- useEffect(() => {
-  getDetails();
- },[])
+    const [details , setDetails] = useState();
+     
+   const getDetails = async () => {
+     try{
+      const res = await supportDetailsServ();
+      setDetails(res?.data?.cookiePolicy);
+    }  
+    catch{
+        console.log("getting error")
+    }
+   }
+  
+   useEffect(() => {
+    getDetails();
+   },[])
 
   return (
     <div>
         <Navbar/> 
         <div className='container p-sm-5 p-4 mt-3'>
-            <h3 className='text-center'>Privacy Policy</h3>
+            <h3 className='text-center'>Cookie Policy</h3>
+
             {details ? (
           <div className='p-3'
             dangerouslySetInnerHTML={{ __html: details}}
           />
         ) : (
-          <p>Loading privacy policy...</p>
+          <p>Loading Cookie Policy ...</p>
         )}
         </div>
         <Footer/>     
