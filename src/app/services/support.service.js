@@ -39,3 +39,46 @@ export const supportDetailsServ  = async () => {
   }
   
 };
+
+// ticket category list
+
+export const ticketCategoryListServ  = async (payload) => {
+
+  try {
+    const response = await axios.post(BASE_URL + "ticket-category/list" , payload );
+    return response.data;
+  } catch (error) {
+    console.error("category Error:", error);
+    throw error;
+  }
+  
+};
+
+
+// support ticket create
+
+export const ticketCreateServ  = async (payload) => {
+
+  try {
+    const response = await axios.post(BASE_URL + "ticket/create" , payload );
+    return response.data;
+  } catch (error) {
+    console.error("ticket create Error:", error);
+    throw error;
+  }
+  
+};
+
+// support ticket list
+
+export const ticketlistServ  = async (payload) => {
+
+  try {
+    const response = await axios.post(BASE_URL + "ticket/list" , payload);
+    return response.data;
+  } catch (error) {
+    console.error("ticket create Error:", error);
+    throw error;
+  }
+  
+};

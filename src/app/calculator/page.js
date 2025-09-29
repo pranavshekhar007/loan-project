@@ -223,16 +223,16 @@ const page = () => {
           
           <div className="row ">
 
-             <div className="col-lg-5 col-12">
+             <div className="col-lg-12 col-12">
               <h3 className="fw-bold h3-big ">EMI Calculator</h3>
   
               <p className="pe-sm-5 pe-0 w-100 mt-4 " style={{fontSize:"1rem"}}>Looking to grow your wealth smartly? An EMI calculator is your go-to tool! By entering your monthly investment, tenure and expected returns, it instantly shows your potential earnings. Whether you're starting out or fine-tuning your strategy, this tool helps you plan better, stay on track and achieve your financial goals. Start using an SIP calculator today to make confident, informed investment decisions!</p>
             </div>
 
 
-            <div className="col-lg-7 py-4 col-12 p-3 shadow"  style={{borderRadius:"13px"}}>
-                 <h5 className="mb-4 fw-bold">EMI Calculator</h5>
-             <div className="row ">
+            <div className="col-lg-12 py-4 col-12 p-3 "  style={{borderRadius:"13px", boxShadow: "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px"}}>
+                 <h5 className=" fw-bold">EMI <span style={{color:"#3b294d"}}>Amount</span></h5>
+             <div className="row  align-items-center">
               <div className="col-md-6 p-3">
                     <div className="mb-5">
                 <div className="d-flex justify-content-between align-items-center mb-2">
@@ -329,19 +329,31 @@ const page = () => {
 </div>
               </div>
               </div>  
-              <div className="col-md-6 align-items-center emi-calulator-output p-3">
-                    <div className="d-flex flex-column justify-content-center align-items-center">
+              <div className="col-md-6 d-flex flex-column align-items-center emi-calulator-output justify-content-center p-3">
+                    
+                     <div className="mb-4 ">
+              <Pie
+                data={pieData}
+                options={pieOptions}
+                height={290}
+                width={290}
+              />
+            </div>
+
+                    <div className="w-100">
+                      <div className="d-flex flex-column justify-content-center align-items-center">
                       <h2 className="h2 mb-2" style={{color:"#3b294d"}}> ₹{emi.toFixed(2).toLocaleString()}</h2>
                       <p className="text-muted">Monthly EMI</p>
                     </div>
-                    <div className="d-flex justify-content-between mx-md-3">
+                    <div className="d-flex gap-5 justify-content-center mx-md-3">
                       <div className="d-flex flex-column justify-content-center align-items-center">
                       <h4 className="mb-2"> ₹{totalInterest.toFixed(2).toLocaleString()}</h4>
-                      <p className="text-muted">Total Interest Payable</p>
+                      <p className="text-muted mb-1">Total Interest Payable</p>
                     </div>
                     <div className="d-flex flex-column justify-content-center align-items-center">
                       <h4 className="mb-2">   ₹{totalPayment.toFixed(2).toLocaleString()}</h4>
-                      <p className="text-muted">Total Amount</p>
+                      <p className="text-muted mb-1">Total Amount</p>
+                    </div>
                     </div>
                     </div>
               </div>
@@ -351,16 +363,9 @@ const page = () => {
            
           </div>
             
-          <div className="row justify-content-center mt-5">
-            <div className="col-md-6 col-12">
-              <Pie
-                data={pieData}
-                options={pieOptions}
-                height={300}
-                width={300}
-              />
-            </div>
-          </div>
+          {/* <div className="row justify-content-center mt-5">
+           
+          </div> */}
          
         </div>
       </div>

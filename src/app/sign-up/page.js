@@ -523,6 +523,7 @@ import { FaSpinner } from "react-icons/fa";
 import { LoggedDataContext } from "../context/Context";
 import Footer from "../Components/Footer";
 import CountryPhoneInput from "../Components/CountryPhoneInput";
+import CountryPhone from "../Components/CountryPhone";
 
 export default function AuthPage() {
   const router = useRouter();
@@ -975,9 +976,17 @@ export default function AuthPage() {
                 <>
 
 <div className="form-group">
-               <div className="readonly-phone">
+               {/* <div className="readonly-phone">
     +{loginOtpFormData.countryCode} {loginOtpFormData.phone}
-  </div>
+  </div> */}
+  <CountryPhone
+     value={{
+                    phone: loginOtpFormData.phone,
+                    countryCode: loginOtpFormData.countryCode,
+                  }}
+
+                    onChange={() =>  { }  }
+  />
 
               </div>
 
