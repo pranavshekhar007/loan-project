@@ -5,6 +5,9 @@
 
  }
 
+ html{
+  overflow-x: hidden;
+ }
  * {
    margin: 0;
    padding: 0;
@@ -11126,7 +11129,7 @@ overflow-x: scroll;
 .panel-intro {
     color: #666;
     margin-bottom: 15px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 /* 4. Form and Flexible Textarea (Left Panel) */
@@ -11158,7 +11161,7 @@ overflow-x: scroll;
 .form-group label {
     font-weight: 600;
     color: #333;
-    font-size: 14px;
+    font-size: 16px;
     display: block;
     margin-bottom: 5px;
 }
@@ -11207,7 +11210,7 @@ input[type="text"], select {
 /* 5. Ticket List Styling (Right Panel) */
 
 .filter-bar {
-    display: flex;
+    /* display: flex; */
     gap: 15px;
     margin-bottom: 20px;
 }
@@ -11223,7 +11226,7 @@ input[type="text"], select {
 
 .tickets-list-container {
     flex-grow: 1;
-    overflow-y: auto; /* IMPORTANT: Allows only the list to scroll, not the whole screen */
+    /* overflow-y: auto;  */
     padding-right: 5px; /* Space for scrollbar */
     min-height: 0;
 }
@@ -11231,7 +11234,7 @@ input[type="text"], select {
 .tickets-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .tickets-table th, .tickets-table td {
@@ -11290,7 +11293,8 @@ input[type="text"], select {
 @media (max-width:998px) {
   .combined-support-container {
    
- 
+    height: 100%;
+    max-height: 100%;
     flex-direction: column !important;
 }
 
@@ -11299,4 +11303,75 @@ input[type="text"], select {
    
 }
 
+}
+
+
+@media (max-width:520px) {
+  .panel{
+    padding: 15px;
+  }
+}
+
+@media (max-width:400px) {
+  .pagination-area button{
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width:578px) {
+  
+.status-filter {
+   
+    width: 100%;
+    margin-top: 9px;
+}
+}
+
+.tickets-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ticket-card {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.ticket-card .status-tag {
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+
+.ticket-card-heading{
+    display: inline-block; 
+  width: 120px;
+  font-size: 1rem;
+}
+
+.ticket-card p {
+   font-size: 1rem;
+   margin-bottom: 4px;
+}
+
+.message{
+  padding: 5px 15px;
+  border-radius: 8px;
+  border:1px solid #ced4da
+}
+
+.message2{
+  padding: 5px 15px;
+  border-radius: 8px;
+  color: white;
+  background-color: var(--primary);
+  border:1px solid #ced4da
+}
+.message-time{
+  font-size: 0.6rem;
 }
