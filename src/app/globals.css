@@ -11096,8 +11096,8 @@ overflow-x: scroll;
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    display: flex; /* Split into two panels */
-    overflow: hidden; /* Prevents container scrolling */
+    /* display: flex; */
+    overflow: hidden; 
 }
 
 /* 3. Panel Styling */
@@ -11121,7 +11121,7 @@ overflow-x: scroll;
 /* Headings */
 .panel h3 {
     color: var(--primary);
-    border-bottom: 2px solid var(--secondary-color); 
+    /* border-bottom: 2px solid var(--secondary-color);  */
     padding-bottom: 8px;
     margin-bottom: 10px;
 }
@@ -11328,9 +11328,9 @@ input[type="text"], select {
 }
 
 .tickets-card-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* gap: 1rem; */
 }
 
 .ticket-card {
@@ -11348,21 +11348,23 @@ input[type="text"], select {
 }
 
 
-.ticket-card-heading{
-    display: inline-block; 
-  width: 120px;
+.ticket-card-heading {
+  flex: 0 0 80px; 
   font-size: 1rem;
 }
 
 .ticket-card p {
-   font-size: 1rem;
-   margin-bottom: 4px;
+  flex: 1; 
+  font-size: 1rem;
+  margin-bottom: 4px;
+  word-break: break-word; 
 }
 
 .message{
   padding: 5px 15px;
   border-radius: 8px;
-  border:1px solid #ced4da
+  border:1px solid #ced4da;
+  background-color: white;
 }
 
 .message2{
@@ -11372,6 +11374,54 @@ input[type="text"], select {
   background-color: var(--primary);
   border:1px solid #ced4da
 }
+
+.message-text{
+  font-size: 1rem;
+}
+
 .message-time{
   font-size: 0.6rem;
+}
+.chat-pannel{
+  height: 89vh;
+}
+.upload-icon{
+  border: 2px solid var(--primary);
+    color: var(--primary);
+    width: 45px;
+    height: 45px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    background-color: white;
+}
+
+.chat-box{
+  background: rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
+
+}
+@media (max-width:768px) {
+  .upload-icon{
+        width: 29px;
+    height: 29px;
+  
+    font-size: 1rem;
+  }
+}
+
+.ticket-create-popup{
+  width: 60%;
+}
+
+@media (max-width:600px) {
+  .ticket-create-popup{
+  width: 90%;
+}
+}
+
+.active-ticket{
+  background-color: rgb(58 58 58 / 5%);
 }

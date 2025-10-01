@@ -233,7 +233,7 @@ export default function Navbar() {
               <li className="nav-item">
                 <a
                   className={`nav-link ${
-                    pathname === "/support" ? "nav-link-active" : ""
+                    pathname === "/contact" ? "nav-link-active" : ""
                   }`}
                   href="/contact"
                 >
