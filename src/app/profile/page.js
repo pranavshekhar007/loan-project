@@ -210,7 +210,7 @@ const fileInputRef = useRef(null);
           <div className="profile-container">
             <div className="profile-header">
               <div className="profile-info">
-                <h3 className="h3-big fw-bold">Personal Information</h3>
+                <h1 className="h3-big fw-bold">Personal Information</h1>
                 <p>Manage your account details and personal information</p>
               </div>
               {/* <div className="credit-score">

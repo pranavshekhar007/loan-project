@@ -86,7 +86,7 @@ const page = () => {
           <div className="profile-container">
             <div className="profile-header">
               <div className="profile-info">
-                <h3 className="h3-big fw-bold">Loan Details</h3>
+                <h1 className="h3-big fw-bold">Loan Details</h1>
                 <p>
                   View complete information and status of your selected loan
                 </p>

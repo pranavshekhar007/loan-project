@@ -83,7 +83,7 @@ const page = () => {
           <div className="profile-container">
             <div className="profile-header">
               <div className="profile-info">
-                <h3 className="h3-big fw-bold">Pending Loan Applications</h3>
+                <h1 className="h3-big fw-bold">Pending Loan Applications</h1>
 <p>Track all loan requests that are awaiting approval</p>
               </div>
               {/* <div className="credit-score">

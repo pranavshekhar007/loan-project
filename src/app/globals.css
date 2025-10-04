@@ -11371,7 +11371,7 @@ input[type="text"], select {
 
 
 .message2{
-  padding: 4px 13px;
+  padding: 5px;
   border-radius: 8px;
   color: white;
   background-color: var(--primary);

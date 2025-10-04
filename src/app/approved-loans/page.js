@@ -83,7 +83,7 @@ const page = () => {
           <div className="profile-container">
             <div className="profile-header">
               <div className="profile-info">
-               <h3 className="h3-big fw-bold" >Approved Loan Applications</h3>
+               <h1 className="h3-big fw-bold" >Approved Loan Applications</h1>
                <p>Check loan requests that have been approved and are ready for processing</p>
               </div>
               {/* <div className="credit-score">

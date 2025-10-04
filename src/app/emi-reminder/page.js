@@ -77,7 +77,7 @@ const page = () => {
           <div className="profile-container">
             <div className="profile-header">
               <div className="profile-info">
-                <h3 className="h3-big fw-bold" >Emi Reminder</h3>
+                <h1 className="h3-big fw-bold" >Emi Reminder</h1>
                 <p>
                   Stay updated with your upcoming EMI schedules and payments
                 </p>
