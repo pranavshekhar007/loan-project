@@ -11119,11 +11119,12 @@ overflow-x: scroll;
 }
 
 /* Headings */
-.panel h3 {
+.panel h3  , .panel h1{
     color: var(--primary);
     /* border-bottom: 2px solid var(--secondary-color);  */
     padding-bottom: 8px;
     margin-bottom: 10px;
+    
 }
 
 .panel-intro {

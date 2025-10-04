@@ -91,7 +91,7 @@ export const chatListServ  = async (id) => {
     const response = await axios.post(BASE_URL + `chat/list/${id}`);
     return response.data;
   } catch (error) {
-    console.error("ticket create Error:", error);
+    console.error("chat list Error:", error);
     throw error;
   }
   
@@ -108,7 +108,7 @@ export const chatCreateServ  = async (payload) => {
  );
     return response.data;
   } catch (error) {
-    console.error("ticket create Error:", error);
+    console.error("chat create Error:", error);
     throw error;
   }
   

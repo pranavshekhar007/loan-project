@@ -26,7 +26,7 @@ const page = () => {
     <div>
         <Navbar/> 
         <div className='container p-sm-5 p-4 mt-3'>
-            <h3 className='text-center'>Cookie Policy</h3>
+            <h1 className='text-center h3-big ' style={{fontWeight:"500"}}>Cookie Policy</h1>
 
             {details ? (
           <div className='p-3'

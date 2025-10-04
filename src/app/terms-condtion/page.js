@@ -26,7 +26,7 @@ const page = () => {
     <div>
         <Navbar/> 
         <div className='container p-sm-5 p-4 mt-3'>
-            <h3 className='text-center'>Terms & Conditions</h3>
+            <h1 className='text-center h3-big ' style={{fontWeight:"500"}}>Terms & Conditions</h1>
 
             {details ? (
           <div className='p-3'

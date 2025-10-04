@@ -221,6 +221,25 @@ const page = () => {
     if (fileInputRef.current) fileInputRef.current.value = "";
   }, [selectedTicket, loggedUserData?._id]);
 
+  const chatContainerRef = useRef(null);
+
+useEffect(() => {
+  const scrollToBottom = () => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  };
+
+  // Scroll immediately
+  scrollToBottom();
+
+  // Scroll again after a tiny delay (for images)
+  const timeout = setTimeout(scrollToBottom, 500);
+  return () => clearTimeout(timeout);
+}, [chatList, selectedTicket]);
+
+
+
   return (
     <>
       <Navbar />
@@ -232,7 +251,7 @@ const page = () => {
             <div className="col-lg-4 col-md-5 col-12 ">
               {/* desktp list */}
               <div className="panel all-tickets-panel pe-2 d-md-block d-none">
-                <h3 className="h3-big">My Active Tickets</h3>
+                <h1 className="h3-big" style={{fontWeight:"500"}}> My Active Tickets</h1>
 
                 <div className="filter-bar d-sm-flex">
                   <input
@@ -512,10 +531,11 @@ const page = () => {
                         </p>
                       </div>
 
-                      <div className="flex-grow-1" style={{overflowY:"scroll"}}>
+                      <div className="flex-grow-1" style={{overflowY:"scroll"}}  ref={chatContainerRef} >
                         { chatList.length > 0 ?
                        ( chatList.map((chat) => (
                           <div
+                          
                             className={`d-flex ${
                               chat.userType === "User"
                                 ? "justify-content-end"
@@ -620,8 +640,11 @@ const page = () => {
                          <div className="text-center text-muted py-4">
       No messages yet
     </div>
+
+    
                       )
                         }
+                       
                       </div>
 
                       {selectedFile && (
@@ -747,7 +770,7 @@ const page = () => {
                         </p>
                       </div>
 
-                      <div className="flex-grow-1"  style={{overflowY:"scroll"}}>
+                      <div className="flex-grow-1"  style={{overflowY:"scroll"}}  ref={chatContainerRef}>
                         
                         { chatList.length > 0 ? 
                        ( chatList.map((chat) => (
@@ -856,10 +879,10 @@ const page = () => {
                         ))
                       ):(
                          <div className="text-center text-muted py-4">
-      No messages yet
-    </div>
+                        No messages yet
+                        </div>
                       )
-                        }
+                        } 
                       </div>
 
                       {selectedFile && (

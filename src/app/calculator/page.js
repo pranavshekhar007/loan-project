@@ -224,7 +224,7 @@ const page = () => {
           <div className="row ">
 
              <div className="col-lg-12 col-12">
-              <h3 className="fw-bold h3-big ">EMI Calculator</h3>
+              <h1 className="fw-bold h3-big ">EMI Calculator</h1>
   
               <p className="pe-sm-5 pe-0 w-100 mt-4 " style={{fontSize:"1rem"}}>Looking to grow your wealth smartly? An EMI calculator is your go-to tool! By entering your monthly investment, tenure and expected returns, it instantly shows your potential earnings. Whether you're starting out or fine-tuning your strategy, this tool helps you plan better, stay on track and achieve your financial goals. Start using an SIP calculator today to make confident, informed investment decisions!</p>
             </div>
