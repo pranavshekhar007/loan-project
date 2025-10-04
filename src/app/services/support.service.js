@@ -82,3 +82,34 @@ export const ticketlistServ  = async (payload) => {
   }
   
 };
+
+// chat list serve
+
+export const chatListServ  = async (id) => {
+
+  try {
+    const response = await axios.post(BASE_URL + `chat/list/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("ticket create Error:", error);
+    throw error;
+  }
+  
+};
+
+export const chatCreateServ  = async (payload) => {
+
+  try {
+    const response = await axios.post(BASE_URL + "chat/create" , payload ,      {
+        headers: {
+          "Content-Type": "multipart/form-data", 
+        },
+      }
+ );
+    return response.data;
+  } catch (error) {
+    console.error("ticket create Error:", error);
+    throw error;
+  }
+  
+};

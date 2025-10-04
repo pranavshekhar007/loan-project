@@ -1,8 +1,10 @@
 "use client";
-import React, { useEffect, useState, useContext , useRef } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import {
+  chatCreateServ,
+  chatListServ,
   ticketCategoryListServ,
   ticketCreateServ,
   ticketlistServ,
@@ -135,32 +137,89 @@ const page = () => {
   };
 
   const handleFileChange = (e) => {
-        setMobileView('tickets');
+    setMobileView("tickets");
 
     const file = e.target.files[0];
     if (file) {
       setSelectedFile(file);
     }
+
+    setChatData((prev) => ({
+      ...prev,
+      image: file,
+    }));
   };
 
   const handleRemoveFile = () => {
     setSelectedFile(null);
-    fileInputRef.current.value = ""; // reset file input
+    fileInputRef.current.value = "";
+    setChatData((prev) => ({
+      ...prev,
+      image: null,
+    }));
   };
 
-
-  const [showPopup , setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const [selectedTicket, setSelectedTicket] = useState(null);
 
- 
-  const[mobileView , setMobileView] = useState("tickets")
+  const [mobileView, setMobileView] = useState("tickets");
 
   const handleTicketClick = (ticket) => {
-  setSelectedTicket(ticket);
-  setMobileView('chat'); 
-};
+    setSelectedTicket(ticket);
+    setMobileView("chat");
+  };
 
+  const [chatList, setChatList] = useState([]);
 
+  const getChatList = async (id) => {
+    try {
+      const res = await chatListServ(id);
+      if (res.statusCode == 200) {
+        setChatList(res?.data);
+      }
+    } catch (err) {
+      console.log("getting error");
+    }
+  };
+
+  useEffect(() => {
+    getChatList(selectedTicket?._id);
+  }, [selectedTicket]);
+
+  const [chatData, setChatData] = useState({
+    message: "",
+    userId: loggedUserData?._id,
+    userType: "User",
+    ticketId: selectedTicket?._id,
+  });
+
+  const handleSubmitChat = async () => {
+    try {
+      const res = await chatCreateServ(chatData);
+      console.log("created successfully");
+      getChatList(selectedTicket?._id);
+      setChatData((prev) => ({
+        ...prev,
+        message: "",
+        image: null,
+      }));
+      setSelectedFile(null);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    } catch {
+      console.log("error");
+    }
+  };
+
+  useEffect(() => {
+    setChatData({
+      message: "",
+      userId: loggedUserData?._id || "",
+      userType: "User",
+      ticketId: selectedTicket?._id || "",
+    });
+    setSelectedFile(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }, [selectedTicket, loggedUserData?._id]);
 
   return (
     <>
@@ -171,7 +230,6 @@ const page = () => {
 
           <div className="row">
             <div className="col-lg-4 col-md-5 col-12 ">
-
               {/* desktp list */}
               <div className="panel all-tickets-panel pe-2 d-md-block d-none">
                 <h3 className="h3-big">My Active Tickets</h3>
@@ -234,8 +292,15 @@ const page = () => {
                           ))
                       ) : filteredList.length > 0 ? (
                         filteredList.map((ticket) => (
-                          <tr key={ticket._id} onClick={() => setSelectedTicket(ticket)} style={{cursor:"pointer"}}
-                            className={selectedTicket?._id === ticket._id ? "active-ticket" : ""}
+                          <tr
+                            key={ticket._id}
+                            onClick={() => setSelectedTicket(ticket)}
+                            style={{ cursor: "pointer" }}
+                            className={
+                              selectedTicket?._id === ticket._id
+                                ? "active-ticket"
+                                : ""
+                            }
                           >
                             <td>{ticket.code || "N/A"}</td>
                             <td>{ticket.subject || "N/A"}</td>
@@ -265,11 +330,7 @@ const page = () => {
                       )}
                     </tbody>
                   </table>
-
-                 
                 </div>
-
-               
 
                 {/* <div className="pagination-area">
               <button>&laquo; Prev</button>
@@ -278,11 +339,20 @@ const page = () => {
             </div> */}
               </div>
 
-                {/* mobile view list */}
+              {/* mobile view list */}
 
-                
-                     <div className={`panel all-tickets-panel pe-2   d-md-none ${mobileView === 'tickets' ? 'd-block' : 'd-none'}`}>
-                <h3 className="h3-big">My Active Tickets</h3>
+              <div
+                className={`panel all-tickets-panel pe-2   d-md-none ${
+                  mobileView === "tickets" ? "d-block" : "d-none"
+                }`}
+              >
+                <div className="d-flex justify-content-between">
+                  <h3 className="h3-big">My Active Tickets</h3>
+                  <i
+                    class="fa-solid fa-plus add-icon"
+                    onClick={() => setShowPopup(true)}
+                  ></i>
+                </div>
 
                 <div className="filter-bar d-sm-flex">
                   <input
@@ -303,15 +373,19 @@ const page = () => {
                     <option value="resolved">Resolved</option>
                   </select>
                 </div>
-                  <div className={` d-md-none ${mobileView === 'tickets' ? 'd-block' : 'd-none'}`}>
-                    <div className="tickets-card-container row gx-0">
-                      {loading ? (
-                        Array(5)
-                          .fill(0)
-                          .map((_, i) => (
-                            <div className="col-sm-6" key={i}>
-                             <div className="p-2 h-100">
-                               <div className="ticket-card h-100">
+                <div
+                  className={` d-md-none ${
+                    mobileView === "tickets" ? "d-block" : "d-none"
+                  }`}
+                >
+                  <div className="tickets-card-container row gx-0">
+                    {loading ? (
+                      Array(5)
+                        .fill(0)
+                        .map((_, i) => (
+                          <div className="col-sm-6" key={i}>
+                            <div className="p-2 h-100">
+                              <div className="ticket-card h-100">
                                 <Skeleton width={80} height={20} />
                                 <Skeleton
                                   width={150}
@@ -334,39 +408,47 @@ const page = () => {
                                   style={{ marginTop: "10px" }}
                                 />
                               </div>
-                              </div>
                             </div>
-                          ))
-                      ) : filteredList.length > 0 ? (
-                        filteredList.map((ticket) => (
-                          <div className="col-sm-6 col-12" key={ticket._id}>
-                           <div className="p-2 h-100">
-                             <div className="ticket-card h-100" onClick={() => handleTicketClick(ticket)}>
+                          </div>
+                        ))
+                    ) : filteredList.length > 0 ? (
+                      filteredList.map((ticket) => (
+                        <div className="col-sm-6 col-12" key={ticket._id}>
+                          <div className="p-2 h-100">
+                            <div
+                              className="ticket-card h-100"
+                              onClick={() => handleTicketClick(ticket)}
+                            >
                               <div className="d-flex gap-2">
-                                <strong className="ticket-card-heading">ID:</strong> 
+                                <strong className="ticket-card-heading">
+                                  ID:
+                                </strong>
                                 <p>{ticket.code}</p>
                               </div>
                               <div className="d-flex gap-2">
-                                <strong className="ticket-card-heading">Subject:</strong> 
-                                 <p> {ticket.subject}</p>
+                                <strong className="ticket-card-heading">
+                                  Subject:
+                                </strong>
+                                <p> {ticket.subject}</p>
                               </div>
                               <div className="d-flex gap-2">
-                                <strong className="ticket-card-heading">Status:</strong>{" "}
+                                <strong className="ticket-card-heading">
+                                  Status:
+                                </strong>{" "}
                                 {/* <span className={`status-tag ${ticket.status}`}>  </span> */}
-                                 <p >
-                                   <span
-                                className={`status-tag ${
-                                  ticket.status === "open"
-                                    ? "status-open"
-                                    : ticket.status === "resolved"
-                                    ? "status-resolved"
-                                    : "status-progress"
-                                }`}
-                              >
-                                {ticket.status || "N/A"}</span>
-                                 </p>
-                                 
-                               
+                                <p>
+                                  <span
+                                    className={`status-tag ${
+                                      ticket.status === "open"
+                                        ? "status-open"
+                                        : ticket.status === "resolved"
+                                        ? "status-resolved"
+                                        : "status-progress"
+                                    }`}
+                                  >
+                                    {ticket.status || "N/A"}
+                                  </span>
+                                </p>
                               </div>
                               {/* <div>
                                 <strong>Last Update:</strong>{" "}
@@ -383,303 +465,565 @@ const page = () => {
                                 </a> */}
                               </div>
                             </div>
-                            </div>
                           </div>
-                        ))
-                      ) : (
-                        <div className="text-center">No tickets found</div>
-                      )}
-                    </div>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="text-center">No tickets found</div>
+                    )}
                   </div>
-                  </div>
+                </div>
+              </div>
             </div>
 
             {/* chat box desktop */}
 
             <div className="col-lg-8 col-md-7 d-none d-md-block">
-              <div className="panel  chat-pannel ps-2" >
-             <div className="d-flex justify-content-between">
-                <h3 className="h3-big">Chat with us</h3>
+              <div className="panel  chat-pannel ps-2">
+                <div className="d-flex justify-content-between">
+                  <h3 className="h3-big">Chat with us</h3>
 
-               <button style={{width:"fit-content" , height:"fit-content" , padding :"10px 30px"}} className="my-0"
-                onClick={() => setShowPopup(true)}
-               >
-                New Ticket
-               </button>
-             </div>
-
-              <div className="chat-box  pt-3 pb-4 px-4  h-100 d-flex flex-column">
-                 {selectedTicket ? (
-                  <>
-    <div className="mb-2 border-bottom pb-1">
-      <p className="mb-1 fs-5 p-2" style={{color:"#402a57" , backgroundColor:"white" , borderRadius:"8px"}} ># {selectedTicket.code}</p>
-     
-    </div>
- 
-                <div className="flex-grow-1">
-                  <div className="d-flex justify-content-start">
-                    <div className="message d-flex gap-2 align-items-end">
-                      <p className="mb-0 message-text">Hello</p>{" "}
-                      <p className="mb-1 message-time">12:10</p>
-                    </div>
-                  </div>
-
-                  <div className="d-flex justify-content-end">
-                    <div className="message2 mb-0 d-flex gap-2 align-items-end">
-                      <p className="mb-0 message-text">Hello , need help</p>{" "}
-                      <p className="mb-1 message-time">12:13</p>
-                    </div>
-                  </div>
+                  <button
+                    style={{
+                      width: "fit-content",
+                      height: "fit-content",
+                      padding: "10px 30px",
+                    }}
+                    className="my-0"
+                    onClick={() => setShowPopup(true)}
+                  >
+                    New Ticket
+                  </button>
                 </div>
 
-                {selectedFile && (
-        <div
-          className="d-inline-flex align-items-center gap-2 px-2 py-1 mb-2 rounded-pill"
-          style={{
-            background: "#e9ecef",
-            fontSize: "13px",
-            maxWidth: "fit-content",
-          }}
-        >
-          📎 <span className="text-truncate">{selectedFile.name}</span>
-          <i
-            className="fa-solid fa-xmark text-danger"
-            style={{ cursor: "pointer", fontSize: "14px" }}
-            onClick={handleRemoveFile}
-          ></i>
-        </div>
-      )}
+                <div className="chat-box  pt-3 pb-4 px-4  d-flex flex-column position-relative ">
+                  {selectedTicket ? (
+                    <>
+                      <div className="mb-2 border-bottom pb-1 position-sticky">
+                        <p
+                          className="mb-1 fs-5 p-2"
+                          style={{
+                            color: "#402a57",
+                            backgroundColor: "white",
+                            borderRadius: "8px",
+                          }}
+                        >
+                          # {selectedTicket.code}
+                        </p>
+                      </div>
 
-      {/* input + actions */}
-      <div className="d-flex gap-2 mt-1 align-items-center" style={{ minHeight: "45px" }}>
-        <input
-          className="ticket-input border flex-grow-1"
-          placeholder="Add Message"
-        />
+                      <div className="flex-grow-1" style={{overflowY:"scroll"}}>
+                        { chatList.length > 0 ?
+                       ( chatList.map((chat) => (
+                          <div
+                            className={`d-flex ${
+                              chat.userType === "User"
+                                ? "justify-content-end"
+                                : "justify-content-start"
+                            }`}
+                            key={chat._id}
+                          >
+                            <div
+                              className={`${
+                                chat.userType === "User"
+                                  ? "message2"
+                                  : "message"
+                              } mb-0 d-flex gap-2 align-items-end`}
+                            >
+                              {chat?.image ? (
+                                <div className="d-flex flex-column">
+                                  {chat.image && (
+                                    <img
+                                      src={chat.image}
+                                      alt="chat-attachment"
+                                      className="chat-image rounded"
+                                      style={{
+                                        maxHeight: "150px",
+                                        width: "auto",
+                                        borderRadius: "10px",
+                                      }}
+                                    />
+                                  )}
 
-        {/* hidden file input */}
-        <input
-          type="file"
-          ref={fileInputRef}
-          style={{ display: "none" }}
-          onChange={handleFileChange}
-        />
+                                  <div className="d-flex align-items-end justify-content-end">
+                                    {chat.message && (
+                                      <p className="mb-0 me-1">
+                                        {chat.message}
+                                      </p>
+                                    )}
 
-        {/* upload icon */}
-        <div onClick={handleUploadClick} style={{ cursor: "pointer" }}>
-          <i className="fa-solid fa-arrow-up-from-bracket upload-icon"></i>
-        </div>
+                                    <p className="mb-1 message-time">
+                                      {chat.createdAt
+                                        ? new Date(
+                                            chat.createdAt
+                                          ).toLocaleTimeString([], {
+                                            hour: "2-digit",
+                                            minute: "2-digit",
+                                          })
+                                        : ""}
+                                    </p>
+                                    {chat.userType === "User" && (
+                                      <span className="ms-1">
+                                        {chat.isRead ? (
+                                          <i className="fa-solid fa-check-double text-primary"></i> // read
+                                        ) : (
+                                          <i className="fa-solid fa-check-double text-secondary"></i> // sent, not read
+                                        )}
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+                              ) : (
+                                <>
+                                  {chat.message && (
+                                    <p className="mb-0">{chat.message}</p>
+                                  )}
 
-        <button
-          className="btn btn-primary mt-0 mb-0"
-          style={{ width: "fit-content" }}
-        >
-          Send
-        </button>
-        </div>
+                                  {chat.image && (
+                                    <img
+                                      src={chat.image}
+                                      alt="chat-attachment"
+                                      className="chat-image rounded"
+                                      style={{
+                                        maxHeight: "150px",
+                                        width: "auto",
+                                        borderRadius: "10px",
+                                      }}
+                                    />
+                                  )}
 
-        </>
-
-
- ) : (
-    <div className="text-muted text-center mb-3 h-100 d-flex align-items-center justify-content-center">
-    Your support conversation will appear here. Select a ticket to begin.
+                                  <p className="mb-1 message-time">
+                                    {chat.createdAt
+                                      ? new Date(
+                                          chat.createdAt
+                                        ).toLocaleTimeString([], {
+                                          hour: "2-digit",
+                                          minute: "2-digit",
+                                        })
+                                      : ""}
+                                  </p>
+                                  {chat.userType === "User" && (
+                                    <span className="ms-1">
+                                      {chat.isRead ? (
+                                        <i className="fa-solid fa-check-double text-primary"></i> // read
+                                      ) : (
+                                        <i className="fa-solid fa-check-double text-secondary"></i> // sent, not read
+                                      )}
+                                    </span>
+                                  )}
+                                </>
+                              )}
+                            </div>
+                          </div>
+                        ))
+                      ):(
+                         <div className="text-center text-muted py-4">
+      No messages yet
     </div>
-  )}
+                      )
+                        }
+                      </div>
 
+                      {selectedFile && (
+                        <div
+                          className="d-inline-flex align-items-center gap-2 px-2 py-1 mb-2 rounded-pill"
+                          style={{
+                            background: "#e9ecef",
+                            fontSize: "13px",
+                            maxWidth: "fit-content",
+                          }}
+                        >
+                          📎{" "}
+                          <span className="text-truncate">
+                            {selectedFile.name}
+                          </span>
+                          <i
+                            className="fa-solid fa-xmark text-danger"
+                            style={{ cursor: "pointer", fontSize: "14px" }}
+                            onClick={handleRemoveFile}
+                          ></i>
+                        </div>
+                      )}
 
-              </div>
+                      {/* input + actions */}
+                      <div
+                        className="d-flex gap-2 mt-1 align-items-center  position-sticky"
+                        style={{ minHeight: "45px" }}
+                      >
+                        <input
+                          name="message"
+                          onChange={(e) =>
+                            setChatData((prev) => ({
+                              ...prev,
+                              message: e.target.value,
+                            }))
+                          }
+                          value={chatData?.message}
+                          className="ticket-input border flex-grow-1"
+                          placeholder="Add Message"
+                        />
+
+                        {/* hidden file input */}
+                        <input
+                          type="file"
+                          ref={fileInputRef}
+                          style={{ display: "none" }}
+                          onChange={handleFileChange}
+                        />
+
+                        {/* upload icon */}
+                        <div
+                          onClick={handleUploadClick}
+                          style={{ cursor: "pointer" }}
+                        >
+                          <i className="fa-solid fa-arrow-up-from-bracket upload-icon"></i>
+                        </div>
+
+                        <button
+                          className="btn btn-primary mt-0 mb-0"
+                          style={{ width: "fit-content" }}
+                          onClick={handleSubmitChat}
+                        >
+                          Send
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="text-muted text-center mb-3 h-100 d-flex align-items-center justify-content-center">
+                      Your support conversation will appear here. Select a
+                      ticket to begin.
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
             {/* chat box mibile view */}
 
+            <div
+              className={`col-12 d-md-none ${
+                mobileView === "chat" ? "d-block" : "d-none"
+              }`}
+            >
+              <p
+                className="mb-2 mt-2 mb-1 "
+                style={{
+                  color: "#281B36",
+                  fontWeight: "600",
+                  fontSize: "13px",
+                }}
+                onClick={() => setMobileView("tickets")}
+              >
+                ← Back to Tickets
+              </p>
 
-            <div className={`col-12 d-md-none ${mobileView === 'chat' ? 'd-block' : 'd-none'}`}>
-  
-  <p
-    className="mb-2 mt-2 mb-1 " style={{color:"#281B36" , fontWeight:"600" , fontSize:"13px"}}
-    onClick={() => setMobileView('tickets')}
-  >
-    ← Back to Tickets
-  </p>
+              <div
+                className="panel  chat-pannel ps-2"
+                style={{ height: "72vh" }}
+              >
+                <div className="d-flex justify-content-between">
+                  <h3 className="h3-big">Chat with us</h3>
 
-  <div className="panel  chat-pannel ps-2"  style={{height:"72vh"}}>
-             <div className="d-flex justify-content-between">
-                <h3 className="h3-big">Chat with us</h3>
-
-               <button style={{width:"fit-content" , height:"fit-content" , padding :"6px 10px" , fontSize:"13px"}} className="my-0"
+                  {/* <button style={{width:"fit-content" , height:"fit-content" , padding :"6px 10px" , fontSize:"13px"}} className="my-0"
                 onClick={() => setShowPopup(true)}
                >
                 New Ticket
-               </button>
-             </div>
-
-              <div className="chat-box  p-2  h-100 d-flex flex-column">
-                 {selectedTicket ? (
-                  <>
-    <div className="mb-2 border-bottom pb-1">
-      <p className="mb-1 fs-5 p-2" style={{color:"#402a57" , backgroundColor:"white" , borderRadius:"8px"}} ># {selectedTicket.code}</p>
-     
-    </div>
- 
-                <div className="flex-grow-1">
-                  <div className="d-flex justify-content-start mb-1">
-                    <div className="message d-flex gap-2 align-items-end">
-                      <p className="mb-0">Hello</p>{" "}
-                      <p className="mb-1 message-time">12:10</p>
-                    </div>
-                  </div>
-
-                  <div className="d-flex justify-content-end mb-1">
-                    <div className="message2 mb-0 d-flex gap-2 align-items-end">
-                      <p className="mb-0">Hello , this is</p>{" "}
-                      <p className="mb-1 message-time">12:13</p>
-                    </div>
-                  </div>
+               </button> */}
                 </div>
 
-                {selectedFile && (
-        <div
-          className="d-inline-flex align-items-center gap-2 px-2 py-1 mb-2 rounded-pill"
-          style={{
-            background: "#e9ecef",
-            fontSize: "13px",
-            maxWidth: "fit-content",
-          }}
-        >
-          📎 <span className="text-truncate">{selectedFile.name}</span>
-          <i
-            className="fa-solid fa-xmark text-danger"
-            style={{ cursor: "pointer", fontSize: "14px" }}
-            onClick={handleRemoveFile}
-          ></i>
-        </div>
-      )}
+                <div className="chat-box  p-2  h-100 d-flex flex-column position-relative">
+                  {selectedTicket ? (
+                    <>
+                      <div className="mb-2 border-bottom pb-1 position-sticky">
+                        <p
+                          className="mb-1 fs-5 p-2"
+                          style={{
+                            color: "#402a57",
+                            backgroundColor: "white",
+                            borderRadius: "8px",
+                          }}
+                        >
+                          # {selectedTicket.code}
+                        </p>
+                      </div>
 
-      {/* input + actions */}
-      <div className="d-flex gap-2 mt-1 align-items-center" style={{ minHeight: "30px" }}>
-        <input
-          className="ticket-input border flex-grow-1 px-2 py-1"
-          placeholder="Add Message"
-        />
+                      <div className="flex-grow-1"  style={{overflowY:"scroll"}}>
+                        
+                        { chatList.length > 0 ? 
+                       ( chatList.map((chat) => (
+                          <div
+                            className={`d-flex ${
+                              chat.userType === "User"
+                                ? "justify-content-end"
+                                : "justify-content-start"
+                            }`}
+                            key={chat._id}
+                          >
+                            <div
+                              className={`${
+                                chat.userType === "User"
+                                  ? "message2"
+                                  : "message"
+                              } mb-0 d-flex gap-2 align-items-end`}
+                            >
+                              {chat?.image ? (
+                                <div className="d-flex flex-column">
+                                  {chat.image && (
+                                    <img
+                                      src={chat.image}
+                                      alt="chat-attachment"
+                                      className="chat-image rounded"
+                                      style={{
+                                        maxHeight: "70px",
+                                        width: "auto",
+                                        maxWidth: "130px",
+                                        borderRadius: "10px",
+                                      }}
+                                    />
+                                  )}
 
-        {/* hidden file input */}
-        <input
+                                  <div className="d-flex align-items-end justify-content-end">
+                                    {chat.message && (
+                                      <p className="mb-0 me-1">
+                                        {chat.message}
+                                      </p>
+                                    )}
 
-          type="file"
-          ref={fileInputRef}
-          style={{ display: "none" }}
-          onChange={handleFileChange}
-        />
+                                    <p className="mb-1 message-time">
+                                      {chat.createdAt
+                                        ? new Date(
+                                            chat.createdAt
+                                          ).toLocaleTimeString([], {
+                                            hour: "2-digit",
+                                            minute: "2-digit",
+                                          })
+                                        : ""}
+                                    </p>
+                                    {chat.userType === "User" && (
+                                      <span className="ms-1">
+                                        {chat.isRead ? (
+                                          <i className="fa-solid fa-check-double text-primary"></i> // read
+                                        ) : (
+                                          <i className="fa-solid fa-check-double text-secondary"></i> // sent, not read
+                                        )}
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+                              ) : (
+                                <>
+                                  {chat.message && (
+                                    <p className="mb-0">{chat.message}</p>
+                                  )}
 
-        {/* upload icon */}
-        <div onClick={handleUploadClick} style={{ cursor: "pointer" }}>
-          <i className="fa-solid fa-arrow-up-from-bracket upload-icon"></i>
-        </div>
+                                  {chat.image && (
+                                    <img
+                                      src={chat.image}
+                                      alt="chat-attachment"
+                                      className="chat-image rounded"
+                                      style={{
+                                        maxHeight: "70px",
+                                        width: "auto",
+                                        maxWidth: "130px",
+                                        borderRadius: "10px",
+                                      }}
+                                    />
+                                  )}
 
-        <button
-          className="btn btn-primary mt-0 mb-0 px-2 py-1"
-          style={{ width: "fit-content" }}
-        >
-          Send
-        </button>
-        </div>
-
-        </>
-
-
- ) : (
-    <div className="text-muted text-center mb-3 h-100 d-flex align-items-center justify-content-center">
-    Your support conversation will appear here. Select a ticket to begin.
+                                  <p className="mb-1 message-time">
+                                    {chat.createdAt
+                                      ? new Date(
+                                          chat.createdAt
+                                        ).toLocaleTimeString([], {
+                                          hour: "2-digit",
+                                          minute: "2-digit",
+                                        })
+                                      : ""}
+                                  </p>
+                                  {chat.userType === "User" && (
+                                    <span className="ms-1">
+                                      {chat.isRead ? (
+                                        <i className="fa-solid fa-check-double text-primary"></i> // read
+                                      ) : (
+                                        <i className="fa-solid fa-check-double text-secondary"></i> // sent, not read
+                                      )}
+                                    </span>
+                                  )}
+                                </>
+                              )}
+                            </div>
+                          </div>
+                        ))
+                      ):(
+                         <div className="text-center text-muted py-4">
+      No messages yet
     </div>
-  )}
+                      )
+                        }
+                      </div>
 
+                      {selectedFile && (
+                        <div
+                          className="d-inline-flex align-items-center gap-2 px-2 py-1 mb-2 rounded-pill"
+                          style={{
+                            background: "#e9ecef",
+                            fontSize: "13px",
+                            maxWidth: "fit-content",
+                          }}
+                        >
+                          📎{" "}
+                          <span className="text-truncate">
+                            {selectedFile.name}
+                          </span>
+                          <i
+                            className="fa-solid fa-xmark text-danger"
+                            style={{ cursor: "pointer", fontSize: "14px" }}
+                            onClick={handleRemoveFile}
+                          ></i>
+                        </div>
+                      )}
 
+                      {/* input + actions */}
+                      <div
+                        className="d-flex gap-2 mt-1 align-items-center  position-sticky"
+                        style={{ minHeight: "30px" }}
+                      >
+                        <input
+                          className="ticket-input border flex-grow-1 px-2 py-1"
+                          name="message"
+                          onChange={(e) =>
+                            setChatData((prev) => ({
+                              ...prev,
+                              message: e.target.value,
+                            }))
+                          }
+                          value={chatData?.message}
+                          placeholder="Add Message"
+                        />
+
+                        {/* hidden file input */}
+                        <input
+                          type="file"
+                          ref={fileInputRef}
+                          style={{ display: "none" }}
+                          onChange={handleFileChange}
+                        />
+
+                        {/* upload icon */}
+                        <div
+                          onClick={handleUploadClick}
+                          style={{ cursor: "pointer" }}
+                        >
+                          <i className="fa-solid fa-arrow-up-from-bracket upload-icon"></i>
+                        </div>
+
+                        <button
+                          className="btn btn-primary mt-0 mb-0 px-2 py-1"
+                          style={{ width: "fit-content" }}
+                          onClick={handleSubmitChat}
+                        >
+                          Send
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="text-muted text-center mb-3 h-100 d-flex align-items-center justify-content-center">
+                      Your support conversation will appear here. Select a
+                      ticket to begin.
+                    </div>
+                  )}
+                </div>
               </div>
-              </div>
-</div>
+            </div>
           </div>
         </div>
       </div>
 
       {showPopup && (
-          <div
+        <div
           className="payment-popup position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
           style={{ background: "rgba(0,0,0,0.5)", zIndex: 9999 }}
         >
           <div
             className="bg-white p-4 shadow ticket-create-popup"
-            style={{ maxWidth: "90%" , borderRadius:"16px" }}
+            style={{ maxWidth: "90%", borderRadius: "16px" }}
           >
             <div className="d-flex justify-content-center align-items-center mb-3">
-              <h3 className = "w-100 d-flex justify-content-end h3-big">New Support Ticket</h3>
-              <div className=" d-flex justify-content-end" style={{width:"50%"}}>
-                <button className="btn-close" 
-         onClick={ () => setShowPopup(false)}
-         ></button>
+              <h3 className="w-100 d-flex justify-content-end h3-big">
+                New Support Ticket
+              </h3>
+              <div
+                className=" d-flex justify-content-end"
+                style={{ width: "50%" }}
+              >
+                <button
+                  className="btn-close"
+                  onClick={() => setShowPopup(false)}
+                ></button>
               </div>
             </div>
 
-         
-          <form className="ticket-form">
+            <form className="ticket-form">
               {/* <div className="form-group">
                     <label for="loan-account-s">Acct. No. (Optional)</label>
                     <input type="text" id="loan-account-s" name="loan-account-s" placeholder="e.g., LNW-123456" className='ticket-input'/>
                 </div> */}
 
               <div className="row">
-              <div className="col-md-6">
-                <div className="form-group">
-                <label for="issue-category-s" className="d-flex gap-2">
-                  Category <span className="required mb-0">*</span>
-                </label>
-                <select
-                  style={{marginTop: "8px"}}
-                  id="issue-category-s"
-                  name="ticketCategoryId"
-                  className="ticket-input"
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="" disabled selected>
-                    --- Select Category ---
-                  </option>
-                  {categoryList.map((cat) => (
-                    <option value={cat?._id}>{cat?.name}</option>
-                  ))}
-                  
-                </select>
-              </div>
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label for="issue-category-s" className="d-flex gap-2">
+                      Category <span className="required mb-0">*</span>
+                    </label>
+                    <select
+                      style={{ marginTop: "8px" }}
+                      id="issue-category-s"
+                      name="ticketCategoryId"
+                      className="ticket-input"
+                      onChange={handleChange}
+                      required
+                    >
+                      <option value="" disabled selected>
+                        --- Select Category ---
+                      </option>
+                      {categoryList.map((cat) => (
+                        <option value={cat?._id}>{cat?.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
 
-             
-              </div>
-
-              <div className="col-md-6">
-                 <div className="form-group">
-                <label for="ticket-subject-s" className="d-flex gap-2">
-                  Subject <span className="required mb-0">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="ticket-subject-s"
-                  name="subject"
-                  className="ticket-input"
-                  placeholder="Enter a brief title"
-                  required
-                  value={formData.subject}
-                  onChange={handleChange}
-                />
-              </div>
-              </div>
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <label for="ticket-subject-s" className="d-flex gap-2">
+                      Subject <span className="required mb-0">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="ticket-subject-s"
+                      name="subject"
+                      className="ticket-input"
+                      placeholder="Enter a brief title"
+                      required
+                      value={formData.subject}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
               </div>
 
               <div className="form-group flexible-field-s">
-                    <label for="ticket-description-s" className='d-flex gap-2'>Detailed Description <span className="required">*</span></label>
-                    <textarea id="ticket-description-s" name="ticket-description-s" placeholder="Explain your issue in detail..." 
-                     className="ticket-input"
-                    required></textarea>
-                </div>
+                <label for="ticket-description-s" className="d-flex gap-2">
+                  Detailed Description <span className="required">*</span>
+                </label>
+                <textarea
+                  id="ticket-description-s"
+                  name="ticket-description-s"
+                  placeholder="Explain your issue in detail..."
+                  className="ticket-input"
+                  required
+                ></textarea>
+              </div>
 
               <button
                 type="submit"
@@ -689,12 +1033,9 @@ const page = () => {
                 Submit Ticket
               </button>
             </form>
-         
           </div>
         </div>
-      )
-
-      }
+      )}
       <Footer />
     </>
   );

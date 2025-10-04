@@ -11361,18 +11361,21 @@ input[type="text"], select {
 }
 
 .message{
-  padding: 5px 15px;
+  padding: 4px 13px;
   border-radius: 8px;
   border:1px solid #ced4da;
   background-color: white;
+  width: fit-content;
 }
 
+
 .message2{
-  padding: 5px 15px;
+  padding: 4px 13px;
   border-radius: 8px;
   color: white;
   background-color: var(--primary);
-  border:1px solid #ced4da
+  border:1px solid #ced4da;
+  width: fit-content;
 }
 
 .message-text{
@@ -11382,9 +11385,9 @@ input[type="text"], select {
 .message-time{
   font-size: 0.6rem;
 }
-.chat-pannel{
+/* .chat-pannel{
   height: 89vh;
-}
+} */
 .upload-icon{
   border: 2px solid var(--primary);
     color: var(--primary);
@@ -11401,7 +11404,7 @@ input[type="text"], select {
 .chat-box{
   background: rgba(0, 0, 0, 0.05);
     border-radius: 15px;
-
+    height: 74vh;
 }
 @media (max-width:768px) {
   .upload-icon{
@@ -11410,6 +11413,12 @@ input[type="text"], select {
   
     font-size: 1rem;
   }
+
+  .chat-box{
+  background: rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
+    height: 78vh;
+}
 }
 
 .ticket-create-popup{
@@ -11424,4 +11433,15 @@ input[type="text"], select {
 
 .active-ticket{
   background-color: rgb(58 58 58 / 5%);
+}
+
+.add-icon{
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 1px solid #ececec;
 }
