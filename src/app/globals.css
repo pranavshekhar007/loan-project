@@ -5621,7 +5621,8 @@ p {
 
  .personal-loan-hero {
    background-image: var(--primary-gradient);
-   padding: 150px 0 80px;
+   /* padding: 150px 0 80px; */
+   padding: 4.7%;
    color: black;
    position: relative;
    overflow: hidden;
@@ -5802,7 +5803,7 @@ p {
 
  /* Process Section */
  .process-section {
-   padding: 80px 0;
+   padding: 40px 0;
    background: #f8f9fa;
  }
 
@@ -6902,7 +6903,7 @@ p {
 
  /* Process Section */
  .process-section {
-   padding: 100px 0;
+   padding: 40px 0;
    background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%);
    position: relative;
  }
@@ -8224,7 +8225,7 @@ p {
 
  /* Process Section */
  .process-section {
-   padding: 100px 0;
+   padding: 40px 0;
    background: var(--light);
    position: relative;
  }
@@ -8957,7 +8958,8 @@ p {
    overflow: hidden;
    width: 100%;
    max-width: 1400px;
-   min-height: 90vh;
+   /* min-height: 90vh; */
+    min-height: 85vh;
  }
 
  .form-container {
@@ -11077,7 +11079,7 @@ overflow-x: scroll;
 
 /* 1. Main Wrapper & Full Screen Layout */
 .viewport-wrapper {
-    height: 100vh; 
+    /* height: 100vh;  */
     width: 100%;
     display: flex;
     align-items: center; 
@@ -11275,7 +11277,7 @@ input[type="text"], select {
 }
 
 .pagination-area {
-    margin-top: 20px;
+    margin-top: 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11405,7 +11407,7 @@ input[type="text"], select {
 .chat-box{
   background: rgba(0, 0, 0, 0.05);
     border-radius: 15px;
-    height: 74vh;
+    height: 69vh;
 }
 @media (max-width:768px) {
   .upload-icon{
@@ -11433,7 +11435,8 @@ input[type="text"], select {
 }
 
 .active-ticket{
-  background-color: rgb(58 58 58 / 5%);
+  /* background-color: rgb(58 58 58 / 5%); */
+  background-color: #fdfdfd; 
 }
 
 .add-icon{
@@ -11445,4 +11448,49 @@ input[type="text"], select {
     border-radius: 4px;
     background-color: rgba(0, 0, 0, 0.05);
     border: 1px solid #ececec;
+}
+
+/* 🌿 Simple professional custom scrollbar */
+.chat-scroll-container {
+  overflow-y: auto;
+  scrollbar-width: thin;              /* For Firefox */
+  scrollbar-color: #bbb #f1f1f1;      /* thumb color / track color */
+}
+
+/* For Chrome, Edge, and Safari */
+.chat-scroll-container::-webkit-scrollbar {
+  width: 6px;                         /* Slim scrollbar */
+}
+
+.chat-scroll-container::-webkit-scrollbar-track {
+  background: #f1f1f1;                /* light background */
+  border-radius: 10px;
+}
+
+.chat-scroll-container::-webkit-scrollbar-thumb {
+  background-color: #bbb;             /* thumb color */
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.chat-scroll-container::-webkit-scrollbar-thumb:hover {
+  background-color: #999;             /* darker on hover */
+}
+
+.apply-button{
+  transition: transform 0.2s;
+   border-radius: 33px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   color: white;
+   width:fit-content;
+}
+
+.apply-button a{
+  color: #ffffff;
+}
+
+.apply-button:hover{
+background: var(--primary-gradient-hover);
+   transform: translateY(-5px) scale(1.05);
+   box-shadow: 0 15px 30px rgba(208, 208, 208, 0.4);
 }

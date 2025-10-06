@@ -1444,7 +1444,7 @@ useEffect(() => {
                       ) : (
                         <tr>
                           <td colSpan="5" className="text-center">
-                            No tickets found
+                           <p className="my-4"> No tickets found</p>
                           </td>
                         </tr>
                       )}
@@ -1465,6 +1465,7 @@ useEffect(() => {
                 className={`panel all-tickets-panel pe-2   d-md-none ${
                   mobileView === "tickets" ? "d-block" : "d-none"
                 }`}
+                style={{minHeight:"82vh"}}
               >
                 <div className="d-flex justify-content-between">
                   <h3 className="h3-big">My Active Tickets</h3>
@@ -1589,13 +1590,14 @@ useEffect(() => {
                         </div>
                       ))
                     ) : (
-                      <div className="text-center">No tickets found</div>
+                      <div className="text-center h-100 d-flex justify-content-center align-items-center">No tickets found</div>
                     )}
                   </div>
                 </div>
               </div>
 
-              <div className="pagination-area d-flex justify-content-center align-items-center gap-2 mt-3">
+             {filteredList.length > 5 && (
+              <div className="pagination-area d-flex justify-content-center align-items-center gap-2">
   <button
     disabled={currentPage === 1}
     onClick={() => setCurrentPage((prev) => prev - 1)}
@@ -1621,7 +1623,8 @@ useEffect(() => {
   >
     Next &raquo;
   </button>
-</div>
+              </div>
+             )}
 
             </div>
 
@@ -1661,7 +1664,7 @@ useEffect(() => {
                         </p>
                       </div>
 
-                      <div className="flex-grow-1" style={{overflowY:"scroll"}}  ref={chatContainerRef} >
+                      <div className="flex-grow-1 chat-scroll-container" style={{overflowY:"scroll"}}  ref={chatContainerRef} >
                         { chatList.length > 0 ?
                        ( chatList.map((chat) => (
                           <div
@@ -1902,7 +1905,7 @@ useEffect(() => {
                         </p>
                       </div>
 
-                      <div className="flex-grow-1"  style={{overflowY:"scroll"}}  ref={chatContainerRef}>
+                      <div className="flex-grow-1 chat-scroll-container"  style={{overflowY:"scroll"}}  ref={chatContainerRef}>
                         
                         { chatList.length > 0 ? 
                        ( chatList.map((chat) => (

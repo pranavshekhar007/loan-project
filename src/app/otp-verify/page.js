@@ -50,13 +50,14 @@ const page = () => {
      
       const[storedPhone , setStoredPhone] = useState();
 
-       useEffect(() => {
-     const value = sessionStorage.getItem("signupPhone");
-     setStoredPhone(value);
-    if (storedPhone) {
-      setOtpVerifyData((prev) => ({ ...prev, phone: storedPhone }));
-    }
-  }, []);
+     useEffect(() => {
+  const value = sessionStorage.getItem("signupPhone");
+  if (value) {
+    setStoredPhone(value);
+    setOtpVerifyData((prev) => ({ ...prev, phone: value }));
+  }
+}, []);
+
 
 
         const handleOtpVerify = async (e) => {
