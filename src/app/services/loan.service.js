@@ -15,6 +15,19 @@ export const loanListServ = async (formData) => {
   }
 };
 
+//loan details
+
+export const loanDetailsServ = async (slug) => {
+
+  try {
+    const response = await axios.get(BASE_URL + `loan/details-for-web/${slug}`, );
+    return response.data;
+  } catch (error) {
+    console.error("loan details Error:", error);
+    throw error;
+  }
+};
+
 //applied loans
 
 export const AppliedLoanListServ = async (formData) => {

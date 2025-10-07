@@ -6,8 +6,8 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const page = () => {
-  const [amount, setAmount] = useState(500000);
+const page = ({minTenure , maxTenure , minAmount , maxAmount , interestRate}) => {
+  const [amount, setAmount] = useState(50000);
   const [interest, setInterest] = useState(10);
   const [tenure, setTenure] = useState(5);
 
@@ -76,15 +76,15 @@ const page = () => {
                 <input
                   type="range"
                   className="emi-form-range"
-                  min="10000"
-                  max="1000000"
+                  min={minAmount}
+                  max={maxAmount}
                   step="1000"
                   value={amount}
                   onChange={(e) => setAmount(Number(e.target.value))}
                 ></input>
                 <div className="d-flex justify-content-between small text-muted">
-  <span>10,000</span>
-  <span>10,00,000</span>
+  <span>₹{minAmount}</span>
+  <span>₹{maxAmount}</span>
 </div>
               </div>
 
@@ -118,7 +118,7 @@ const page = () => {
                   onChange={(e) => setInterest(Number(e.target.value))}
                 ></input>
                 <div className="d-flex justify-content-between small text-muted">
-  <span>1%</span>
+  <span>{interestRate}%</span>
   <span>30%</span>
 </div>
               </div>
@@ -126,7 +126,7 @@ const page = () => {
                 <div className="d-flex justify-content-between align-items-center mb-2">
                   <label>Loan Tenure</label>
 
-                    <div className="emi-input-group"  style={{width:"20%"}}>
+                    <div className="emi-input-group"  style={{width:"21%"}}>
                   <input
                     type=""
                      style={{width:"100%"}}
@@ -141,15 +141,15 @@ const page = () => {
                 <input
                   type="range"
                   className="emi-form-range"
-                  min="1"
-                  max="30"
+                  min={minTenure}
+                  max={maxTenure}
                   step="1"
                   value={tenure}
                   onChange={(e) => setTenure(Number(e.target.value))}
                 ></input>
                 <div className="d-flex justify-content-between small text-muted">
-  <span>1 Yr</span>
-  <span>30 Yr</span>
+  <span>{minTenure} Yr</span>
+  <span>{maxTenure} Yr</span>
 </div>
               </div>
               </div>  

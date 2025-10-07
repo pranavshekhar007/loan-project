@@ -1351,7 +1351,7 @@ useEffect(() => {
           <div className="row">
             <div className="col-lg-4 col-md-5 col-12 ">
               {/* desktp list */}
-              <div className="panel all-tickets-panel pe-2 d-md-block d-none">
+              <div className="panel all-tickets-panel pe-2 d-md-block d-none ps-3"  >
                 <h1 className="h3-big" style={{fontWeight:"500"}}> My Active Tickets</h1>
 
                 <div className="filter-bar d-sm-flex">
@@ -1630,7 +1630,7 @@ useEffect(() => {
 
             {/* chat box desktop */}
 
-            <div className="col-lg-8 col-md-7 d-none d-md-block">
+            <div className="col-lg-8 col-md-7 d-none d-md-block px-0">
               <div className="panel  chat-pannel ps-2">
                 <div className="d-flex justify-content-between">
                   <h3 className="h3-big">Chat with us</h3>
@@ -1648,16 +1648,17 @@ useEffect(() => {
                   </button>
                 </div>
 
-                <div className="chat-box  pt-3 pb-4 px-4  d-flex flex-column position-relative ">
+                <div className="chat-box  pt-3 pb-3 px-3  d-flex flex-column position-relative ">
                   {selectedTicket ? (
                     <>
                       <div className="mb-2 border-bottom pb-1 position-sticky">
                         <p
-                          className="mb-1 fs-5 p-2"
+                          className="mb-1  p-2"
                           style={{
                             color: "#402a57",
                             backgroundColor: "white",
                             borderRadius: "8px",
+                            fontSize:"1rem"
                           }}
                         >
                           # {selectedTicket.code}
@@ -1683,6 +1684,8 @@ useEffect(() => {
                                   : "message"
                               } mb-0 d-flex gap-2 align-items-end`}
                             >
+
+                            
                               {chat?.image ? (
                                 <div className="d-flex flex-column">
                                   {chat.image && (
@@ -1707,7 +1710,7 @@ useEffect(() => {
       {chat.message}
     </p>
   )}
-                                    <p className="mb-1 message-time">
+                                    <p className="mb-0 message-time">
                                       {chat.createdAt
                                         ? new Date(
                                             chat.createdAt
@@ -1717,7 +1720,7 @@ useEffect(() => {
                                           })
                                         : ""}
                                     </p>
-                                    {chat.userType === "User" && (
+                                    {/* {chat.userType === "User" && (
                                       <span className="ms-1">
                                         {chat.isRead ? (
                                           <i className="fa-solid fa-check-double text-primary"></i> // read
@@ -1725,7 +1728,7 @@ useEffect(() => {
                                           <i className="fa-solid fa-check-double text-secondary"></i> // sent, not read
                                         )}
                                       </span>
-                                    )}
+                                    )} */}
                                   </div>
                                 </div>
                               ) : (
@@ -1747,7 +1750,7 @@ useEffect(() => {
                                     />
                                   )}
 
-                                  <p className="mb-1 message-time">
+                                  <p className="mb-0 message-time">
                                     {chat.createdAt
                                       ? new Date(
                                           chat.createdAt
@@ -1757,7 +1760,7 @@ useEffect(() => {
                                         })
                                       : ""}
                                   </p>
-                                  {chat.userType === "User" && (
+                                  {/* {chat.userType === "User" && (
                                     <span className="ms-1">
                                       {chat.isRead ? (
                                         <i className="fa-solid fa-check-double text-primary"></i> // read
@@ -1765,7 +1768,7 @@ useEffect(() => {
                                         <i className="fa-solid fa-check-double text-secondary"></i> // sent, not read
                                       )}
                                     </span>
-                                  )}
+                                  )} */}
                                 </>
                               )}
                             </div>
@@ -1806,7 +1809,7 @@ useEffect(() => {
                       {/* input + actions */}
                       <div
                         className="d-flex gap-2 mt-1 align-items-center  position-sticky"
-                        style={{ minHeight: "45px" }}
+                        style={{ minHeight: "42px" }}
                       >
                         <input
                           name="message"
@@ -1838,7 +1841,7 @@ useEffect(() => {
                         </div>
 
                         <button
-                          className="btn btn-primary mt-0 mb-0"
+                          className="btn btn-primary mt-0 mb-0 send-btn"
                           style={{ width: "fit-content" }}
                           onClick={handleSubmitChat}
                         >
@@ -1894,11 +1897,12 @@ useEffect(() => {
                     <>
                       <div className="mb-2 border-bottom pb-1 position-sticky">
                         <p
-                          className="mb-1 fs-5 p-2"
+                          className="mb-1 p-2 "
                           style={{
                             color: "#402a57",
                             backgroundColor: "white",
                             borderRadius: "8px",
+                            fontSize:"0.9 rem"
                           }}
                         >
                           # {selectedTicket.code}
@@ -1947,7 +1951,7 @@ useEffect(() => {
                                       </p>
                                     )}
 
-                                    <p className="mb-1 message-time">
+                                    <p className="mb-0 message-time">
                                       {chat.createdAt
                                         ? new Date(
                                             chat.createdAt
@@ -1957,7 +1961,7 @@ useEffect(() => {
                                           })
                                         : ""}
                                     </p>
-                                    {chat.userType === "User" && (
+                                    {/* {chat.userType === "User" && (
                                       <span className="ms-1">
                                         {chat.isRead ? (
                                           <i className="fa-solid fa-check-double text-primary"></i> // read
@@ -1965,7 +1969,7 @@ useEffect(() => {
                                           <i className="fa-solid fa-check-double text-secondary"></i> // sent, not read
                                         )}
                                       </span>
-                                    )}
+                                    )} */}
                                   </div>
                                 </div>
                               ) : (
@@ -1988,7 +1992,7 @@ useEffect(() => {
                                     />
                                   )}
 
-                                  <p className="mb-1 message-time">
+                                  <p className="mb-0 message-time">
                                     {chat.createdAt
                                       ? new Date(
                                           chat.createdAt
@@ -1998,7 +2002,7 @@ useEffect(() => {
                                         })
                                       : ""}
                                   </p>
-                                  {chat.userType === "User" && (
+                                  {/* {chat.userType === "User" && (
                                     <span className="ms-1">
                                       {chat.isRead ? (
                                         <i className="fa-solid fa-check-double text-primary"></i> // read
@@ -2006,7 +2010,7 @@ useEffect(() => {
                                         <i className="fa-solid fa-check-double text-secondary"></i> // sent, not read
                                       )}
                                     </span>
-                                  )}
+                                  )} */}
                                 </>
                               )}
                             </div>

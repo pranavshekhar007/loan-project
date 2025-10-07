@@ -19,6 +19,7 @@ import "swiper/css/pagination";
 import Link from "next/link";
 import { loanListServ } from "./services/loan.service";
 import Faq from "./Components/Faq";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   // const [activeTab, setActiveTab] = useState("Personal Loan");
@@ -32,8 +33,7 @@ export default function Home() {
     }
   };
 
- 
- 
+  const router = useRouter();
 
   const cardVariants = {
     hidden: { opacity: 0, y: 40 },
@@ -170,6 +170,10 @@ export default function Home() {
       });
     };
   }, []);
+
+  const handleLoanDetails = (loan) => {
+    router.push(`/loans${loan.slug}`);
+  }
 
   return (
     <>
@@ -379,7 +383,7 @@ export default function Home() {
                   <p className="service-description">{service?.description}</p>
 
                   <div className="service-footer">
-                    <a href={service.link} className="learn-more-btn" style={{cursor:"pointer"}}>
+                    <a href={`/loan/${service.slug}`} className="learn-more-btn" style={{cursor:"pointer"}}>
                       View Details <i className="fas fa-arrow-right"></i>
                     </a>
                     <div className="footer-icon">
