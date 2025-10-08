@@ -6,22 +6,21 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const page = ({minTenure , maxTenure , minAmount , maxAmount , interestRate}) => {
+const page = ({minTenure , maxTenure , minAmount , maxAmount , intrestRate}) => {
   const [amount, setAmount] = useState(50000);
   const [interest, setInterest] = useState(10);
   const [tenure, setTenure] = useState(5);
 
-  const calculateEMI = (principal, annualRate, years) => {
-    const monthlyRate = annualRate / 100 / 12;
-    const months = years * 12;
-    const emi =
-      (principal * monthlyRate * Math.pow(1 + monthlyRate, months)) /
-      (Math.pow(1 + monthlyRate, months) - 1);
-    return emi;
-  };
+const calculateEMI = (principal, annualRate, months) => {
+  const monthlyRate = annualRate / 100 / 12;
+  const emi = (principal * monthlyRate * Math.pow(1 + monthlyRate, months)) /
+              (Math.pow(1 + monthlyRate, months) - 1);
+  return emi;
+};
+
 
   const emi = calculateEMI(amount, interest, tenure);
-  const totalPayment = emi * tenure * 12;
+  const totalPayment = emi * tenure;
   const totalInterest = totalPayment - amount;
 
   const pieData = {
@@ -118,7 +117,7 @@ const page = ({minTenure , maxTenure , minAmount , maxAmount , interestRate}) =>
                   onChange={(e) => setInterest(Number(e.target.value))}
                 ></input>
                 <div className="d-flex justify-content-between small text-muted">
-  <span>{interestRate}%</span>
+  <span>{intrestRate}%</span>
   <span>30%</span>
 </div>
               </div>
@@ -134,7 +133,7 @@ const page = ({minTenure , maxTenure , minAmount , maxAmount , interestRate}) =>
                     value={tenure}
                     onChange={(e) => setTenure(Number(e.target.value))}
                   ></input>
-                     <span className="">Yr</span>
+                     <span className="">m</span>
                   </div>
                     
                 </div>
@@ -148,8 +147,8 @@ const page = ({minTenure , maxTenure , minAmount , maxAmount , interestRate}) =>
                   onChange={(e) => setTenure(Number(e.target.value))}
                 ></input>
                 <div className="d-flex justify-content-between small text-muted">
-  <span>{minTenure} Yr</span>
-  <span>{maxTenure} Yr</span>
+  <span>{minTenure} Month</span>
+  <span>{maxTenure} Month</span>
 </div>
               </div>
               </div>  

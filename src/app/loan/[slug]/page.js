@@ -111,7 +111,7 @@ export default function PersonalLoan() {
                 <div className="stat-item text-center text-black">
                   <i className="fas fa-percentage fa-2x"></i>
                   <div>
-                    <strong className="text-black">10.25%</strong>
+                    <strong className="text-black">{loan?.intrestRate}%</strong>
                     <p>Lowest Interest</p>
                   </div>
                 </div>
@@ -135,7 +135,7 @@ export default function PersonalLoan() {
       {/* calculator section */}
 
      <Calculator minTenure={loan?.minTenure} maxTenure = {loan?.maxTenure} minAmount = {loan?.minAmount} 
-     maxAmount = {loan?.maxAmount} interateRate = {loan?.interateRate} />
+     maxAmount = {loan?.maxAmount} intrestRate = {loan?.intrestRate} />
 
 
      
@@ -181,7 +181,7 @@ export default function PersonalLoan() {
                             </div>
                         </div>
 
-                        <div className="criteria-item">
+                        {/* <div className="criteria-item">
                             <div className="criteria-icon">
                                 <i className="fas fa-history"></i>
                             </div>
@@ -189,7 +189,7 @@ export default function PersonalLoan() {
                                 <h5>Work Experience</h5>
                                 <p>Minimum 2 years of total work experience</p>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="criteria-item">
                             <div className="criteria-icon">
@@ -318,10 +318,10 @@ export default function PersonalLoan() {
                                 {/* <strong>1% - 2% of loan amount</strong> */}
                                 <strong>{loan?.processingFee}%</strong>
                             </div>
-                            <div className="d-flex justify-content-between py-2 border-bottom">
+                            {/* <div className="d-flex justify-content-between py-2 border-bottom">
                                 <span>GST</span>
                                 <strong>18% on processing fee</strong>
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className="mb-4">
@@ -336,10 +336,10 @@ export default function PersonalLoan() {
                                 {/* <strong>2% per month</strong> */}
                                 <strong>{loan?.latePaymentPenalty}%</strong>
                             </div>
-                            <div className="d-flex justify-content-between py-2 border-bottom">
+                            {/* <div className="d-flex justify-content-between py-2 border-bottom">
                                 <span>Loan Cancellation Charges</span>
                                 <strong>₹1000 + GST</strong>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

@@ -164,6 +164,7 @@ const ProfileSidebar = ({title}) => {
         { name: "FAQ", icon: "fas fa-question-circle", path: "/faq" },
         { name: "Privacy Policy", icon: "fas fa-user-shield", path: "/privacy-policy" },
         { name: "Terms & Conditions", icon: "fas fa-file-contract", path: "/terms-condtion" },
+        {name: "Support Ticket" , icon:"fa-solid fa-ticket" , path: "/support"},
       ],
       path: "",
     },
