@@ -5706,7 +5706,7 @@ p {
    background: white;
    border-radius: 20px;
    padding: 30px;
-   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+   /* box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); */
    margin-top: 40px;
  }
 
@@ -5786,7 +5786,7 @@ p {
  .criteria-item {
    display: flex;
    align-items: center;
-   margin-bottom: 20px;
+   margin-bottom: 50px;
  }
 
  .criteria-icon {
@@ -5797,7 +5797,8 @@ p {
    align-items: center;
    justify-content: center;
    margin-right: 15px;
-   background: #f8f9fa;
+   /* background: #f8f9fa; */
+   background: #eff1f2;
    color: #010a2d;
    font-size: 20px;
  }
@@ -6996,6 +6997,7 @@ p {
  /* Documents Section */
  .documents-section {
    padding: 100px 0;
+   padding-bottom: 30px;
    background: var(--light);
  }
 
@@ -11238,6 +11240,7 @@ input[type="text"], select {
     /* overflow-y: auto;  */
     padding-right: 5px; /* Space for scrollbar */
     min-height: 0;
+    padding-bottom: 100px;
 }
 
 .tickets-table {
@@ -11308,6 +11311,7 @@ input[type="text"], select {
     height: 100%;
     max-height: 100%;
     flex-direction: column !important;
+    min-height: 100%;
 }
 
 .viewport-wrapper {
@@ -11331,6 +11335,9 @@ input[type="text"], select {
   }
 }
 
+.tickets-card-container{
+  padding-bottom: 100px;
+}
 @media (max-width:578px) {
   
 .status-filter {
@@ -11344,6 +11351,7 @@ input[type="text"], select {
   /* display: flex; */
   /* flex-direction: column; */
   /* gap: 1rem; */
+   
 }
 
 .ticket-card {
@@ -11579,4 +11587,19 @@ background: var(--primary-gradient-hover);
   margin-left: 4px;
   align-items: end;
   font-size: 0.7rem;
+}
+
+.icon-spin {
+  animation: spin 1s linear infinite;
+  font-size: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.btn:active , button:focus{
+  background: var(--primary) !important;
+  border: none;
 }

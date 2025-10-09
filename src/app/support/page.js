@@ -17,6 +17,7 @@ import { formatDistanceToNowStrict } from "date-fns";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import moment from "moment";
+import { FaSpinner } from "react-icons/fa";
 
 
 const page = () => {
@@ -137,13 +138,15 @@ const page = () => {
 
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [chatLoading, setChatLoading] = useState(false);
+
 
   const handleUploadClick = () => {
     fileInputRef.current.click();
   };
 
   const handleFileChange = (e) => {
-    setMobileView("tickets");
+    // setMobileView("tickets");
 
     const file = e.target.files[0];
     if (file) {
@@ -200,6 +203,8 @@ const page = () => {
   });
 
   const handleSubmitChat = async () => {
+     if (!chatData.message && !selectedFile) return; 
+  setChatLoading(true);
     try {
       const res = await chatCreateServ(chatData);
       console.log("created successfully");
@@ -213,7 +218,10 @@ const page = () => {
       if (fileInputRef.current) fileInputRef.current.value = "";
     } catch {
       console.log("error");
-    }
+    } finally {
+    setChatLoading(false); 
+  }
+    setShowUploadPopup(false) 
   };
 
   useEffect(() => {
@@ -270,6 +278,13 @@ useEffect(() => {
 }, [searchTerm, statusFilter]);
 
 const [previewImage, setPreviewImage] = useState(null);
+
+//file upload popup
+
+const [showUploadPopup, setShowUploadPopup] = useState(false);
+const [popupImage, setPopupImage] = useState(null);
+const [popupMessage, setPopupMessage] = useState("");
+
 
   return (
     <>
@@ -788,7 +803,7 @@ const [previewImage, setPreviewImage] = useState(null);
 
                         {/* upload icon */}
                         <div
-                          onClick={handleUploadClick}
+                          onClick={() => setShowUploadPopup(true)}
                           style={{ cursor: "pointer" }}
                         >
                           <i className="fa-solid fa-arrow-up-from-bracket upload-icon"></i>
@@ -1017,7 +1032,7 @@ const [previewImage, setPreviewImage] = useState(null);
 
                         {/* upload icon */}
                         <div
-                          onClick={handleUploadClick}
+                         onClick={() => setShowUploadPopup(true)}
                           style={{ cursor: "pointer" }}
                         >
                           <i className="fa-solid fa-arrow-up-from-bracket upload-icon"></i>
@@ -1045,6 +1060,95 @@ const [previewImage, setPreviewImage] = useState(null);
         </div>
       </div>
 
+     
+     {/* file upload popup */}
+
+     {showUploadPopup && (
+  <div
+    className="payment-popup position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
+    style={{ background: "rgba(0,0,0,0.5)", zIndex: 9999 }}
+  >
+    <div
+      className="bg-white p-4 shadow ticket-create-popup"
+      style={{ maxWidth: "90%", width: "500px", borderRadius: "16px" }}
+    >
+      <div className="d-flex justify-content-center align-items-center mb-3">
+        <h3 className="w-100 d-flex justify-content-end h3-big">
+          Upload File
+        </h3>
+        <div className="d-flex justify-content-end" style={{ width: "50%" }}>
+          <button
+            className="btn-close"
+            onClick={() => {
+              setShowUploadPopup(false);
+              setSelectedFile(null);
+              setChatData((prev) => ({ ...prev, message: "", image: null }));
+            }}
+          ></button>
+        </div>
+      </div>
+
+      <form
+        className=""
+        onSubmit={(e) => {
+          e.preventDefault();   
+          handleSubmitChat(); 
+        }}
+      >
+        {/* File input */}
+        <div className="form-group mb-2">
+          <label className="form-label">Select File</label>
+          <input
+            type="file"
+            accept="image/*"
+            className="form-control p-2"
+            onChange={(e) => {
+              handleFileChange(e)
+            }}
+          />
+        </div>
+
+       
+        {selectedFile && (
+          <div className="mb-2 text-center">
+            <img
+              src={URL.createObjectURL(selectedFile)}
+              alt="Preview"
+              className="img-fluid rounded"
+              style={{ maxHeight: "130px", minHeight:"100px", objectFit: "contain" }}
+            />
+          </div>
+        )}
+
+        {/* Message input */}
+        <div className="form-group mb-3">
+          <label className="form-label">Message (optional)</label>
+          <textarea
+            className="form-control p-2"
+            rows="2"
+            placeholder="Add a message"
+            value={chatData.message}
+            onChange={(e) =>
+              setChatData((prev) => ({ ...prev, message: e.target.value }))
+            }
+          ></textarea>
+        </div>
+
+        {/* Send button */}
+        <button type="submit" className="submit-button">
+         {chatLoading ? (
+    <FaSpinner className="icon-spin" />  
+  ) : (
+    "Send"
+  )}
+        </button>
+      </form>
+    </div>
+  </div>
+)}
+
+
+    {/* chat image preivew */}
       {previewImage && (
   <div
     className="image-preview-overlay position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
@@ -1074,9 +1178,9 @@ const [previewImage, setPreviewImage] = useState(null);
       ✕
     </button> */}
   </div>
-)}
+     )}
 
-
+      {/* new ticket create popup */}
       {showPopup && (
         <div
           className="payment-popup position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
@@ -1101,7 +1205,7 @@ const [previewImage, setPreviewImage] = useState(null);
               </div>
             </div>
 
-            <form className="ticket-form">
+            <form className="ticket-form" onSubmit={handleSubmit}>
               {/* <div className="form-group">
                     <label for="loan-account-s">Acct. No. (Optional)</label>
                     <input type="text" id="loan-account-s" name="loan-account-s" placeholder="e.g., LNW-123456" className='ticket-input'/>
@@ -1167,7 +1271,7 @@ const [previewImage, setPreviewImage] = useState(null);
               <button
                 type="submit"
                 className="submit-button"
-                onClick={handleSubmit}
+                // onClick={handleSubmit}
               >
                 Submit Ticket
               </button>

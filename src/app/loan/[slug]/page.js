@@ -14,6 +14,9 @@ import {
 } from "framer-motion";
 import { useParams } from "next/navigation";
 import { loanDetailsServ } from "@/app/services/loan.service";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 
 
 export default function PersonalLoan() {
@@ -80,57 +83,73 @@ export default function PersonalLoan() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="personal-loan-hero">
-        <div className="container p-sm-5 p-4">
-          <div className="row align-items-center">
-            {/* Left Side */}
-            <div className="col-lg-6">
-              <h1>{loan?.title}</h1>
-              <p>
-               {loan?.description}
-              </p>
-              <button className="apply-button"><a href="" className="">
-                Apply Now
-              </a></button>
+    {/* Hero Section */}
+<section className="personal-loan-hero">
+  <div className="container p-sm-5 p-4">
+    <div className="row align-items-center">
+      {/* Left Side */}
+      <div className="col-lg-6">
+        {loan ? (
+          <>
+            <h2 className="h2 fw-bold">{loan?.title}</h2>
+            <p>{loan?.description}</p>
+            <button className="apply-button">
+              <a href="">Apply Now</a>
+            </button>
 
-              <div className="hero-stats mt-4 d-flex gap-4">
-                <div className="stat-item text-center text-black">
-                  <i className="fas fa-users fa-2x"></i>
-                  <div>
-                    <strong className="text-black"> 50K+</strong>
-                    <p>Happy Customers</p>
-                  </div>
+            <div className="hero-stats mt-4 d-flex gap-4">
+              <div className="stat-item text-center text-black">
+                <i className="fas fa-users fa-2x"></i>
+                <div>
+                  <strong className="text-black">50K+</strong>
+                  <p>Happy Customers</p>
                 </div>
-                <div className="stat-item text-center text-black">
-                  <i className="fas fa-clock fa-2x"></i>
-                  <div>
-                    <strong className="text-black">24h</strong>
-                    <p>Quick Approval</p>
-                  </div>
+              </div>
+              <div className="stat-item text-center text-black">
+                <i className="fas fa-clock fa-2x"></i>
+                <div>
+                  <strong className="text-black">24h</strong>
+                  <p>Quick Approval</p>
                 </div>
-                <div className="stat-item text-center text-black">
-                  <i className="fas fa-percentage fa-2x"></i>
-                  <div>
-                    <strong className="text-black">{loan?.intrestRate}%</strong>
-                    <p>Lowest Interest</p>
-                  </div>
+              </div>
+              <div className="stat-item text-center text-black">
+                <i className="fas fa-percentage fa-2x"></i>
+                <div>
+                  <strong className="text-black">{loan?.intrestRate}%</strong>
+                  <p>Lowest Interest</p>
                 </div>
               </div>
             </div>
+          </>
+        ) : (
+          // Skeleton Loader
+          <>
+            <Skeleton height={42} width={"70%"} className="mb-md-5 mb-3" />
+            <Skeleton count={2} height={30} className="mb-md-5 mb-3" />
+            <Skeleton height={40} width={120} className="mb-md-5 mb-3" />
+            <div className="hero-stats mt-md-5 mt-3 d-flex flex-wrap gap-5">
+              <Skeleton height={70} width={90} />
+              <Skeleton height={70} width={90} />
+              <Skeleton height={70} width={90} />
+            </div>
+          </>
+        )}
+      </div>
 
-             {/* Hero Image */}
-              <div className="col-lg-6">
-                <div className="loan-calculator">
-                  <img
-                    src={loan?.banner}
-                    alt="Business Loan"
-                    width="100%"
-                  />
-                </div>
-              </div>
+      {/* Hero Image */}
+      <div className="col-lg-6">
+        {loan ? (
+          <div className="loan-calculator">
+            <img src={loan?.banner} alt="Business Loan" width="100%" />
           </div>
-        </div>
-      </section>
+        ) : (
+          <Skeleton height={400} width={"100%"} />
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* calculator section */}
 
@@ -141,74 +160,93 @@ export default function PersonalLoan() {
      
 
       {/* <!-- Eligibility Section --> */}
-    <section className="eligibility-section">
-        <div className="container p-sm-5 p-4">
-            <div className="row">
-                <div className="col-lg-6 left">
-                    <h2>Eligibility Criteria</h2>
-                    <p className="lead">Check if you qualify for our personal loan</p>
+   <div className="eligibility-section">
+  <div className="container p-sm-5 p-4">
+    <div className="row">
+      <div className="col-lg-6 left">
+        {/* Section Heading */}
+        
+            <h2 style={{fontWeight:"500"}}>Eligibility Criteria</h2>
+            <p className="lead">Check if you qualify for our personal loan</p>
+         
 
-                    <div className="eligibility-criteria mt-4">
-                        <div className="criteria-item">
-                            <div className="criteria-icon">
-                                <i className="fas fa-user"></i>
-                            </div>
-                            <div>
-                                <h5>Age</h5>
-                                <p>{loan?.minAge} to {loan?.maxAge} years</p>
-                            </div>
-                        </div>
-
-                        <div className="criteria-item">
-                            <div className="criteria-icon">
-                                <i className="fas fa-money-bill-wave"></i>
-                            </div>
-                            <div>
-                                <h5>Minimum Income</h5>
-                                <p>₹{loan?.minIncome} per month </p>
-                            </div>
-                        </div>
-
-                        <div className="criteria-item">
-                            <div className="criteria-icon">
-                                <i className="fas fa-briefcase"></i>
-                            </div>
-                            <div>
-                                <h5>Employment</h5>
-                                <p> {loan?.employmentTypesAllowed
-        .map(type => employmentMap[type] || type) 
-        .join(", ")}</p>
-                            </div>
-                        </div>
-
-                        {/* <div className="criteria-item">
-                            <div className="criteria-icon">
-                                <i className="fas fa-history"></i>
-                            </div>
-                            <div>
-                                <h5>Work Experience</h5>
-                                <p>Minimum 2 years of total work experience</p>
-                            </div>
-                        </div> */}
-
-                        <div className="criteria-item">
-                            <div className="criteria-icon">
-                                <i className="fas fa-credit-card"></i>
-                            </div>
-                            <div>
-                                <h5>Credit Score</h5>
-                                <p>{loan?.creditScoreRequired} or above for best rates</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-              <div className="col-lg-6 right">
-                <img src="/assets/lender.gif" alt="" width="100%" />
-              </div>
+        {/* Eligibility Items (Age, Minimum Income, Employment, Credit Score) */}
+        <div className="eligibility-criteria mt-4">
+          {/* Age */}
+          <div className="criteria-item ">
+            <div className="criteria-icon">
+              <i className="fas fa-user"></i>
             </div>
+            <div>
+              <h5>Age</h5>
+              {loan ? (
+                <p className="mb-0">{loan?.minAge} to {loan?.maxAge} years</p>
+              ) : (
+                <Skeleton width={100} height={20} />
+              )}
+            </div>
+          </div>
+
+          {/* Minimum Income */}
+          <div className="criteria-item">
+            <div className="criteria-icon">
+              <i className="fas fa-money-bill-wave"></i>
+            </div>
+            <div>
+              <h5>Minimum Income</h5>
+              {loan ? (
+                <p className="mb-0" >₹{loan?.minIncome} per month</p>
+              ) : (
+                <Skeleton width={120} height={20} />
+              )}
+            </div>
+          </div>
+
+          {/* Employment */}
+          <div className="criteria-item">
+            <div className="criteria-icon">
+              <i className="fas fa-briefcase"></i>
+            </div>
+            <div>
+              <h5>Employment</h5>
+              {loan ? (
+                <p className="mb-0">
+                  {loan?.employmentTypesAllowed
+                    .map((type) => employmentMap[type] || type)
+                    .join(", ")}
+                </p>
+              ) : (
+                <Skeleton width={180} height={20} />
+              )}
+            </div>
+          </div>
+
+          {/* Credit Score */}
+          <div className="criteria-item">
+            <div className="criteria-icon">
+              <i className="fas fa-credit-card"></i>
+            </div>
+            <div>
+              <h5>Credit Score</h5>
+              {loan ? (
+                <p className="mb-0">{loan?.creditScoreRequired} or above for best rates</p>
+              ) : (
+                <Skeleton width={140} height={20} />
+              )}
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+
+      <div className="col-lg-6 right">
+       
+          <img src="/assets/elegibility.png" alt="" width="100%" />
+       
+      </div>
+    </div>
+  </div>
+</div>
+
 
     {/* <!-- Process Section --> */}
     <section className="process-section">
