@@ -49,7 +49,7 @@ const CountryPhoneInput = ({ value, onChange }) => {
         country={"in"}
         value={value?.countryCode?.replace("+", "") + value?.phone}
         onChange={(fullValue, country) => {
-          const dialCode = `${country.dialCode}`; 
+          const dialCode = `+${country.dialCode}`; 
           const phone = fullValue.replace(country.dialCode, ""); 
           onChange({
             countryCode: dialCode,

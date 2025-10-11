@@ -30,6 +30,7 @@ export default function PersonalLoan() {
   const [interestRate, setInterestRate] = useState(12.5);
 
   const[loan , setLoanDetails] = useState(null);
+  const[faqList , setFaqList] = useState([]);
 
   const getLoanDetails = async () => {
     console.log("fetching details")
@@ -37,6 +38,7 @@ export default function PersonalLoan() {
        const res = await loanDetailsServ(slug);
     //    if(res?.statusCode == 200){
           setLoanDetails(res?.data?.loanType);
+          setFaqList(res?.data?.faqList);
           console.log("loan detail response" , res?.data?.loanType);
     //    }
      }
@@ -401,8 +403,8 @@ export default function PersonalLoan() {
                     <div className="row justify-content-center gx-0">
                       <div className="col-lg-10 m-0">
                       <div className="faq-list">
-  {loan?.faqList && loan.faqList.length > 0 ? (
-    loan.faqList.map((faq, index) => (
+  {faqList && faqList?.length > 0 ? (
+    faqList?.map((faq, index) => (
       <motion.div
         key={index}
         className={`faq-item ${

@@ -10058,21 +10058,29 @@ p {
  /* Desktop styles */
  @media (min-width: 768px) {
    .dashboard-container {
-     flex-direction: row;
-     gap: 25px;
-   }
+    flex-direction: row;
+    gap: 25px;
+    align-items: flex-start; /* important for sticky */
+  }
 
-   .sidebar {
-     width: 280px;
-     order: 1;
-     flex-shrink: 0;
-   }
+  .sidebar {
+    width: 280px;
+    position: sticky;
+    top: 15px;       /* sticks below top padding */
+    height: calc(100vh - 30px); /* full viewport minus top/bottom padding */
+    flex-shrink: 0;
+    overflow-y: auto; /* if sidebar content is tall */
+  }
 
-   .profile-container {
-     order: 2;
-     flex: 1;
-   }
+  .profile-container {
+    flex: 1;
+    overflow-y: auto; 
+    max-height: 100vh; 
+  }
 
+  .profile-container::-webkit-scrollbar  ,   .sidebar::-webkit-scrollbar{
+  display: none; 
+}
    .profile-header {
      flex-direction: row;
      justify-content: space-between;

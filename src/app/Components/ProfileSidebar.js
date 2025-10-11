@@ -230,7 +230,8 @@ const [isClosing, setIsClosing] = useState(false);
   return (
     <div>
       <div className="sidebar d-md-block d-none">
-        <div className="sidebar-profile">
+        <div className="sidebar-inside">
+          <div className="sidebar-profile">
           <div className="sidebar-avatar">
             <span>{getInitials(loggedUserData?.firstName, loggedUserData?.lastName)}</span>
           </div>
@@ -290,6 +291,7 @@ const [isClosing, setIsClosing] = useState(false);
               )}
             </div>
           ))}
+        </div>
         </div>
       </div>
 

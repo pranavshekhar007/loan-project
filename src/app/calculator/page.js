@@ -363,9 +363,7 @@ const page = () => {
            
           </div>
             
-          {/* <div className="row justify-content-center mt-5">
-           
-          </div> */}
+         
          
         </div>
       </div>
