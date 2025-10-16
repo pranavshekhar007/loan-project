@@ -150,11 +150,11 @@ const ProfileSidebar = ({title}) => {
       icon: "fas fa-exchange-alt",
       path: "/transactions",
     },
-    {
-      name: "EMI Reminder",
-      icon: "fa-solid fa-stopwatch",
-      path: "/emi-reminder",
-    },
+    // {
+    //   name: "EMI Reminder",
+    //   icon: "fa-solid fa-stopwatch",
+    //   path: "/emi-reminder",
+    // },
     { name: "Notification", icon: "fa-solid fa-bell", path: "/notifications" },
     {
       name: "Support",

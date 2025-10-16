@@ -235,21 +235,7 @@ const page = () => {
     if (fileInputRef.current) fileInputRef.current.value = "";
   }, [selectedTicket, loggedUserData?._id]);
 
-  const chatContainerRef = useRef(null);
-
-useEffect(() => {
-  const scrollToBottom = () => {
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-    }
-  };
-
-  scrollToBottom();
-
-  const timeout = setTimeout(scrollToBottom, 500);
-  return () => clearTimeout(timeout);
-}, [chatList, selectedTicket]);
-
+ 
 const [currentPage, setCurrentPage] = useState(1);
 const [ticketsPerPage] = useState(5); 
 const [maxPageNumbers] = useState(1); 
@@ -285,6 +271,20 @@ const [showUploadPopup, setShowUploadPopup] = useState(false);
 const [popupImage, setPopupImage] = useState(null);
 const [popupMessage, setPopupMessage] = useState("");
 
+ const chatContainerRef = useRef(null);
+
+useEffect(() => {
+  const scrollToBottom = () => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  };
+
+  scrollToBottom();
+
+  const timeout = setTimeout(scrollToBottom, 500);
+  return () => clearTimeout(timeout);
+}, [chatList, selectedTicket]);
 
   return (
     <>

@@ -79,7 +79,7 @@ export default function Navbar() {
               style={{ alignItems: "center" }}
             >
               {/* <!-- Loans Mega Dropdown --> */}
-              <li className="nav-item dropdown main-list-item">
+              {/* <li className="nav-item dropdown main-list-item">
                 <a
                   className={`nav-link dropdown-toggle ${
                     loanPaths.includes(pathname) ? "nav-link-active" : ""
@@ -177,19 +177,19 @@ export default function Navbar() {
                     </div>
                   </div>
                 </div>
-              </li>
+              </li> */}
 
               {/* <!-- Other Menus --> */}
-              {/* <li className="nav-item">
+              <li className="nav-item">
                 <a
                   className={`nav-link ${
-                    pathname === "/save" ? "nav-link-active" : ""
+                    pathname === "/" ? "nav-link-active" : ""
                   }`}
-                  href="#"
+                  href="/"
                 >
-                  Save{" "}
+                  Home{" "}
                 </a>
-              </li> */}
+              </li>
               {/* <li className="nav-item">
                 <a
                   className={`nav-link ${
@@ -244,12 +244,15 @@ export default function Navbar() {
               {loggedUserData ? (
                 <li className="nav-item">
                   {" "}
-                  <a className="nav-link" href="/profile">
+                  {/* <a className="nav-link" href="/profile">
                     <img
                       src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png"
                       alt="Profile"
                       style={{ height: "30px", width: "30px" }}
                     ></img>
+                  </a> */}
+                   <a className="nav-link sign-in-btn" href="/profile">
+                      My Account
                   </a>
                 </li>
               ) : (
@@ -257,7 +260,7 @@ export default function Navbar() {
                   {" "}
                   <a className="nav-link sign-in-btn" href="/sign-up">
                     {" "}
-                    Sign In
+                   Apply Now
                   </a>
                 </li>
               )}
@@ -287,7 +290,7 @@ export default function Navbar() {
         <div className="offcanvas-body">
           <ul className="navbar-nav">
             {/* <!-- Loans Dropdown --> */}
-            <li className="nav-item">
+            {/* <li className="nav-item">
              <a
   className={`nav-link d-flex flex-row justify-content-between align-items-center ${
     loanPaths.includes(pathname) ? "nav-link-active" : ""
@@ -355,14 +358,17 @@ export default function Navbar() {
                   </li>
                 </ul>
               </div>
-            </li>
+            </li> */}
 
-            {/* <!-- Other Menus --> */}
-            {/* <li className="nav-item">
-              <a className="nav-link" href="#">
-                Save
+
+              <li className="nav-item">
+              <a className="nav-link" href="/">
+               Home
               </a>
             </li>
+            {/* <!-- Other Menus --> */}
+            {/*
+            
             <li className="nav-item">
               <a className="nav-link" href="#">
                 Insure
@@ -402,7 +408,7 @@ export default function Navbar() {
                   }`}
                   href="/profile"
                 >
-                  Profile
+                  My Account
                 </a>
               </li>
             ) : (
@@ -414,7 +420,7 @@ export default function Navbar() {
                   href="/sign-up"
                 >
                   {" "}
-                  Sign In{" "}
+                  Apply Now
                 </a>
               </li>
             )}
