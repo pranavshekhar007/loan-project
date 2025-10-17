@@ -34,7 +34,7 @@ export default function Footer() {
         </div>
 
         {/* Loan Products */}
-        <div className="footer-col">
+        {/* <div className="footer-col">
           <h4>Loan Products</h4>
           <ul>
             <li><Link href="/personal-loan">Personal Loan</Link></li>
@@ -45,7 +45,7 @@ export default function Footer() {
             <li><Link href="/gold-loan">Gold Loan</Link></li>
             <li><Link href="/supply-chain">Supply Chain Finance</Link></li>
           </ul>
-        </div>
+        </div> */}
 
         {/* Contact */}
         <div className="footer-col">
