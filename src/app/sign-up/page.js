@@ -635,7 +635,7 @@ export default function AuthPage() {
         console.log("login successfully", res);
         updateLoggedUserData(res?.data, rememberMe);
         toast.success(res?.message);
-        router.push("/");
+        router.push("/profile");
       }
     } catch (err) {
       console.log("login failed", err);
@@ -725,7 +725,7 @@ export default function AuthPage() {
         console.log("login successfully", res);
         updateLoggedUserData(res?.data, rememberMe);
         toast.success(res?.message);
-        router.push("/");
+        router.push("/profile");
       }
     } catch (err) {
       console.log("login failed", err);

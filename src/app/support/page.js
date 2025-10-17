@@ -658,7 +658,7 @@ useEffect(() => {
                                 chat.userType === "User"
                                   ? "message2"
                                   : "message"
-                              } mb-0 d-flex gap-2 align-items-end`}
+                              } mb-1 d-flex gap-2 align-items-end`}
                             >
 
                             
@@ -894,8 +894,8 @@ useEffect(() => {
                               className={`${
                                 chat.userType === "User"
                                   ? "message2"
-                                  : "message"
-                              } mb-0 d-flex gap-2 align-items-end`}
+                                  : "message "
+                              } mb-1 d-flex gap-2 align-items-end`}
                             >
                               {chat?.image ? (
                                 <div className="d-flex flex-column">

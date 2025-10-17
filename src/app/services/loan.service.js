@@ -53,3 +53,16 @@ export const AppliedLoanDetailsServ = async (formData , id) => {
     throw error;
   }
 };
+
+//loan list
+
+export const purposeListServ = async (formData) => {
+
+  try {
+    const response = await axios.post(BASE_URL + "loan-purpose/list",formData );
+    return response.data;
+  } catch (error) {
+    console.error("loan list Error:", error);
+    throw error;
+  }
+};

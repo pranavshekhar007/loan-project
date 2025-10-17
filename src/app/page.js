@@ -17,9 +17,27 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Link from "next/link";
-import { loanListServ } from "./services/loan.service";
+import { loanListServ, purposeListServ } from "./services/loan.service";
 import Faq from "./Components/Faq";
 import { useRouter } from "next/navigation";
+
+// const purposes = [
+//   {
+//     img :"https://www.rupee112.com/public/images/health.jpeg",
+//     title:"Medical Loan",
+//     description:"Medical emergencies can come without warning. Our instant personal loan options can cover hospital bills, medications, and surgeries. We ensure you get the money fast so you can focus on your health.",
+//   },
+//    {
+//     img :"https://www.rupee112.com/public/images/health.jpeg",
+//     title:"Personal Loan",
+//     description:"Medical emergencies can come without warning. Our instant personal loan options can cover hospital bills, medications, and surgeries. We ensure you get the money fast so you can focus on your health.",
+//   },
+//    {
+//     img :"https://www.rupee112.com/public/images/health.jpeg",
+//     title:"Home Loan",
+//     description:"Medical emergencies can come without warning. Our instant personal loan options can cover hospital bills, medications, and surgeries. We ensure you get the money fast so you can focus on your health.",
+//   }
+// ]
 
 export default function Home() {
   // const [activeTab, setActiveTab] = useState("Personal Loan");
@@ -53,12 +71,32 @@ export default function Home() {
 
   const [services , setServices] = useState([])
 
+  // const getLoanList = async () => {
+  //  try{
+  //    const res = await loanListServ();
+  //   // if(res?.statusCode == 200){
+  //     console.log(" loan  list res" , res?.data);
+  //     setServices(res?.data);
+  //   // }
+  //  }
+  //  catch(err){
+  //   console.log("error" , err)
+  //  }
+
+  // }
+
+  // useEffect (() => {
+  //   getLoanList();
+  // },[])
+
+  const [purposes , setPurposes] = useState([]);
+
   const getLoanList = async () => {
    try{
-     const res = await loanListServ();
+     const res = await purposeListServ();
     // if(res?.statusCode == 200){
       console.log(" loan  list res" , res?.data);
-      setServices(res?.data);
+      setPurposes(res?.data);
     // }
    }
    catch(err){
@@ -345,7 +383,7 @@ export default function Home() {
       </section>
 
       {/* Financial Platform Services Section */}
-      <section className="main-service">
+      {/* <section className="main-service">
         <div className="financial-platform">
           <div className="platform-header text-center mb-5">
             <h2 className="h2">All your finances, in one smart app</h2>
@@ -374,10 +412,7 @@ export default function Home() {
               >
                 <div className="card-content">
                   <h4 className="service-title">
-                    {/* <div className="service-icon">
-                      <i className={service?.icon}></i>
-                     
-                    </div> */}
+                   
                     {service?.name}
                   </h4>
                   <p className="service-description">{service?.description}</p>
@@ -387,10 +422,56 @@ export default function Home() {
                       View Details <i className="fas fa-arrow-right"></i>
                     </a>
                     <div className="footer-icon">
-                      {/* <img src={service.img} alt={service.title} /> */}
+                    
                        <img src={service?.icon} alt={`${service?.name} icon`} />
                     </div>
                   </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section> */}
+
+      {/* loan purposes */}
+
+        <section className="main-service">
+        <div className="financial-platform">
+          <div className="platform-header text-center mb-5">
+            <h2 className="h2">All your finances, in one smart app</h2>
+            <p>
+              Comprehensive lending solutions – faster, compliant, and
+              digital-first
+            </p>
+          </div>
+
+          <div className="services-grid">
+            {purposes?.map((service, i) => (
+              <motion.div
+                key={i}
+                className="service-card"
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false }}
+                custom={i}
+                whileHover={{
+                  scale: 1.1,
+                  y: -4,
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
+                }}
+                transition={{ type: "spring", stiffness: 150 }}
+              >
+
+                <div className="card-content">
+                  <img src={service?.img} style={{borderRadius:"13px"}} className="mb-3" ></img>
+                  <h4 className="service-title">
+                   
+                    {service?.name}
+                  </h4>
+                  <p className="service-description">{service?.description}</p>
+
+                 
                 </div>
               </motion.div>
             ))}
