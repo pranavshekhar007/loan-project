@@ -529,7 +529,7 @@ const fileInputRef = useRef(null);
 
                  
 
-                    <div className="info-item">
+                    {/* <div className="info-item">
                     <div className="input-with-icon">
                    
                       {isEditing ? (
@@ -592,8 +592,240 @@ const fileInputRef = useRef(null);
                     {errors.pincode && (
                       <small className="text-danger">{errors.pincode}</small>
                     )}
-                  </div>
+                  </div> */}
                 </div>
+                
+                 <h5 className="mt-5 mb-4">Address details</h5>
+                  <div className="info-grid">
+
+                    {/* address textarea */}
+                      {/* <div className="info-item">
+                    <div className="input-with-icon">
+                   
+                      {isEditing ? (
+                          <>
+                           <div className="input-icon" style={{top:"30%"}}>
+                        <i class="fa-solid fa-house-user"></i>
+                      </div>
+                      <label for="">Address</label>
+
+                        <textarea
+                        rows={2}
+                          type="text"
+                          name="address"
+                          className="info-input"
+                          value={formData?.address}
+                          onChange={handleChange}
+                        
+                        />
+                        </>
+                      ) : (
+                        <>
+                           <div className="input-icon">
+                        <i class="fa-solid fa-house-user"></i>
+                      </div>
+                      <label for="">Address</label>
+                        <div className="info-value">{formData?.address}</div>
+                        </>
+                      )}
+                    </div>
+                    
+                  </div> */}
+
+                    
+
+                  {/* address input */}
+                   
+                    <div className="info-item">
+                    <div className="input-with-icon">
+                      <div className="input-icon">
+                        <i className="fa-solid fa-house-user"></i>
+                      </div>
+                      <label for="">Address</label>
+                      {isEditing ? (
+                        <input
+                          ref={pincodeRef}
+                          type="text"
+                          name="address"
+                          className="info-input"
+                          value={formData?.address}
+                          onChange={handleChange}
+                         
+                        />
+                      ) : (
+                        <div className="info-value">{formData?.address}</div>
+                      )}
+                    </div>
+                   
+                  </div>
+                  
+
+                   <div className="info-item">
+                    <div className="input-with-icon">
+                      <div className="input-icon">
+                        <i className="fa-solid fa-map-pin"></i>
+                      </div>
+                      <label for="">Address Landmark</label>
+                      {isEditing ? (
+                        <input
+                        
+                          type="text"
+                          name="landmark"
+                          className="info-input"
+                           value={formData?.landmark}
+                          onChange={handleChange}
+                         
+                        />
+                      ) : (
+                        <div className="info-value">{formData?.landmark}</div>
+                      )}
+                    </div>
+                   
+                  </div>
+
+                   
+
+                     {/* <div className="info-item">
+                    <div className="input-with-icon">
+                   
+                      {isEditing ? (
+                          <>
+                           <div className="input-icon" style={{top:"30%"}}>
+                        <i class="fa-solid fa-flag"></i>
+                      </div>
+                      <label for="">State</label>
+
+                        <input
+                       
+                          type="text"
+                          name="address"
+                          className="info-input"
+                          // value={formData?.address}
+                          onChange={handleChange}
+                        
+                        />
+                        </>
+                      ) : (
+                        <>
+                           <div className="input-icon">
+                        <i class="fa-solid fa-flag"></i>
+                      </div>
+                      <label for="">State</label>
+                        <div className="info-value"></div>
+                        </>
+                      )}
+                    </div>
+                    
+                  </div> */}
+
+
+                    <div className="info-item">
+                    <div className="input-with-icon">
+                      <div className="input-icon">
+                       <i class="fa-solid fa-flag"></i>
+                      </div>
+                      <label for="">State</label>
+                      {isEditing ? (
+                        <input
+                          
+                          type="text"
+                          name="state"
+                          className="info-input"
+                          value={formData?.state}
+                          onChange={handleChange}
+                        
+                        />
+                      ) : (
+                        <div className="info-value">{formData?.state}</div>
+                      )}
+                    </div>
+                   
+                  </div>
+
+                   <div className="info-item">
+                    <div className="input-with-icon">
+                      <div className="input-icon">
+                       <i class="fa-solid fa-city"></i>
+                      </div>
+                      <label for="">City</label>
+                      {isEditing ? (
+                        <input
+                         
+                          type="text"
+                           name="city"
+                          className="info-input"
+                          value={formData?.city}
+                          onChange={handleChange}
+                        
+                        />
+                      ) : (
+                        <div className="info-value">{formData?.city}</div>
+                      )}
+                    </div>
+                   
+                  </div>
+
+                  <div className="info-item">
+                    <div className="input-with-icon">
+                      <div className="input-icon">
+                        <i className="fa-solid fa-mail-bulk"></i>
+                      </div>
+                      <label for="">Pincode</label>
+                      {isEditing ? (
+                        <input
+                          ref={pincodeRef}
+                          type="text"
+                          name="pincode"
+                          className="info-input"
+                          value={formData?.pincode}
+                          onChange={handleChange}
+                          maxLength={6}
+                          onInput={(e) =>
+                            (e.target.value = e.target.value.replace(
+                              /[^0-9]/g,
+                              ""
+                            ))
+                          }
+                        />
+                      ) : (
+                        <div className="info-value">{formData?.pincode}</div>
+                      )}
+                    </div>
+                    {errors.pincode && (
+                      <small className="text-danger">{errors.pincode}</small>
+                    )}
+                  </div>
+
+
+                <div className="info-item">
+  <div className="input-with-icon">
+    <div className="input-icon">
+      <i className="fa-solid fa-building"></i>
+    </div>
+    <label htmlFor="residenceType">Residence Type</label>
+    {isEditing ? (
+      <select
+        name="residenceType"
+        className="info-input"
+        value={formData?.residenceType || ""}
+        onChange={handleChange}
+      >
+        <option value="">Select Residence Type</option>
+        <option value="owned">Owned</option>
+        <option value="rented">Rented</option>
+        <option value="company">Company Provided</option>
+        <option value="other">Other</option>
+      </select>
+    ) : (
+      <div className="info-value">{formData?.residenceType}</div>
+    )}
+  </div>
+  {/* {errors.residenceType && (
+    <small className="text-danger">{errors.residenceType}</small>
+  )} */}
+</div>
+
+                  </div>
 
                 <h5 className="mt-5 mb-4">Employment details</h5>
 
@@ -613,13 +845,12 @@ const fileInputRef = useRef(null);
                           onChange={handleChange}
                         >
                           <option value="">Select Employment Type</option>
-                          <option value="Salaried">Salaried</option>
-                          <option value="Self-Employed">Self-Employed</option>
-                          <option value="Business Owner">Business Owner</option>
-                          <option value="Freelancer">Freelancer</option>
-                          <option value="Student">Student</option>
-                          <option value="Retired">Retired</option>
-                          <option value="Unemployed">Unemployed</option>
+                          <option value="private sector">Private Sector</option>
+                          <option value="goverment sector">Goverment Sector</option>
+                          <option value="self employed">Self-Employed</option>
+                          <option value="Freelancer / independent contractor">Freelancer / Independent Contractor</option>
+                          <option value="daily wage / labour worker">Daily Wage / Labour Worker</option>
+                          
                         </select>
                       ) : (
                         <div className="info-value">
@@ -659,7 +890,7 @@ const fileInputRef = useRef(null);
                   </div>
 
                   {/* Annual Income */}
-                  <div className="info-item">
+                  {/* <div className="info-item">
                     <div className="input-with-icon">
                       <div className="input-icon">
                         <i className="fas fa-money-bill-wave"></i>
@@ -685,10 +916,10 @@ const fileInputRef = useRef(null);
                         </div>
                       )}
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* Current Company */}
-                  <div className="info-item">
+                  {/* <div className="info-item">
                     <div className="input-with-icon">
                       <div className="input-icon">
                         <i className="fas fa-building"></i>
@@ -708,10 +939,32 @@ const fileInputRef = useRef(null);
                         </div>
                       )}
                     </div>
-                  </div>
+                  </div> */}
+
+                  <div className="info-item">
+                    <div className="input-with-icon">
+                      <div className="input-icon">
+                        <i className="fas fa-building"></i>
+                      </div>
+                      <label htmlFor="">Salary Date</label>
+                      {isEditing ? (
+                        <input
+                          type="date"
+                          name="salaryDate"
+                          className="info-input"
+                          value={formData?.salaryDate || ""}
+                          onChange={handleChange}
+                        />
+                      ) : (
+                        <div className="info-value">
+                          {formData?.salaryDate}
+                        </div>
+                      )}
+                    </div>
+                  </div> 
 
                   {/* Residence City */}
-                  <div className="info-item">
+                  {/* <div className="info-item">
                     <div className="input-with-icon">
                       <div className="input-icon">
                         <i className="fa-solid fa-city"></i>
@@ -731,10 +984,10 @@ const fileInputRef = useRef(null);
                         </div>
                       )}
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* Salary Bank */}
-                  <div className="info-item">
+                  {/* <div className="info-item">
                     <div className="input-with-icon">
                       <div className="input-icon">
                         <i className="fas fa-university"></i>
@@ -750,6 +1003,25 @@ const fileInputRef = useRef(null);
                         />
                       ) : (
                         <div className="info-value">{formData?.salaryBank}</div>
+                      )}
+                    </div>
+                  </div> */}
+                  <div className="info-item">
+                    <div className="input-with-icon">
+                      <div className="input-icon">
+                        <i className="fas fa-university"></i>
+                      </div>
+                      <label htmlFor="">Salary Mode</label>
+                      {isEditing ? (
+                        <input
+                          type="text"
+                          name="salaryType"
+                          className="info-input"
+                          value={formData?.salaryType || ""}
+                          onChange={handleChange}
+                        />
+                      ) : (
+                        <div className="info-value">{formData?.salaryType}</div>
                       )}
                     </div>
                   </div>

@@ -727,6 +727,9 @@ export default function AuthPage() {
         toast.success(res?.message);
         router.push("/profile");
       }
+      else{
+        toast.error(res?.message);
+      }
     } catch (err) {
       console.log("login failed", err);
       toast.error(err?.response?.data?.message);
