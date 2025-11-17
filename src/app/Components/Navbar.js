@@ -230,6 +230,18 @@ export default function Navbar() {
                   Calculator{" "}
                 </a>
               </li>
+
+              <li className="nav-item">
+                <a
+                  className={`nav-link ${
+                    pathname === "/about" ? "nav-link-active" : ""
+                  }`}
+                  href="/about"
+                >
+                  About Us
+                </a>
+              </li>
+
               <li className="nav-item">
                 <a
                   className={`nav-link ${
@@ -385,16 +397,32 @@ export default function Navbar() {
               </a>
             </li> */}
             <li className="nav-item">
-              <a className="nav-link" href="/calculator">
+               <a
+                className={`nav-link ${
+                  pathname === "/calculator" ? "nav-link-active" : ""
+                }`}
+                href="/calculator"
+              >
                 Calculator
+              </a>
+            </li>
+
+            <li className="nav-item">
+              <a
+                className={`nav-link ${
+                  pathname === "/about" ? "nav-link-active" : ""
+                }`}
+                href="/about"
+              >
+                About Us
               </a>
             </li>
             <li className="nav-item">
               <a
                 className={`nav-link ${
-                  pathname === "/support" ? "nav-link-active" : ""
+                  pathname === "/contact" ? "nav-link-active" : ""
                 }`}
-                href="/support"
+                href="/contact"
               >
                 Contact Us
               </a>

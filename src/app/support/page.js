@@ -1256,7 +1256,7 @@ useEffect(() => {
 
               <div className="form-group flexible-field-s">
                 <label for="description" className="d-flex gap-2">
-                  Detailed Descriptio 
+                  Detailed Description
                 </label>
                 <textarea
                   id="description"

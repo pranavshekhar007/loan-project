@@ -866,7 +866,7 @@ export default function AuthPage() {
 
               {/* Password + Pincode */}
               <div className="form-row">
-                <div className="form-col">
+                {/* <div className="form-col">
                   <div className="form-group">
                     <FaLock className="form-icon" />
                     <input
@@ -882,7 +882,7 @@ export default function AuthPage() {
                       onClick={() => setShowPassword(!showPassword)}
                     />
                   </div>
-                </div>
+                </div> */}
                 <div className="form-col">
                   <div className="form-group">
                     <FaMapMarkerAlt className="form-icon" />

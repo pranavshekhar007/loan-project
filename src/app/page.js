@@ -470,7 +470,11 @@ export default function Home() {
                     {service?.name}
                   </h4>
                   <p className="service-description">{service?.description}</p>
-
+                    
+                    <a href={`/`}
+                     className="learn-more-btn" style={{cursor:"pointer" , width:"fit-content"}}>
+                     Apply Now <i className="fas fa-arrow-right"></i>
+                    </a>
                  
                 </div>
               </motion.div>
