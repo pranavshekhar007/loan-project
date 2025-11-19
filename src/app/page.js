@@ -213,6 +213,9 @@ export default function Home() {
     router.push(`/loans${loan.slug}`);
   }
 
+  const [expanded, setExpanded] = useState({});
+
+
   return (
     <>
       <Navbar />
@@ -464,12 +467,46 @@ export default function Home() {
               >
 
                 <div className="card-content">
-                  <img src={service?.img} style={{borderRadius:"13px"}} className="mb-3" ></img>
+                  <img src={service?.img} style={{borderRadius:"13px" , width:"95px", height:"95px"}} className="mb-3" ></img>
                   <h4 className="service-title">
                    
                     {service?.name}
                   </h4>
-                  <p className="service-description">{service?.description}</p>
+             <p className="service-description">
+  {expanded[i] ? (
+    <>
+      {service.description}
+      <span
+        style={{ color: "blue", cursor: "pointer", marginLeft: 5 }}
+        onClick={() =>
+          setExpanded((prev) => ({ ...prev, [i]: false }))
+        }
+      >
+        Show less
+      </span>
+    </>
+  ) : (
+    <>
+      {service.description?.split(" ").length > 49
+        ? service.description.split(" ").slice(0, 49).join(" ") + " "
+        : service.description}
+
+      {service.description?.split(" ").length > 49 && (
+        <span
+          style={{ color: "blue", cursor: "pointer" }}
+          onClick={() =>
+            setExpanded((prev) => ({ ...prev, [i]: true }))
+          }
+        >
+          ...read more
+        </span>
+      )}
+    </>
+  )}
+</p>
+
+
+
                     
                     <a href={`/`}
                      className="learn-more-btn" style={{cursor:"pointer" , width:"fit-content"}}>
